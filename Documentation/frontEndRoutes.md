@@ -1,27 +1,21 @@
-* Splash
-  * /
+* Splash - /
   * links to login or signup
-* Login
-  * /login (possibly a pop up?)
+* Login - /login (possibly a pop up?)
   * Session Form
-* Sign Up
-  */signup (possibly a pop up?)
+    * - Backend Routes Needed
+* Sign Up - /signup (possibly a pop up?)
   * Session Form
-* Dashboard
-  * /dashboard
+* Dashboard - /dashboard
   * Nav bar (top)
   * Feed of Sounds
   * Sound bar (bottom)
-* Sound
-  * /:username/:soundname
+* Sound - /:username/:soundname
   * Big sound player
   * sound details
   * Comments section
-* Profile
-  * /:username
+* Profile - /:username
   * feed of users sounds
   * sidebar shows bio and followers/following
-* Upload
-  * /:username/upload
+* Upload - /:username/upload
   * upload a sound
   * sound detail form
