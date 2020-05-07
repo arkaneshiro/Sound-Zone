@@ -58,4 +58,5 @@
    * JavaScript
    * Node.js
    * Express.js
-   * React / Redux
+   * React
+   * Redux
