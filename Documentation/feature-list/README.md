@@ -48,8 +48,10 @@
    * set 'playing next'
    * Comments w/ timestamp
    * search ( by name / genre! )
+   * delete comments (your own or on your song)
+   * Delete / Deactivate account
+   * Messaging
    * Mix Songs w/ cueing & filter fx
-   * DMs
 5. Technologies Used
    * HTML5
    * CSS3
