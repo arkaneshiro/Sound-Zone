@@ -26,7 +26,7 @@
     * POST for likes
     * POST for comments
     * DELETE for remove sound (also deletes related comments, likes, and genres)
-# Profile - /:username (this page looks slightly different if it is your profile)
+# Profile - /:username (looks different if own profile)
   * feed of users sounds
   * sidebar shows bio and followers/following
     * --- Backend Routes Needed ---
