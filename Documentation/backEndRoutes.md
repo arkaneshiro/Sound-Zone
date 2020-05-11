@@ -1,5 +1,5 @@
 # Users
-  * GET /users
+  * GET /users/:id
     -  returns a users info and all related sounds, follows, following, etc
   * POST /users
     - create a new user (returns userId and token)
@@ -25,8 +25,6 @@
     - creates a like for a sound, returns updated number of likes for a sound
   * POST /social/comment
     - creates a comment for a sound, returns updated 'comments' object
-  * GET /social/:id
-    - returns follower and following objects for a user
   * POST /social/follow
     - creates a follow for a user, returns updated object of followers for the user who was just followed
   * DELETE /social/follow
