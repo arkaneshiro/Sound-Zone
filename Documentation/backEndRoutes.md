@@ -7,11 +7,15 @@
     - verifies user login and returns token for the user
   * DELETE /users
     - deletes a user and all related sounds, follows, etc
+  * POST /users/:id/follow
+    - creates a follow for a user, returns updated object of followers for the user who was just followed
+  * DELETE /users/:id/follow
+    - deletes a follow for a user, returns updated object of followers for the user who was just unfollowed.
 
 # Sounds
-  * GET /sounds/user/:id
+  * GET /users/:id/sounds
     - returns all of a particular users sounds
-  * GET /sounds/feed/:id
+  * GET /users/:id/feed
     - returns all of the sounds for a users feed
   * GET /sounds/:id
     - returns a sound and all its details
@@ -19,13 +23,7 @@
     - creates a new sound
   * DELETE /sounds/:id
     - deletes a sound and all related social content
-
-# Social
-  * POST /social/like
+  * POST /sounds/:id/like
     - creates a like for a sound, returns updated number of likes for a sound
-  * POST /social/comment
+  * POST /sounds/:id/comment
     - creates a comment for a sound, returns updated 'comments' object
-  * POST /social/follow
-    - creates a follow for a user, returns updated object of followers for the user who was just followed
-  * DELETE /social/follow
-    - deletes a follow for a user, returns updated object of followers for the user who was just unfollowed.
