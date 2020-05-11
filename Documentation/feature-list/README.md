@@ -17,7 +17,6 @@
 3. UI Design
     * Landing Page
       * User login/registration
-      * Highlight some app features
     * Dashboard
       * nav bar
         * links to dashboard, profile, and logout
@@ -34,10 +33,11 @@
       * only page without sound bar
       * delete button appears on your sounds
     * Profile
-      * shows your sounds
+      * shows users sounds
       * upload sound link
-      * shows people you follow
-      * shows people who follow you
+      * shows people user follow
+      * shows people who follow user
+      * delete button for sounds appears on your profile
     * Upload sound
       * uploads to cloudinary
       * detail form (description, image, genre)
@@ -46,6 +46,7 @@
 4. Stretch goals
    * song playback memory (goes away when you navigate away?)
    * set 'playing next'
+   * Auth0 login
    * Comments w/ timestamp
    * search ( by name / genre! )
    * delete comments (your own or on your song)
