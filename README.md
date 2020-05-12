@@ -1,6 +1,7 @@
 # Soundzone
 Soundzone is an application to host and play sounds
 
+Backend for Soundzone here: [Sound-Zone-Backend](https://github.com/arkaneshiro/Sound-Zone-Backend)
 
 ## Documentation links
 - [Feature List](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/feature-list/README.md)
