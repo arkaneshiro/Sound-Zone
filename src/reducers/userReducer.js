@@ -12,7 +12,10 @@ export default (state = initialUsers, action) => {
     // case ACTION_TYPE:
     //  return some kind of modification to newState
     case RECEIVE_USER:
-      return { ...newState, [action.user.id]: action.user };
+      return {
+        ...newState,
+        [action.user.id]: action.user
+      };
     default:
       return newState;
   }

@@ -1,1 +1,37 @@
-/* TODO Add site wide styles */
+/* site wide styles */
+body {
+    margin: 0px;
+}
+
+.navBar {
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #ff6700;
+}
+
+.navBar-navLink,
+.navBar-navLink:visited {
+    margin: 3px;
+    padding: 3px;
+    border-radius: 5px;
+    color: black;
+    background-color: #ff6700;
+    font-weight: normal;
+    text-decoration: none;
+    /* transition: background-color .5s; */
+}
+
+.navBar-navLink:hover {
+    background-color: white;
+}
+
+.navBar-navLink:active {
+    color: white;
+    background-color: black;
+}
+
+.navBar-navLink.active {
+    background-color: white;
+}
