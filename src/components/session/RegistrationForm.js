@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { register } from '../../actions/authActions';
+import { register, updateImg } from '../../actions/authActions';
 import styles from '../../styles/RegisterForm.module.css';
 
-const RegistrationForm = ({ register }) => {
+const RegistrationForm = ({ register, updateImg, previewImgUrl }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -11,10 +11,14 @@ const RegistrationForm = ({ register }) => {
 
     const updateValue = cb => e => cb(e.target.value);
 
+    const handleNewImage = e => {
+        const newImg = e.target.files[0];
+        updateImg(newImg);
+    }
+
     const handlesubmit = e => {
         e.preventDefault();
-        console.log([username, password])
-        register(username, email, password, bio)
+        register(username, email, password, bio, previewImgUrl)
     }
 
     return (
@@ -52,16 +56,36 @@ const RegistrationForm = ({ register }) => {
                         onChange={updateValue(setBio)}
                     />
                 </label>
-                <input type="submit" value="Sign Up"/>
+                <div className={styles.imageUpload}>
+                    <img className={styles.imagePreview} src={previewImgUrl} alt='avi preview' />
+                    <label className={styles.imageInputLabel} htmlFor="file-upload" >
+                        <input
+                            className={styles.imageInput}
+                            type="file"
+                            id="file-upload"
+                            onChange={handleNewImage}
+                        />
+                        Select an Image
+                    </label>
+                </div>
+
+                <input type="submit" value="Sign Up" />
             </form>
         </div>
     )
 }
 
+const mapStateToProps = (state) => {
+    return {
+      previewImgUrl: state.auth.previewImgUrl,
+    };
+  };
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        register: (username, email, password, bio) => dispatch(register(username, email, password, bio)),
+        register: (username, email, password, bio, newImg) => dispatch(register(username, email, password, bio, newImg)),
+        updateImg: (newImg) => dispatch(updateImg(newImg)),
     };
 };
 
-export default connect(null, mapDispatchToProps)(RegistrationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);

@@ -27,11 +27,11 @@ body {
     background-color: white;
 }
 
+.navBar-navLink.active {
+    background-color: white;
+}
+
 .navBar-navLink:active {
     color: white;
     background-color: black;
-}
-
-.navBar-navLink.active {
-    background-color: white;
 }

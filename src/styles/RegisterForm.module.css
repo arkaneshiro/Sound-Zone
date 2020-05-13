@@ -13,3 +13,18 @@
     display: flex;
     justify-content: space-between;
 }
+
+.imagePreview {
+    height: 50px;
+    width: 50;
+}
+
+.imageUpload {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imageInput {
+    display: none;
+}
