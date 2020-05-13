@@ -1,6 +1,4 @@
-import { apiBaseUrl } from "../config";
-const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dgzcv1mcs/image/upload'
-const CLOUDINARY_UPLOAD_PRESET = 'wiwfaq3n';
+import { apiBaseUrl, cloudinaryPreset, cloudinaryUrl } from "../config";
 
 export const SET_IMG = 'twitter/authentication/SET_IMG';
 export const SET_TOKEN = 'twitter/authentication/SET_TOKEN';
@@ -34,9 +32,9 @@ export const updateImg = (newImg) => async (dispatch) => {
     try {
         const data = new FormData();
         data.append('file', newImg);
-        data.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+        data.append('upload_preset', cloudinaryPreset);
 
-        const res = await fetch(CLOUDINARY_URL, {
+        const res = await fetch(cloudinaryUrl, {
             method: "POST",
             body: data,
         });
