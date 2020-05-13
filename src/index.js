@@ -7,7 +7,15 @@ import App from "./App";
 import configureStore from "./configureStore";
 
 // you can optionally pass configureStore whatever you want your initial state to look like
-const store = configureStore();
+const preloadedState = {
+    auth: {
+        authToken: localStorage.getItem('soundzone-credentials'),
+        currentUserId: localStorage.getItem('soundzone-user'),
+        previewImgUrl: 'https://res.cloudinary.com/dgzcv1mcs/image/upload/v1589327406/Soundzone/default_avatar_avox09.jpg',
+    }
+}
+
+const store = configureStore(preloadedState);
 
 ReactDOM.render(
   <React.StrictMode>

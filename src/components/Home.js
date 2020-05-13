@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
 
-const Profile = ({currentUserId}) => {
+const Home = ({currentUserId}) => {
     return (
-        <h1>Profile</h1>
+        <h1>Home</h1>
     )
 }
 
@@ -13,4 +13,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(Profile);
+export default connect(mapStateToProps, null)(Home);

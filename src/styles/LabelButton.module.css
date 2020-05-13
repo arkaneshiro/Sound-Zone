@@ -1,0 +1,19 @@
+.button {
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    color: black;
+    background-color: #ff6700;
+    justify-content: center;
+}
+
+.button:hover {
+    color: white;
+    background-color: black;
+}
+
+.button:active {
+    color: white;
+    background-color: #ff6700;
+}

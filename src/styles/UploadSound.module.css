@@ -12,17 +12,28 @@
 .label {
     display: flex;
     justify-content: space-between;
+
 }
 
-.imagePreview {
-    height: 50px;
-    width: 50;
+.soundUpload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.soundInput {
+    display: none;
 }
 
 .imageUpload {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.imagePreview {
+    height: 50px;
+    width: 50;
 }
 
 .imageInput {

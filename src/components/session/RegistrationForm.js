@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { register, updateImg } from '../../actions/authActions';
 import styles from '../../styles/RegisterForm.module.css';
 
+import LabelButton from "../utils/LabelButton";
+
 const RegistrationForm = ({ register, updateImg, previewImgUrl }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -58,18 +60,16 @@ const RegistrationForm = ({ register, updateImg, previewImgUrl }) => {
                 </label>
                 <div className={styles.imageUpload}>
                     <img className={styles.imagePreview} src={previewImgUrl} alt='avi preview' />
-                    <label className={styles.imageInputLabel} htmlFor="file-upload" >
+                    <LabelButton labelfor='file-upload' innerhtml='Select image for avatar'/>
                         <input
                             className={styles.imageInput}
                             type="file"
                             id="file-upload"
                             onChange={handleNewImage}
                         />
-                        Select an Image
-                    </label>
                 </div>
-
-                <input type="submit" value="Sign Up" />
+                <LabelButton labelfor='submit-sign-up' innerhtml='Sign Up'/>
+                <input className={styles.submitInput} type="submit" id='submit-sign-up' value="Sign Up" />
             </form>
         </div>
     )

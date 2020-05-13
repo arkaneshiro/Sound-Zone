@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/authActions';
 import styles from '../../styles/LoginForm.module.css';
 
+import LabelButton from "../utils/LabelButton";
+
 const LoginForm = ({ login }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -34,7 +36,8 @@ const LoginForm = ({ login }) => {
                         onChange={updateValue(setPassword)}
                     />
                 </label>
-                <input type="submit" value="Sign In"/>
+                <LabelButton labelfor='submit-login' innerhtml='Sign In'/>
+                <input className={styles.submitInput} type="submit" id='submit-login' value="Sign In" />
             </form>
         </div>
     )

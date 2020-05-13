@@ -1,5 +1,6 @@
-// import { apiBaseUrl, cloudinaryPreset, cloudinaryUrl } from "../config";
+import { apiBaseUrl } from "../config";
 
+// ACTIONS
 export const SET_USER_INFO = 'soundzone/user/SET_USER_INFO';
 
 export const setUserInfo = (currentUsername, currentUserBio, currentUserImgUrl) => {
@@ -11,21 +12,14 @@ export const setUserInfo = (currentUsername, currentUserBio, currentUserImgUrl) 
     }
 }
 
-// export const receiveUserErrors = (errors) => ({
-//   type: RECEIVE_USER_ERRORS,
-//   errors,
-// });
-
-// example thunk action creator
-
-// export const fetchUser = id => async dispatch => {
-//     try {
-//         const res = await fetch(`http://someapiendpoint/entity/${id}`)
-//         if (!res.ok) throw res
-//         const user = await res.json()
-//         dispatch(user)
-//     } catch (err){
-//         const errors = err.json()
-//         dispatch(receiveUserErrors(errors))
-//     }
-// }
+// THUNKS
+export const getUserInfo = (id) => async (dispatch) => {
+    try {
+        const res = await fetch(`${apiBaseUrl}/users/${id}`);
+        if (!res.ok) throw res;
+        const { user: { username, bio, imgUrl } } = await res.json();
+        dispatch(setUserInfo(username, bio, imgUrl));
+    } catch (err) {
+        console.error(err);
+    }
+};

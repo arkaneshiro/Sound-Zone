@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 
 const Dashboard = ({currentUserId}) => {
-    console.log(currentUserId)
     return (
         <h1>Dashboard</h1>
     )

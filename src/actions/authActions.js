@@ -1,9 +1,9 @@
-import { apiBaseUrl, cloudinaryPreset, cloudinaryUrl } from "../config";
-
+const { apiBaseUrl, cloudinaryUrl, cloudinaryPreset, } = require("../config");
 
 // ACTIONS
 export const SET_IMG = 'soundzone/authentication/SET_IMG';
 export const SET_TOKEN = 'soundzone/authentication/SET_TOKEN';
+export const LOGOUT = 'soundzone/authentication/LOGOUT';
 
 export const setImgUrl = (newImgUrl) => {
     return {
@@ -12,14 +12,30 @@ export const setImgUrl = (newImgUrl) => {
     }
 };
 
+export const persistUser = (token, id) => {
+    localStorage.setItem('soundzone-credentials', token)
+    localStorage.setItem('soundzone-user', id)
+};
+
+export const removeUser = () => {
+    localStorage.removeItem('soundzone-credentials');
+    localStorage.removeItem('soundzone-user');
+};
+
 export const setToken = (authToken, currentUserId) => {
     return {
         type: SET_TOKEN,
         authToken,
-        currentUserId
+        currentUserId,
     }
 };
 
+export const logout = () => {
+    removeUser();
+    return {
+        type: LOGOUT,
+    }
+};
 
 // THUNKS
 export const updateImg = (newImg) => async (dispatch) => {
@@ -27,7 +43,7 @@ export const updateImg = (newImg) => async (dispatch) => {
         const data = new FormData();
         data.append('file', newImg);
         data.append('upload_preset', cloudinaryPreset);
-        const res = await fetch(cloudinaryUrl, {
+        const res = await fetch(`${cloudinaryUrl}/image/upload`, {
             method: "POST",
             body: data,
         });
@@ -49,12 +65,12 @@ export const login = (loginUsername, password) => async (dispatch) => {
         });
         if (!res.ok) throw res;
         const { token, user: {id} } = await res.json();
+        persistUser(token, id);
         dispatch(setToken(token, id));
     } catch (err) {
         console.error(err);
     }
 };
-
 
 export const register = (username, email, password, bio, imgUrl) => async (dispatch) => {
     try {
@@ -66,6 +82,7 @@ export const register = (username, email, password, bio, imgUrl) => async (dispa
         });
         if (!res.ok) throw res;
         const { token, user: {id} } = await res.json();
+        persistUser(token, id);
         dispatch(setToken(token, id));
     } catch (err) {
         console.error(err);

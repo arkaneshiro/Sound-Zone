@@ -1,4 +1,4 @@
-import { SET_IMG, SET_TOKEN } from "../actions/authActions";
+import { SET_IMG, SET_TOKEN, LOGOUT } from "../actions/authActions";
 
 const defaultAuthState = {
     authToken: null,
@@ -25,6 +25,9 @@ export default function reducer(state = defaultAuthState, action) {
                     authToken: action.authToken,
                     currentUserId: action.currentUserId,
                 })
+        }
+        case LOGOUT: {
+            return Object.assign(newState, defaultAuthState)
         }
         default:
             return state;
