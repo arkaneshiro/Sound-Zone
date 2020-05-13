@@ -1,22 +1,20 @@
-// import action type constants from necessary action file/s
-import { RECEIVE_USER } from "../actions/userActions";
+import { SET_USER_INFO } from "../actions/userActions";
 
-const initialUsers = {
-  1: { name: "Bob Ross", id: 1 },
-  2: { name: "Darth Vader", id: 2 },
-};
+export default (state = {}, action) => {
+    Object.freeze(state);
+    const newState = Object.assign({}, state);
 
-export default (state = initialUsers, action) => {
-  const newState = { ...state };
-  switch (action.type) {
-    // case ACTION_TYPE:
-    //  return some kind of modification to newState
-    case RECEIVE_USER:
-      return {
-        ...newState,
-        [action.user.id]: action.user
-      };
-    default:
-      return newState;
-  }
+    switch (action.type) {
+        case SET_USER_INFO: {
+            return Object.assign(
+                newState,
+                {
+                    currentUsername: action.currentUsername,
+                    currentUserBio: action.currentUserBio,
+                    currentUserImgUrl: action.currentUserImgUrl,
+                })
+        }
+        default:
+            return newState;
+    }
 };

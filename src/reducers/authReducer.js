@@ -1,5 +1,4 @@
-// import action type constants from necessary action file/s
-import { SET_IMG, SET_TOKEN, SET_USER_INFO } from "../actions/authActions";
+import { SET_IMG, SET_TOKEN } from "../actions/authActions";
 
 const defaultAuthState = {
     authToken: null,
@@ -25,15 +24,6 @@ export default function reducer(state = defaultAuthState, action) {
                 {
                     authToken: action.authToken,
                     currentUserId: action.currentUserId,
-                })
-        }
-        case SET_USER_INFO: {
-            return Object.assign(
-                newState,
-                {
-                    currentUsername: action.currentUsername,
-                    currentUserBio: action.currentUserBio,
-                    currentUserImgUrl: action.currentUserImgUrl,
                 })
         }
         default:

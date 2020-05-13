@@ -1,10 +1,15 @@
-export const RECEIVE_USER = "RECEIVE_USER";
-export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
+// import { apiBaseUrl, cloudinaryPreset, cloudinaryUrl } from "../config";
 
-export const receiveUser = (user) => ({
-  type: RECEIVE_USER,
-  user,
-});
+export const SET_USER_INFO = 'soundzone/user/SET_USER_INFO';
+
+export const setUserInfo = (currentUsername, currentUserBio, currentUserImgUrl) => {
+    return {
+        type: SET_USER_INFO,
+        currentUsername,
+        currentUserBio,
+        currentUserImgUrl,
+    }
+}
 
 // export const receiveUserErrors = (errors) => ({
 //   type: RECEIVE_USER_ERRORS,
