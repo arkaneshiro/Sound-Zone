@@ -1,4 +1,4 @@
-import { SET_SOUND_IMG, SET_SOUND_WAVE, SET_SOUND } from "../actions/soundActions";
+import { SET_SOUND_IMG, SET_SOUND } from "../actions/soundActions";
 
 export default function reducer(state = {}, action) {
     Object.freeze(state);
@@ -12,18 +12,12 @@ export default function reducer(state = {}, action) {
                     newCoverUrl: action.newCoverUrl,
                 })
         }
-        case SET_SOUND_WAVE: {
-            return Object.assign(
-                newState,
-                {
-                    newWaveUrl: action.newWaveUrl,
-                })
-        }
         case SET_SOUND: {
             return Object.assign(
                 newState,
                 {
                     newSoundUrl: action.newSoundUrl,
+                    newWaveUrl: action.newWaveUrl,
                 })
         }
         default:

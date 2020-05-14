@@ -1,8 +1,7 @@
-const { cloudinaryUrl, cloudinaryPreset, } = require("../config");
+const { apiBaseUrl, cloudinaryUrl, cloudinaryPreset, } = require("../config");
 
 // ACTIONS
 export const SET_SOUND_IMG = 'soundzone/sound/SET_SOUND_IMG';
-export const SET_SOUND_WAVE = 'soundzone/sound/SET_SOUND_WAVE';
 export const SET_SOUND = 'soundzone/sound/SET_SOUND_WAVE';
 
 export const setCoverImgUrl = (newCoverUrl) => {
@@ -62,3 +61,22 @@ export const updateSound = (sound) => async (dispatch) => {
         console.error(err);
     }
 }
+
+export const uploadSound = (userId, soundUrl, waveUrl, imageUrl, description, name, token) => async (dispatch) => {
+    try {
+        const body = JSON.stringify({ userId, soundUrl, waveUrl, imageUrl, description, name })
+        const res = await fetch(`${apiBaseUrl}/sounds`, {
+            method: "POST",
+            body,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        });
+        if (!res.ok) throw res;
+        const soundObj = await res.json();
+        console.log(soundObj)
+    } catch (err) {
+        console.error(err);
+    }
+};

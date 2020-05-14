@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { getUserInfo } from '../actions/userActions';
-import { updateCoverImg, updateSound } from '../actions/soundActions';
+import { updateCoverImg, updateSound, uploadSound } from '../actions/soundActions';
 import styles from '../styles/UploadSound.module.css';
 
 import LabelButton from "./utils/LabelButton";
 
-const Upload = ({ authToken, currentUserId, currentUserImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound }) => {
+const Upload = ({ authToken, currentUserId, currentUserImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
@@ -20,7 +20,10 @@ const Upload = ({ authToken, currentUserId, currentUserImgUrl, newCoverUrl, newW
 
     const handlesubmit = e => {
         e.preventDefault();
-        console.log('call upload function here')
+        const coverUrl = newCoverUrl ? newCoverUrl : currentUserImgUrl;
+        uploadSound(currentUserId, newSoundUrl, newWaveUrl, coverUrl, description, name, authToken)
+        // add form error handling and redirection;
+        // window.location.href= '/';
     }
 
     return (
@@ -85,6 +88,7 @@ const mapDispatchToProps = (dispatch) => {
         getUserInfo: (id) => dispatch(getUserInfo(id)),
         updateCoverImg: (img) => dispatch(updateCoverImg(img)),
         updateSound: (sound) => dispatch(updateSound(sound)),
+        uploadSound: (userId, soundUrl, waveUrl, imageUrl, description, name, token) => dispatch(uploadSound(userId, soundUrl, waveUrl, imageUrl, description, name, token)),
     };
 };
 
