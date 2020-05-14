@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { getUserInfo } from '../actions/userActions';
-import { updateSoundImg } from '../actions/soundActions';
+import { updateCoverImg, updateSound } from '../actions/soundActions';
 import styles from '../styles/UploadSound.module.css';
 
 import LabelButton from "./utils/LabelButton";
 
-const Upload = ({ authToken, currentUserId, currentUserImgUrl, soundImgPreview, getUserInfo, updateSoundImg }) => {
+const Upload = ({ authToken, currentUserId, currentUserImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
@@ -15,17 +15,7 @@ const Upload = ({ authToken, currentUserId, currentUserImgUrl, soundImgPreview, 
 
     }, [getUserInfo, currentUserId])
 
-    const handleNewImage = e => {
-        const newImg = e.target.files[0];
-        updateSoundImg(newImg);
-    }
-
-    const handleNewSound = e => {
-        const newSound = e.target.files[0];
-        console.log(newSound)
-        // updateSound(newSound);
-    }
-
+    const updateFile = cb => e => cb(e.target.files[0]);
     const updateValue = cb => e => cb(e.target.value);
 
     const handlesubmit = e => {
@@ -38,13 +28,13 @@ const Upload = ({ authToken, currentUserId, currentUserImgUrl, soundImgPreview, 
             <h1>Upload Sound</h1>
             <form className={styles.form} onSubmit={handlesubmit}>
                 <div className={styles.soundUpload}>
-                    <img className={styles.soundPreview} src={null} alt='sound waveform preview' />
-                    <LabelButton labelfor='file-upload' innerhtml='Select Audio to Upload'/>
+                <img className={styles.soundPreview} src={newWaveUrl} alt='sound wave preview' />
+                    <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload'/>
                     <input
                         className={styles.soundInput}
                         type="file"
                         id="sound-upload"
-                        onChange={handleNewSound}
+                        onChange={updateFile(updateSound)}
                     />
                 </div>
                 <label className={styles.label} htmlFor="name" >Name:
@@ -63,16 +53,16 @@ const Upload = ({ authToken, currentUserId, currentUserImgUrl, soundImgPreview, 
                     />
                 </label>
                 <div className={styles.imageUpload}>
-                    <img className={styles.imagePreview} src={soundImgPreview ? soundImgPreview : currentUserImgUrl} alt='sound cover preview' />
+                    <img className={styles.imagePreview} src={newCoverUrl ? newCoverUrl : currentUserImgUrl} alt='sound cover preview' />
                     <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image'/>
                         <input
                             className={styles.imageInput}
                             type="file"
                             id="file-upload"
-                            onChange={handleNewImage}
+                            onChange={updateFile(updateCoverImg)}
                         />
                 </div>
-                <LabelButton labelfor='submit-sound' innerhtml='Submit'/>
+                <LabelButton labelfor='submit-sound' innerhtml='Upload'/>
                 <input className={styles.submitInput} type="submit" id='submit-sound'value="Upload" />
             </form>
         </div>
@@ -83,17 +73,18 @@ const mapStateToProps = (state) => {
     return {
         authToken: state.auth.authToken,
         currentUserId: state.auth.currentUserId,
-        currentUsername: state.user.currentUsername,
-        currentUserBio: state.user.currentUserBio,
         currentUserImgUrl: state.user.currentUserImgUrl,
-        soundImgPreview: state.sound.soundImgPreview,
+        newCoverUrl: state.sound.newCoverUrl,
+        newWaveUrl: state.sound.newWaveUrl,
+        newSoundUrl: state.sound.newSoundUrl,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserInfo: (id) => dispatch(getUserInfo(id)),
-        updateSoundImg: (img) => dispatch(updateSoundImg(img)),
+        updateCoverImg: (img) => dispatch(updateCoverImg(img)),
+        updateSound: (sound) => dispatch(updateSound(sound)),
     };
 };
 

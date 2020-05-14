@@ -6,7 +6,7 @@ const defaultAuthState = {
     previewImgUrl: 'https://res.cloudinary.com/dgzcv1mcs/image/upload/v1589327406/Soundzone/default_avatar_avox09.jpg',
 }
 
-export default function reducer(state = defaultAuthState, action) {
+export default function reducer(state = {}, action) {
     Object.freeze(state);
     const newState = Object.assign({}, state);
 
