@@ -9,14 +9,24 @@ import LabelButton from "./utils/LabelButton";
 const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [loadingDisplay, setLoadingDisplay] = useState('none')
 
     useEffect(() => {
         getUserInfo(currentUserId);
 
     }, [getUserInfo, currentUserId])
 
+    useEffect(() => {
+        setLoadingDisplay('none')
+    }, [newWaveUrl])
+
     const updateFile = cb => e => cb(e.target.files[0]);
     const updateValue = cb => e => cb(e.target.value);
+
+    const handleUpdateSound = e => {
+        setLoadingDisplay('grid')
+        updateSound(e.target.files[0])
+    }
 
     const handlesubmit = e => {
         e.preventDefault();
@@ -32,7 +42,8 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
             <form className={styles.form} onSubmit={handlesubmit}>
                 <div className={styles.preview}>
                     <img className={styles.imagePreview} src={newCoverUrl ? newCoverUrl : userImgUrl} alt='sound cover preview' />
-                    <img className={styles.soundPreview} src={newWaveUrl} alt='sound wave preview' />
+                    <img id={'wave-preview'} className={styles.soundPreview} src={newWaveUrl} alt='sound wave preview' />
+                    <img className={styles.loading} style={{display: loadingDisplay}} src={'https://res.cloudinary.com/dgzcv1mcs/image/upload/v1589582588/Soundzone/loading_hcwl8f.gif'} alt='loading'/>
                 </div>
                 <div className={styles.uploadButtons}>
                     <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image' />
@@ -48,6 +59,7 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
                 </label>
                 <label className={styles.label} htmlFor="description" >Description:
                     <textarea
+                        className={styles.description}
                         id="description"
                         value={description}
                         onChange={updateValue(setDescription)}
@@ -58,7 +70,7 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
                     className={styles.soundInput}
                     type="file"
                     id="sound-upload"
-                    onChange={updateFile(updateSound)}
+                    onChange={handleUpdateSound}
                 />
                 <input
                     className={styles.imageInput}

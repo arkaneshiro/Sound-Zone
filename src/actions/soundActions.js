@@ -91,7 +91,7 @@ export const uploadSound = (userId, soundUrl, waveUrl, imageUrl, description, na
         if (!res.ok) throw res;
         const soundObj = await res.json();
         console.log(soundObj)
-        window.location.href = `/profile/${userId}`;
+        window.location.href = `/users/${userId}`;
     } catch (err) {
         console.error(err);
     }
