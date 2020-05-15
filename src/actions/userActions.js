@@ -3,19 +3,19 @@ import { apiBaseUrl } from "../config";
 // ACTIONS
 export const SET_USER_INFO = 'soundzone/user/SET_USER_INFO';
 
-export const setUserInfo = (currentUsername, currentUserBio, currentUserImgUrl) => {
+export const setUserInfo = (userName, userBio, userImgUrl) => {
     return {
         type: SET_USER_INFO,
-        currentUsername,
-        currentUserBio,
-        currentUserImgUrl,
+        userName,
+        userBio,
+        userImgUrl,
     }
 }
 
 // THUNKS
-export const getUserInfo = (id) => async (dispatch) => {
+export const getUserInfo = (userId) => async (dispatch) => {
     try {
-        const res = await fetch(`${apiBaseUrl}/users/${id}`);
+        const res = await fetch(`${apiBaseUrl}/users/${userId}`);
         if (!res.ok) throw res;
         const { user: { username, bio, imgUrl } } = await res.json();
         dispatch(setUserInfo(username, bio, imgUrl));

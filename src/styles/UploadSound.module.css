@@ -10,30 +10,42 @@
 }
 
 .label {
+    margin: 5px;
     display: flex;
     justify-content: space-between;
 
 }
 
-.soundUpload {
+.preview {
+    margin: 5px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.soundInput {
-    display: none;
-}
-
-.imageUpload {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
 }
 
 .imagePreview {
-    height: 150px;
-    width: 150;
+    height: 163px;
+    width: 163px;
+}
+
+.soundPreview {
+    height: 163px;
+    margin-left: 30px;
+}
+
+.uploadButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+textarea {
+    width: 450px;
+    height: 60px;
+}
+
+.soundInput {
+    display: none;
 }
 
 .imageInput {

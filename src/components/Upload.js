@@ -6,7 +6,7 @@ import styles from '../styles/UploadSound.module.css';
 
 import LabelButton from "./utils/LabelButton";
 
-const Upload = ({ authToken, currentUserId, currentUserImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound }) => {
+const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
@@ -20,7 +20,7 @@ const Upload = ({ authToken, currentUserId, currentUserImgUrl, newCoverUrl, newW
 
     const handlesubmit = e => {
         e.preventDefault();
-        const coverUrl = newCoverUrl ? newCoverUrl : currentUserImgUrl;
+        const coverUrl = newCoverUrl ? newCoverUrl : userImgUrl;
         uploadSound(currentUserId, newSoundUrl, newWaveUrl, coverUrl, description, name, authToken)
         // add form error handling and redirection;
         // window.location.href= '/';
@@ -30,17 +30,15 @@ const Upload = ({ authToken, currentUserId, currentUserImgUrl, newCoverUrl, newW
         <div className={styles.formContainer}>
             <h1>Upload Sound</h1>
             <form className={styles.form} onSubmit={handlesubmit}>
-                <div className={styles.soundUpload}>
-                <img className={styles.soundPreview} src={newWaveUrl} alt='sound wave preview' />
-                    <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload'/>
-                    <input
-                        className={styles.soundInput}
-                        type="file"
-                        id="sound-upload"
-                        onChange={updateFile(updateSound)}
-                    />
+                <div className={styles.preview}>
+                    <img className={styles.imagePreview} src={newCoverUrl ? newCoverUrl : userImgUrl} alt='sound cover preview' />
+                    <img className={styles.soundPreview} src={newWaveUrl} alt='sound wave preview' />
                 </div>
-                <label className={styles.label} htmlFor="name" >Name:
+                <div className={styles.uploadButtons}>
+                    <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image' />
+                    <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload' />
+                </div>
+                <label className={styles.label} htmlFor="name" >Title:
                     <input
                         type="text"
                         id="name"
@@ -55,18 +53,25 @@ const Upload = ({ authToken, currentUserId, currentUserImgUrl, newCoverUrl, newW
                         onChange={updateValue(setDescription)}
                     />
                 </label>
-                <div className={styles.imageUpload}>
-                    <img className={styles.imagePreview} src={newCoverUrl ? newCoverUrl : currentUserImgUrl} alt='sound cover preview' />
-                    <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image'/>
-                        <input
-                            className={styles.imageInput}
-                            type="file"
-                            id="file-upload"
-                            onChange={updateFile(updateCoverImg)}
-                        />
-                </div>
-                <LabelButton labelfor='submit-sound' innerhtml='Upload'/>
-                <input className={styles.submitInput} type="submit" id='submit-sound'value="Upload" />
+                <LabelButton labelfor='submit-sound' innerhtml='Upload' />
+                <input
+                    className={styles.soundInput}
+                    type="file"
+                    id="sound-upload"
+                    onChange={updateFile(updateSound)}
+                />
+                <input
+                    className={styles.imageInput}
+                    type="file"
+                    id="file-upload"
+                    onChange={updateFile(updateCoverImg)}
+                />
+                <input
+                    className={styles.submitInput}
+                    type="submit"
+                    id='submit-sound'
+                    value="Upload"
+                />
             </form>
         </div>
     )
@@ -76,7 +81,7 @@ const mapStateToProps = (state) => {
     return {
         authToken: state.auth.authToken,
         currentUserId: state.auth.currentUserId,
-        currentUserImgUrl: state.user.currentUserImgUrl,
+        userImgUrl: state.user.userImgUrl,
         newCoverUrl: state.sound.newCoverUrl,
         newWaveUrl: state.sound.newWaveUrl,
         newSoundUrl: state.sound.newSoundUrl,

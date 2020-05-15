@@ -9,9 +9,9 @@ export default (state = {}, action) => {
             return Object.assign(
                 newState,
                 {
-                    currentUsername: action.currentUsername,
-                    currentUserBio: action.currentUserBio,
-                    currentUserImgUrl: action.currentUserImgUrl,
+                    userName: action.userName,
+                    userBio: action.userBio,
+                    userImgUrl: action.userImgUrl,
                 })
         }
         default:
