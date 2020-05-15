@@ -91,7 +91,24 @@ export const uploadSound = (userId, soundUrl, waveUrl, imageUrl, description, na
         if (!res.ok) throw res;
         const soundObj = await res.json();
         console.log(soundObj)
+        window.location.href = `/profile/${userId}`;
     } catch (err) {
         console.error(err);
     }
 };
+
+export const deleteSound = (token, soundId, userId) => async (dispatch) => {
+    try {
+        const res = await fetch (`${apiBaseUrl}/sounds/${soundId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        if (!res.ok) throw res;
+        const deleteMessage = await res.json();
+        console.log(deleteMessage)
+    } catch (err) {
+        console.error(err);
+    }
+}

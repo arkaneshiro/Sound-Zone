@@ -59,6 +59,8 @@
 }
 
 .titleAndTags {
+    display: flex;
+    justify-content: space-between;
     color: rgb(54, 54, 54);
 }
 

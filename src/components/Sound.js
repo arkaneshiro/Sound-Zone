@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { connect } from "react-redux";
+import { deleteSound } from '../actions/soundActions';
 import styles from '../styles/Sound.module.css';
 
-const Sound = ({ soundId, soundImgUrl, soundUsername, soundUploadTime, soundName, soundWaveUrl, soundAudioUrl }) => {
+const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUsername, soundUploadTime, soundName, soundWaveUrl, soundAudioUrl, deleteSound }) => {
     const [intervalKiller, setIntervalKiller] = useState('');
     const [progress, setProgress] = useState('0%')
 
@@ -32,6 +34,11 @@ const Sound = ({ soundId, soundImgUrl, soundUsername, soundUploadTime, soundName
         soundIcon.innerHTML = '&#9654;'
     }
 
+    const deleter = () => {
+        deleteSound(authToken, soundId)
+        window.location.reload(false)
+    }
+
     return (
         <div className={styles.sound}>
             <img className={styles.soundImg} src={soundImgUrl} alt='' />
@@ -45,14 +52,15 @@ const Sound = ({ soundId, soundImgUrl, soundUsername, soundUploadTime, soundName
                         <div className={styles.nameAndUploadDate}>
                             <span>{soundUsername}</span>
                             <span>{soundUploadTime}</span>
-                            </div>
+                        </div>
                         <div className={styles.titleAndTags}>
                             <span>{soundName}</span>
+                            {hasDeleteButton ? <button onClick={deleter} >Delete</button> : ''}
                         </div>
                     </div>
                 </div>
                 <div className={styles.waveContainer}>
-                    <div id={`juice${soundId}`} className={styles.juice} style={{width: progress}}/>
+                    <div id={`juice${soundId}`} className={styles.juice} style={{ width: progress }} />
                     <img className={styles.soundWave} src={soundWaveUrl} alt='' />
                 </div>
             </div>
@@ -63,4 +71,16 @@ const Sound = ({ soundId, soundImgUrl, soundUsername, soundUploadTime, soundName
     )
 }
 
-export default Sound;
+const mapStateToProps = (state) => {
+    return {
+        authToken: state.auth.authToken,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteSound: (token, soundId) => dispatch(deleteSound(token, soundId)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sound);

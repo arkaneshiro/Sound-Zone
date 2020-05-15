@@ -6,7 +6,7 @@ import styles from '../styles/Profile.module.css';
 
 import Sound from "./Sound";
 
-const Profile = ({ userName, userBio, userImgUrl, userSoundsArray = [], getUserInfo, fetchUserSounds, ...props }) => {
+const Profile = ({currentUserId, userName, userBio, userImgUrl, userSoundsArray = [], getUserInfo, fetchUserSounds, ...props }) => {
 
     useEffect(() => {
         fetchUserSounds(props.match.params.userId);
@@ -16,18 +16,22 @@ const Profile = ({ userName, userBio, userImgUrl, userSoundsArray = [], getUserI
     const userSounds = userSoundsArray.map((userSound) => {
         const uploadDate = new Date(userSound.createdAt)
         const timeSincePost = Date.now() - uploadDate
-        let uploadText = '';
+        let uploadText = `${uploadDate.getMonth() + 1}/${uploadDate.getDate()}/${uploadDate.getFullYear()}`;
+        //let uploadText = `~ ${timeSincePost} milliseconds ago`
+        let isCrntUserSound = false;
         if (timeSincePost < 86400000) {
             uploadText = 'today';
         } else if (timeSincePost < 172800000) {
             uploadText = 'yesterday';
-        } else {
-            uploadText = `${uploadDate.getMonth() + 1}/${uploadDate.getDate()}/${uploadDate.getFullYear()}`;
-            // uploadText = `~ ${timeSincePost} milliseconds ago`
+        }
+
+        if (parseInt(currentUserId, 10) === userSound.userId) {
+            isCrntUserSound = true;
         }
         return (
             <Sound
                 key={userSound.id}
+                hasDeleteButton={isCrntUserSound}
                 soundId={userSound.id}
                 soundImgUrl={userSound.imageUrl}
                 soundUsername={userSound.User.username}

@@ -14,7 +14,7 @@ const preloadedState = {
         previewImgUrl: 'https://res.cloudinary.com/dgzcv1mcs/image/upload/v1589327406/Soundzone/default_avatar_avox09.jpg',
     },
     sound: {
-        newWaveUrl: 'https://res.cloudinary.com/dgzcv1mcs/video/upload/h_200,w_500,fl_waveform,co_black,b_white/Soundzone/iudcrzymdneisc16tr7f.png'
+        newWaveUrl: 'https://res.cloudinary.com/dgzcv1mcs/video/upload/fl_waveform,co_black,b_white/Soundzone/iudcrzymdneisc16tr7f.png'
     }
 }
 
