@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteSound } from '../actions/soundActions';
 import styles from '../styles/Sound.module.css';
@@ -34,9 +35,10 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
         const soundEle = document.querySelector(`.sound${soundId}`);
         const soundIcon = document.getElementById(`icon${navControls.currentRef}`);
         const currentButton = document.getElementById(`icon${navControls.currentRef}`);
+        const soundInfo = { soundImgUrl, soundName, soundUsername, soundUserId, soundId }
         if (soundEle.paused) {
             if (navControls.currentRef !== soundId) {
-                navControls.updateNavRef(soundId, soundAudioUrl);
+                navControls.updateNavRef(soundId, soundAudioUrl, soundInfo);
                 setTimeout(playSound, 0)
                 if ((navControls.currentRef !== 'Current') && currentButton) {
                     soundIcon.classList.add(styles.paused)
@@ -88,17 +90,17 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
             <img className={styles.soundImg} src={soundImgUrl} alt='' />
             <div className={styles.soundPlayer}>
                 <div className={styles.controlAndDetails}>
-                    <div className={styles.playPause} onClick={playPause}>
+                    <div id={`playPause${soundId}`} className={styles.playPause} onClick={playPause}>
                         <div id={`icon${soundId}`} className={[styles.playPauseIcon, styles.paused].join(' ')} ></div>
 
                     </div>
                     <div className={styles.details}>
                         <div className={styles.nameAndUploadDate}>
-                            <a className={styles.soundProfileLink} href={`/users/${soundUserId}`}>{soundUsername}</a>
+                            <NavLink className={styles.soundProfileLink} to={`/users/${soundUserId}`}>{soundUsername}</NavLink>
                             <span>{soundUploadTime}</span>
                         </div>
                         <div className={styles.titleAndTags}>
-                            <a className={styles.soundLink} href={`/sounds/${soundId}`}>{soundName}</a>
+                            <NavLink className={styles.soundLink} to={`/sounds/${soundId}`}>{soundName}</NavLink>
                             {hasDeleteButton ? <button onClick={deleter} >Delete</button> : ''}
                         </div>
                     </div>

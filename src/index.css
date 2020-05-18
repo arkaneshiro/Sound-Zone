@@ -42,18 +42,3 @@ body {
     color: white;
     background-color: black;
 }
-
-.soundBar {
-    bottom: 0;
-    height: 50px;
-    width: 100%;
-    display: flex;
-    background-color: #ff6700;
-    position: sticky;
-}
-
-audio {
-    display: none;
-    width: 0;
-    height: 0;
-}

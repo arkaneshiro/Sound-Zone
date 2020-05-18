@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import Dashboard from "./components/Dashboard";
 import Upload from "./components/Upload";
 import SoundDetail from "./components/SoundDetail";
+import SoundBar from "./components/SoundBar";
 
 function App({ currentUserId, logout }) {
     const [currentAudio, setCurrentAudio] = useState('')
@@ -20,6 +21,7 @@ function App({ currentUserId, logout }) {
     const [navTime, setNavTime] = useState(0);
     const [navProgress, setNavProgress] = useState(0);
     const [navPlaying, setNavPlaying] = useState(false)
+    const [currentSoundInfo, setCurrentSoundInfo] = useState('');
 
     const playNav = (newTimeStart) => {
         const navEle = document.querySelector(".soundCurrent");
@@ -37,7 +39,7 @@ function App({ currentUserId, logout }) {
         setNavPlaying(false);
     }
 
-    const updateNavRef = (ele, audioLink) => {
+    const updateNavRef = (ele, audioLink, soundInfo) => {
         const currentEle = document.querySelector(`.sound${currentRef}`);
         // const currentButton = document.getElementById(`icon${currentRef}`);
         if (currentEle && (currentRef !== "Current")) {
@@ -46,6 +48,8 @@ function App({ currentUserId, logout }) {
         }
         setCurrentRef(ele);
         setCurrentAudio(audioLink);
+        setCurrentSoundInfo(soundInfo);
+
     }
 
     const updateNavJuice = () => {
@@ -128,9 +132,10 @@ function App({ currentUserId, logout }) {
                     navControls={navControls}
                 />
             </Switch>
-            <div className="soundBar">
+            {/* <div className="soundBar">
                 <audio className="soundCurrent" onEnded={navReset} src={currentAudio} />
-            </div>
+            </div> */}
+            <SoundBar navReset={navReset} setNavPlaying={setNavPlaying} navProgress={navProgress} navPlaying={navPlaying} currentAudio={currentAudio} currentSoundInfo={currentSoundInfo}/>
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSound } from '../actions/soundActions';
 import styles from '../styles/SoundDetail.module.css';
@@ -39,7 +40,7 @@ const SoundDetail = ({ soundDetails, currentUserId, fetchSound, ...props }) => {
                     <div className={styles.detailContainer}>
                         <div className={styles.userCard}>
                             <img className={styles.userImg} src={soundDetails.User.imgUrl} />
-                            <a className={styles.userLink} href={`/users/${soundDetails.User.id}`}>{soundDetails.User.username}</a>
+                            <NavLink className={styles.userLink} to={`/users/${soundDetails.User.id}`}>{soundDetails.User.username}</NavLink>
                         </div>
                         <div className={styles.descriptionAndComments}>
                             <div className={styles.description}>{soundDetails.description}</div>

@@ -1,0 +1,105 @@
+.soundBarContainer {
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid rgb(192, 192, 192);
+    background-color: white;
+    position: sticky;
+}
+
+audio {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.navControlContainer {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navControl:hover {
+    cursor: pointer;
+}
+
+.playing::before {
+    content: '| |'
+}
+
+.paused::before {
+    content: "▶"
+}
+
+
+.juiceCup {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.juiceBackground {
+    height: 1px;
+    background-color: rgb(185, 185, 185);
+    position: absolute;
+}
+
+.juice {
+    left: 0;
+    height: 1px;
+    background-color: rgb(255, 102, 0);
+    position: absolute;
+    box-shadow: 0px 0px 3px rgb(255, 102, 0);
+}
+
+.songDetails {
+    width: 25%;
+    display: flex;
+    /* position: relative; */
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.songImgContainer {
+    left: 0;
+    height: 40px;
+    width: 40px;
+    /* position: absolute; */
+}
+
+.songImg {
+    padding-left: 25px;
+    height: 100%;
+    width: 100%;
+}
+
+.songTitleAndUser {
+    padding-left: 45px;
+    display: flex;
+    flex-direction: column;
+}
+
+.songUser {
+    font-weight: lighter;
+    text-decoration: none;
+    color: rgb(54, 54, 54);
+}
+
+.songUser:hover {
+    color: rgb(39, 39, 39);
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.178);
+}
+
+.songTitle {
+    text-decoration: none;
+    color: rgb(54, 54, 54);
+}
+
+.songTitle:hover {
+    color: rgb(39, 39, 39);
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.178);
+}
