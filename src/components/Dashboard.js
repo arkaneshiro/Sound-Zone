@@ -8,7 +8,7 @@ import Sound from "./Sound";
 const Dashboard = ({currentUserId, userFeedArray = [], fetchUserFeed, ...props}) => {
 
     useEffect(() => {
-        fetchUserFeed(props.match.params.userId);
+        fetchUserFeed(currentUserId);
     }, [])
 
     const userFeed = userFeedArray.map((sound) => {
@@ -27,11 +27,13 @@ const Dashboard = ({currentUserId, userFeedArray = [], fetchUserFeed, ...props})
                 hasDeleteButton={false}
                 soundId={sound.id}
                 soundImgUrl={sound.imageUrl}
+                soundUserId={sound.userId}
                 soundUsername={sound.User.username}
                 soundUploadTime={uploadText}
                 soundName={sound.name}
                 soundWaveUrl={sound.waveUrl}
                 soundAudioUrl={sound.soundUrl}
+                navControls={props.navControls}
             />
         )
     })

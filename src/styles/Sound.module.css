@@ -58,10 +58,30 @@
     color: rgb(148, 148, 148);
 }
 
+.soundProfileLink {
+    text-decoration: none;
+    color: rgb(54, 54, 54);
+}
+
+.soundProfileLink:hover {
+    color: rgb(39, 39, 39);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.295);
+}
+
 .titleAndTags {
     display: flex;
     justify-content: space-between;
     color: rgb(54, 54, 54);
+}
+
+.soundLink {
+    text-decoration: none;
+    color: rgb(54, 54, 54);
+}
+
+.soundLink:hover {
+    color: rgb(39, 39, 39);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.295);
 }
 
 .waveContainer {
@@ -88,4 +108,12 @@
 
 .hidden {
     display: none;
+}
+
+.playing::before {
+    content: '| |'
+}
+
+.paused::before {
+    content: "▶"
 }

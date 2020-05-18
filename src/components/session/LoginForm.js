@@ -16,6 +16,10 @@ const LoginForm = ({ login }) => {
         login(username, password)
     }
 
+    const loginGuest = () => {
+        login('Riki', 'wow')
+    }
+
     return (
         <div className={styles.formContainer}>
             <h1>Sign In</h1>
@@ -38,7 +42,10 @@ const LoginForm = ({ login }) => {
                 </label>
                 <LabelButton labelfor='submit-login' innerhtml='Sign In'/>
                 <input className={styles.submitInput} type="submit" id='submit-login' value="Sign In" />
+                <LabelButton labelfor='submit-login-guest' innerhtml='Sign In as Guest'/>
+                <input className={styles.submitInput} onClick={loginGuest} type="button" id='submit-login-guest' value="Sign In as Guest" />
             </form>
+
         </div>
     )
 }

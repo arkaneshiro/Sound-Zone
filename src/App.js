@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import { Switch, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { ProtectedRoute, AuthRoute } from "./Routes";
@@ -10,8 +10,62 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Dashboard from "./components/Dashboard";
 import Upload from "./components/Upload";
+import SoundDetail from "./components/SoundDetail";
 
 function App({ currentUserId, logout }) {
+    const [currentAudio, setCurrentAudio] = useState('')
+    const [currentRef, setCurrentRef] = useState('Current');
+    const [intervalKiller, setIntervalKiller] = useState('');
+    const [navDuration, setNavDuration] = useState(0);
+    const [navTime, setNavTime] = useState(0);
+    const [navProgress, setNavProgress] = useState(0);
+    const [navPlaying, setNavPlaying] = useState(false)
+
+    const playNav = (newTimeStart) => {
+        const navEle = document.querySelector(".soundCurrent");
+        navEle.currentTime = newTimeStart;
+        navEle.play();
+        setNavDuration(navEle.duration)
+        setIntervalKiller(setInterval(updateNavJuice, 10))
+        setNavPlaying(true);
+    }
+
+    const pauseNav = () => {
+        const navEle = document.querySelector(".soundCurrent");
+        navEle.pause();
+        clearInterval(intervalKiller);
+        setNavPlaying(false);
+    }
+
+    const updateNavRef = (ele, audioLink) => {
+        const currentEle = document.querySelector(`.sound${currentRef}`);
+        // const currentButton = document.getElementById(`icon${currentRef}`);
+        if (currentEle && (currentRef !== "Current")) {
+            currentEle.pause()
+            // currentButton.innerHTML = '&#9654;'
+        }
+        setCurrentRef(ele);
+        setCurrentAudio(audioLink);
+    }
+
+    const updateNavJuice = () => {
+        const navEle = document.querySelector(`.soundCurrent`);
+        const time = (navEle.currentTime / navEle.duration) * 100;
+        setNavProgress(time + '%');
+        setNavTime(navEle.currentTime);
+    }
+
+    const navReset = () => {
+        const navEle = document.querySelector(`.soundCurrent`);
+        clearInterval(intervalKiller);
+        setIntervalKiller('');
+        setNavProgress('0%');
+        navEle.pause();
+        setNavPlaying(false);
+        navEle.currentTime = 0;
+    }
+
+    const navControls = {playNav, pauseNav, updateNavRef, currentRef, setCurrentRef, navDuration, navTime, navProgress, navPlaying}
 
     const navBar = currentUserId ? (
         <>
@@ -29,7 +83,7 @@ function App({ currentUserId, logout }) {
     );
 
     return (
-        <>
+        <div className="outermost-container">
             <div className="navBar">{navBar}</div>
             <Switch>
                 <AuthRoute
@@ -52,20 +106,32 @@ function App({ currentUserId, logout }) {
                     path="/users/:userId"
                     component={Profile}
                     currentUserId={currentUserId}
+                    navControls={navControls}
                     exact
+                />
+                <ProtectedRoute
+                    path="/sounds/:soundId"
+                    component={SoundDetail}
+                    currentUserId={currentUserId}
+                    navControls={navControls}
                 />
                 <ProtectedRoute
                     path="/dashboard"
                     component={Dashboard}
                     currentUserId={currentUserId}
+                    navControls={navControls}
                 />
                 <ProtectedRoute
                     path="/upload"
                     component={Upload}
                     currentUserId={currentUserId}
+                    navControls={navControls}
                 />
             </Switch>
-        </>
+            <div className="soundBar">
+                <audio className="soundCurrent" onEnded={navReset} src={currentAudio} />
+            </div>
+        </div>
     );
 }
 

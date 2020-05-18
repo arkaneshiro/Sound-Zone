@@ -1,4 +1,4 @@
-import { GET_USER_SOUNDS, GET_USER_FEED, SET_SOUND_IMG, SET_SOUND } from "../actions/soundActions";
+import { GET_USER_SOUNDS, GET_USER_FEED, GET_SOUND_DETAILS, SET_SOUND_IMG, SET_SOUND } from "../actions/soundActions";
 
 export default function reducer(state = {}, action) {
     Object.freeze(state);
@@ -17,6 +17,13 @@ export default function reducer(state = {}, action) {
                 newState,
                 {
                     userFeedArray: action.userFeedArray,
+                })
+        }
+        case GET_SOUND_DETAILS: {
+            return Object.assign(
+                newState,
+                {
+                    soundDetails: action.soundDetails,
                 })
         }
         case SET_SOUND_IMG: {

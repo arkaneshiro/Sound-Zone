@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from "react-redux";
+import styles from '../styles/Home.module.css';
 
 const Home = ({currentUserId}) => {
     return (
-        <h1>Home</h1>
+        <div className={styles.homePageContainer}>
+            <h1>Welcome To Soundzone!</h1>
+        </div>
     )
 }
 

@@ -1,7 +1,17 @@
+.uploadContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: whitesmoke;
+}
+
 .formContainer {
+    margin-bottom: 50px;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
 }
 
 .form {

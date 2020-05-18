@@ -3,6 +3,7 @@ const { apiBaseUrl, cloudinaryUrl, cloudinaryPreset, } = require("../config");
 // ACTIONS
 export const GET_USER_SOUNDS = 'soundzone/sound/GET_USER_SOUNDS'
 export const GET_USER_FEED = 'soundzone/sound/GET_USER_FEED'
+export const GET_SOUND_DETAILS = 'soundzone/sound/GET_SOUND_DETAILS'
 export const SET_SOUND_IMG = 'soundzone/sound/SET_SOUND_IMG';
 export const SET_SOUND = 'soundzone/sound/SET_SOUND_WAVE';
 
@@ -17,6 +18,13 @@ export const getUserFeed= (userFeedArray) => {
     return {
         type: GET_USER_FEED,
         userFeedArray,
+    }
+};
+
+export const getSoundDetails= (soundDetails) => {
+    return {
+        type: GET_SOUND_DETAILS,
+        soundDetails,
     }
 };
 
@@ -56,6 +64,17 @@ export const fetchUserFeed = (userId) => async (dispatch) => {
         if (!res.ok) throw res;
         const {sounds} = await res.json();
         dispatch(getUserFeed(sounds));
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+export const fetchSound = (soundId) => async (dispatch) => {
+    try {
+        const res = await fetch(`${apiBaseUrl}/sounds/${soundId}`);
+        if (!res.ok) throw res;
+        const {sound} = await res.json();
+        dispatch(getSoundDetails(sound));
     } catch (err) {
         console.error(err);
     }

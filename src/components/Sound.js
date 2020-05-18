@@ -1,37 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { deleteSound } from '../actions/soundActions';
 import styles from '../styles/Sound.module.css';
 
-const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUsername, soundUploadTime, soundName, soundWaveUrl, soundAudioUrl, deleteSound }) => {
-    const [intervalKiller, setIntervalKiller] = useState('');
+const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, soundUsername, soundUploadTime, soundName, soundWaveUrl, soundAudioUrl, navControls, deleteSound }) => {
     const [progress, setProgress] = useState('0%')
+
+    useEffect(() => {
+        const soundEle = document.querySelector(`.sound${soundId}`);
+        const soundIcon = document.getElementById(`icon${soundId}`);
+        if (navControls.currentRef === soundId) {
+            soundEle.currentTime = navControls.navTime;
+            if (navControls.navPlaying) {
+                soundEle.play();
+                soundIcon.classList.add(styles.playing)
+                soundIcon.classList.remove(styles.paused)
+            }
+        }
+
+        return () => {
+            soundReset();
+        }
+    }, [])
+
+    useEffect(() => {
+        const soundEle = document.querySelector(`.sound${soundId}`);
+        if (navControls.currentRef === soundId) {
+            setProgress(navControls.navProgress);
+        }
+    }, [navControls.navProgress])
 
     const playPause = () => {
         const soundEle = document.querySelector(`.sound${soundId}`);
-        const soundIcon = document.getElementById(`icon${soundId}`);
+        const soundIcon = document.getElementById(`icon${navControls.currentRef}`);
+        const currentButton = document.getElementById(`icon${navControls.currentRef}`);
         if (soundEle.paused) {
-            soundEle.play();
-            setIntervalKiller(setInterval(updateJuice, 10));
-            soundIcon.innerHTML = '| |'
+            if (navControls.currentRef !== soundId) {
+                navControls.updateNavRef(soundId, soundAudioUrl);
+                setTimeout(playSound, 0)
+                if ((navControls.currentRef !== 'Current') && currentButton) {
+                    soundIcon.classList.add(styles.paused)
+                    soundIcon.classList.remove(styles.playing)
+                }
+            } else {
+                playSound()
+            }
         } else {
-            soundEle.pause();
-            clearInterval(intervalKiller);
-            soundIcon.innerHTML = '&#9654;'
+           pauseSound()
         }
     }
 
-    const updateJuice = () => {
+    const playSound = () => {
         const soundEle = document.querySelector(`.sound${soundId}`);
-        const time = (soundEle.currentTime / soundEle.duration) * 100;
-        setProgress(time + '%');
+        const soundIcon = document.getElementById(`icon${soundId}`);
+        soundEle.play();
+        navControls.playNav(soundEle.currentTime);
+        soundIcon.classList.add(styles.playing)
+        soundIcon.classList.remove(styles.paused)
     }
 
-    const soundEndReset = () => {
+    const pauseSound = () => {
+        const soundEle = document.querySelector(`.sound${soundId}`);
         const soundIcon = document.getElementById(`icon${soundId}`);
-        clearInterval(intervalKiller);
+        soundEle.pause();
+        navControls.pauseNav();
+        soundIcon.classList.add(styles.paused)
+        soundIcon.classList.remove(styles.playing)
+    }
+
+    const soundReset = () => {
+        const soundEle = document.querySelector(`.sound${soundId}`);
+        const soundIcon = document.getElementById(`icon${soundId}`);
         setProgress('0%');
-        soundIcon.innerHTML = '&#9654;'
+        soundEle.pause();
+        soundEle.currentTime = 0;
+        soundIcon.classList.remove(styles.playing)
+        soundIcon.classList.add(styles.paused)
     }
 
     const deleter = () => {
@@ -45,16 +89,16 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUsername
             <div className={styles.soundPlayer}>
                 <div className={styles.controlAndDetails}>
                     <div className={styles.playPause} onClick={playPause}>
-                        <div id={`icon${soundId}`} className={styles.playPauseIcon} >&#9654;</div>
+                        <div id={`icon${soundId}`} className={[styles.playPauseIcon, styles.paused].join(' ')} ></div>
 
                     </div>
                     <div className={styles.details}>
                         <div className={styles.nameAndUploadDate}>
-                            <span>{soundUsername}</span>
+                            <a className={styles.soundProfileLink} href={`/users/${soundUserId}`}>{soundUsername}</a>
                             <span>{soundUploadTime}</span>
                         </div>
                         <div className={styles.titleAndTags}>
-                            <span>{soundName}</span>
+                            <a className={styles.soundLink} href={`/sounds/${soundId}`}>{soundName}</a>
                             {hasDeleteButton ? <button onClick={deleter} >Delete</button> : ''}
                         </div>
                     </div>
@@ -65,7 +109,7 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUsername
                 </div>
             </div>
 
-            <audio className={`sound${soundId}`} onEnded={soundEndReset} src={soundAudioUrl} alt='' />
+            <audio className={`sound${soundId}`} muted={true} onEnded={soundReset} src={soundAudioUrl} alt='' />
 
         </div>
     )

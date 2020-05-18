@@ -37,55 +37,58 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
     }
 
     return (
-        <div className={styles.formContainer}>
-            <h1>Upload Sound</h1>
-            <form className={styles.form} onSubmit={handlesubmit}>
-                <div className={styles.preview}>
-                    <img className={styles.imagePreview} src={newCoverUrl ? newCoverUrl : userImgUrl} alt='sound cover preview' />
-                    <img id={'wave-preview'} className={styles.soundPreview} src={newWaveUrl} alt='sound wave preview' />
-                    <img className={styles.loading} style={{display: loadingDisplay}} src={'https://res.cloudinary.com/dgzcv1mcs/image/upload/v1589582588/Soundzone/loading_hcwl8f.gif'} alt='loading'/>
-                </div>
-                <div className={styles.uploadButtons}>
-                    <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image' />
-                    <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload' />
-                </div>
-                <label className={styles.label} htmlFor="name" >Title:
+        <div className={styles.uploadContainer}>
+            <div className={styles.formContainer}>
+                <h1>Upload Sound</h1>
+                <form className={styles.form} onSubmit={handlesubmit}>
+                    <div className={styles.preview}>
+                        <img className={styles.imagePreview} src={newCoverUrl ? newCoverUrl : userImgUrl} alt='sound cover preview' />
+                        <img id={'wave-preview'} className={styles.soundPreview} src={newWaveUrl} alt='sound wave preview' />
+                        <img className={styles.loading} style={{ display: loadingDisplay }} src={'https://res.cloudinary.com/dgzcv1mcs/image/upload/v1589582588/Soundzone/loading_hcwl8f.gif'} alt='loading' />
+                    </div>
+                    <div className={styles.uploadButtons}>
+                        <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image' />
+                        <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload' />
+                    </div>
+                    <label className={styles.label} htmlFor="name" >Title:
                     <input
-                        type="text"
-                        id="name"
-                        value={name}
-                        onChange={updateValue(setName)}
-                    />
-                </label>
-                <label className={styles.label} htmlFor="description" >Description:
+                            type="text"
+                            id="name"
+                            value={name}
+                            onChange={updateValue(setName)}
+                        />
+                    </label>
+                    <label className={styles.label} htmlFor="description" >Description:
                     <textarea
-                        className={styles.description}
-                        id="description"
-                        value={description}
-                        onChange={updateValue(setDescription)}
+                            className={styles.description}
+                            id="description"
+                            value={description}
+                            onChange={updateValue(setDescription)}
+                        />
+                    </label>
+                    <LabelButton labelfor='submit-sound' innerhtml='Upload' />
+                    <input
+                        className={styles.soundInput}
+                        type="file"
+                        id="sound-upload"
+                        onChange={handleUpdateSound}
                     />
-                </label>
-                <LabelButton labelfor='submit-sound' innerhtml='Upload' />
-                <input
-                    className={styles.soundInput}
-                    type="file"
-                    id="sound-upload"
-                    onChange={handleUpdateSound}
-                />
-                <input
-                    className={styles.imageInput}
-                    type="file"
-                    id="file-upload"
-                    onChange={updateFile(updateCoverImg)}
-                />
-                <input
-                    className={styles.submitInput}
-                    type="submit"
-                    id='submit-sound'
-                    value="Upload"
-                />
-            </form>
+                    <input
+                        className={styles.imageInput}
+                        type="file"
+                        id="file-upload"
+                        onChange={updateFile(updateCoverImg)}
+                    />
+                    <input
+                        className={styles.submitInput}
+                        type="submit"
+                        id='submit-sound'
+                        value="Upload"
+                    />
+                </form>
+            </div>
         </div>
+
     )
 }
 

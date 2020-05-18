@@ -34,11 +34,13 @@ const Profile = ({currentUserId, userName, userBio, userImgUrl, userSoundsArray 
                 hasDeleteButton={isCrntUserSound}
                 soundId={userSound.id}
                 soundImgUrl={userSound.imageUrl}
+                soundUserId={userSound.userId}
                 soundUsername={userSound.User.username}
                 soundUploadTime={uploadText}
                 soundName={userSound.name}
                 soundWaveUrl={userSound.waveUrl}
                 soundAudioUrl={userSound.soundUrl}
+                navControls={props.navControls}
             />
         )
     })
