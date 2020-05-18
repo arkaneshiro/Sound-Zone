@@ -17,7 +17,7 @@ const LoginForm = ({ login }) => {
     }
 
     const loginGuest = () => {
-        login('Riki', 'wow')
+        login('Guest', 'guestPassword')
     }
 
     return (

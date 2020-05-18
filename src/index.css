@@ -1,5 +1,7 @@
 /* site wide styles */
 html, body, #root, .outermost-container {
+    /* display: flex;
+    flex-direction: column; */
     height: 100%;
 }
 

@@ -1,5 +1,5 @@
 .profileContainer {
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,7 +28,7 @@
 
 .soundsAndDetailsContainer {
     padding-top: 30px;
-    /* margin-bottom: 30px; */
+    margin-bottom: 50px;
     width: 90%;
     display: flex;
     flex-direction: row;
