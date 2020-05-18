@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css';
 const Home = ({currentUserId}) => {
     return (
         <div className={styles.homePageContainer}>
-            <h1>Welcome To Soundzone!</h1>
+            <h1>~ Welcome To Soundzone ~</h1>
         </div>
     )
 }
