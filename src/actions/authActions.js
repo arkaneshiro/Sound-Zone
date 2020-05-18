@@ -40,7 +40,6 @@ export const logout = () => {
 // THUNKS
 export const updateImg = (newImg) => async (dispatch) => {
     try {
-        // console.log(cloudinaryUrl)
         const data = new FormData();
         data.append('file', newImg);
         data.append('upload_preset', cloudinaryPreset);
