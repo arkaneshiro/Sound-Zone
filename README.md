@@ -1,6 +1,8 @@
 # Soundzone
 Soundzone is an application to host and play sounds
 
+Check out Soundzone here: [Soundzone](https://sound-zone.herokuapp.com)
+
 Backend for Soundzone here: [Sound-Zone-Backend](https://github.com/arkaneshiro/Sound-Zone-Backend)
 
 ## Documentation links
