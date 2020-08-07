@@ -1,63 +1,62 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { register, updateImg } from '../../actions/authActions';
+import { useForm } from "react-hook-form";
+import { registerUser, updateImg } from '../../actions/authActions';
 import styles from '../../styles/RegisterForm.module.css';
 
 import LabelButton from "../utils/LabelButton";
 
-const RegistrationForm = ({ register, updateImg, previewImgUrl }) => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [bio, setBio] = useState('');
-
-    const updateValue = cb => e => cb(e.target.value);
+const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
+    const { register, handleSubmit, errors } = useForm();
 
     const handleNewImage = e => {
         const newImg = e.target.files[0];
         updateImg(newImg);
     }
 
-    const handlesubmit = e => {
-        e.preventDefault();
-        register(username, email, password, bio, previewImgUrl)
+    const formSubmitter = data => {
+        registerUser(data.username, data.email, data.password, data.bio, previewImgUrl)
     }
 
     return (
         <div className={styles.formContainer}>
             <h1>Sign Up</h1>
-            <form className={styles.form} onSubmit={handlesubmit}>
+            <form className={styles.form} onSubmit={handleSubmit(formSubmitter)}>
                 <label className={styles.label} htmlFor="username" >Username:
                     <input
                         type="text"
                         id="username"
-                        value={username}
-                        onChange={updateValue(setUsername)}
+                        name="username"
+                        ref={register({ required: true })}
                     />
                 </label>
+                {errors.username && <span>username required</span>}
                 <label className={styles.label} htmlFor="email" >Email:
                     <input
                         type="email"
                         id="email"
-                        value={email}
-                        onChange={updateValue(setEmail)}
+                        name="email"
+                        ref={register({ required: true })}
                     />
                 </label>
+                {errors.email && <span>email required</span>}
                 <label className={styles.label} htmlFor="password" >Password:
                     <input
                         type="text"
                         id="password"
-                        value={password}
-                        onChange={updateValue(setPassword)}
+                        name="password"
+                        ref={register({ required: true })}
                     />
                 </label>
+                {errors.password && <span>password required</span>}
                 <label className={styles.label} htmlFor="bio" >Bio:
                     <textarea
                         id="bio"
-                        value={bio}
-                        onChange={updateValue(setBio)}
+                        name="bio"
+                        ref={register({ required: true })}
                     />
                 </label>
+                {errors.bio && <span>bio required</span>}
                 <div className={styles.imageUpload}>
                     <img className={styles.imagePreview} src={previewImgUrl} alt='avi preview' />
                     <LabelButton labelfor='file-upload' innerhtml='Select image for avatar'/>
@@ -83,7 +82,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        register: (username, email, password, bio, newImg) => dispatch(register(username, email, password, bio, newImg)),
+        registerUser: (username, email, password, bio, newImg) => dispatch(registerUser(username, email, password, bio, newImg)),
         updateImg: (newImg) => dispatch(updateImg(newImg)),
     };
 };

@@ -72,7 +72,7 @@ export const login = (loginUsername, password) => async (dispatch) => {
     }
 };
 
-export const register = (username, email, password, bio, imgUrl) => async (dispatch) => {
+export const registerUser = (username, email, password, bio, imgUrl) => async (dispatch) => {
     try {
         const body = JSON.stringify({ username, email, password, bio, imgUrl})
         const res = await fetch(`${apiBaseUrl}/users`, {

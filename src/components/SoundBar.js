@@ -20,25 +20,30 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
     }
 
     return (
-        <div className={styles.soundBarContainer}>
-            <div className={styles.navControlContainer}>
-                <label onClick={clickPlayPause} className={[styles.navControl, (navPlaying ? styles.playing : styles.paused )].join(' ')}></label>
-            </div>
-            <div className={styles.juiceCup}>
-                <div className={styles.juiceBackground} style={{ width: '100%' }} />
-                <div className={styles.juice} style={{ width: navProgress }} />
-            </div>
-            <div className={styles.songDetails}>
-                <div className={styles.songImgContainer}>
-                    <img className={styles.songImg} src={currentSoundInfo.soundImgUrl}></img>
+        currentUserId ? (
+            <div className={styles.soundBarContainer}>
+                <div className={styles.navControlContainer}>
+                    <label onClick={clickPlayPause} className={[styles.navControl, (navPlaying ? styles.playing : styles.paused )].join(' ')}></label>
                 </div>
-                <div className={styles.songTitleAndUser}>
-                    <NavLink className={styles.songUser} to={`/users/${currentSoundInfo.soundUserId}`} >{currentSoundInfo.soundUsername}</NavLink>
-                    <NavLink className={styles.songTitle} to={`/sounds/${currentSoundInfo.soundId}`} >{currentSoundInfo.soundName}</NavLink>
+                <div className={styles.juiceCup}>
+                    <div className={styles.juiceBackground} style={{ width: '100%' }} />
+                    <div className={styles.juice} style={{ width: navProgress }} />
                 </div>
+                <div className={styles.songDetails}>
+                    <div className={styles.songImgContainer}>
+                        <img className={styles.songImg} src={currentSoundInfo.soundImgUrl} alt="now playing cover"></img>
+                    </div>
+                    <div className={styles.songTitleAndUser}>
+                        <NavLink className={styles.songUser} to={`/users/${currentSoundInfo.soundUserId}`} >{currentSoundInfo.soundUsername}</NavLink>
+                        <NavLink className={styles.songTitle} to={`/sounds/${currentSoundInfo.soundId}`} >{currentSoundInfo.soundName}</NavLink>
+                    </div>
+                </div>
+                <audio className="soundCurrent" onEnded={navReset} src={currentAudio} />
             </div>
-            <audio className="soundCurrent" onEnded={navReset} src={currentAudio} />
-        </div>
+        ):(
+            <span></span>
+        )
+
     )
 }
 

@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { useForm } from "react-hook-form";
 import { login } from '../../actions/authActions';
 import styles from '../../styles/LoginForm.module.css';
 
 import LabelButton from "../utils/LabelButton";
 
 const LoginForm = ({ login }) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const { register, handleSubmit, errors } = useForm();
 
-    const updateValue = cb => e => cb(e.target.value);
-
-    const handlesubmit = e => {
-        e.preventDefault();
-        login(username, password)
+    const formSubmitter = data => {
+        login(data.username, data.password)
     }
 
     const loginGuest = () => {
@@ -23,23 +20,25 @@ const LoginForm = ({ login }) => {
     return (
         <div className={styles.formContainer}>
             <h1>Sign In</h1>
-            <form className={styles.form} onSubmit={handlesubmit}>
+            <form className={styles.form} onSubmit={handleSubmit(formSubmitter)}>
                 <label className={styles.label} htmlFor="username" >Username:
                     <input
                         type="text"
                         id="username"
-                        value={username}
-                        onChange={updateValue(setUsername)}
+                        name="username"
+                        ref={register({ required: true })}
                     />
                 </label>
+                {errors.username && <span>username required</span>}
                 <label className={styles.label} htmlFor="password" >Password:
                     <input
                         type="text"
                         id="password"
-                        value={password}
-                        onChange={updateValue(setPassword)}
+                        name="password"
+                        ref={register({ required: true })}
                     />
                 </label>
+                {errors.password && <span>password required</span>}
                 <LabelButton labelfor='submit-login' innerhtml='Sign In'/>
                 <input className={styles.submitInput} type="submit" id='submit-login' value="Sign In" />
                 <LabelButton labelfor='submit-login-guest' innerhtml='Sign In as Guest'/>

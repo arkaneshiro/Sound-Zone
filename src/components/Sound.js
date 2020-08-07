@@ -25,7 +25,6 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
     }, [])
 
     useEffect(() => {
-        const soundEle = document.querySelector(`.sound${soundId}`);
         if (navControls.currentRef === soundId) {
             setProgress(navControls.navProgress);
         }

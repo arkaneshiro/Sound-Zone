@@ -39,7 +39,7 @@ const SoundDetail = ({ soundDetails, currentUserId, fetchSound, ...props }) => {
                 <div className={styles.bottomPageContainer}>
                     <div className={styles.detailContainer}>
                         <div className={styles.userCard}>
-                            <img className={styles.userImg} src={soundDetails.User.imgUrl} />
+                            <img className={styles.userImg} src={soundDetails.User.imgUrl} alt="User Avatar"/>
                             <NavLink className={styles.userLink} to={`/users/${soundDetails.User.id}`}>{soundDetails.User.username}</NavLink>
                         </div>
                         <div className={styles.descriptionAndComments}>
@@ -54,7 +54,7 @@ const SoundDetail = ({ soundDetails, currentUserId, fetchSound, ...props }) => {
         )
     } else {
         return (
-            <h1></h1>
+            <span></span>
         )
     }
 }
