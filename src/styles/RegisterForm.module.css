@@ -15,6 +15,12 @@
     justify-content: space-between;
 }
 
+.error {
+    color: red;
+    font-size: small;
+    padding-bottom: 7px;
+}
+
 .imagePreview {
     height: 50px;
     width: 50;

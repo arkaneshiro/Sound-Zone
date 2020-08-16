@@ -29,7 +29,7 @@ const LoginForm = ({ login }) => {
                         ref={register({ required: true })}
                     />
                 </label>
-                {errors.username && <span>username required</span>}
+                {errors.username && <div className={styles.error}>username required</div>}
                 <label className={styles.label} htmlFor="password" >Password:
                     <input
                         type="text"
@@ -38,7 +38,7 @@ const LoginForm = ({ login }) => {
                         ref={register({ required: true })}
                     />
                 </label>
-                {errors.password && <span>password required</span>}
+                {errors.password && <div className={styles.error}>password required</div>}
                 <LabelButton labelfor='submit-login' innerhtml='Sign In'/>
                 <input className={styles.submitInput} type="submit" id='submit-login' value="Sign In" />
                 <LabelButton labelfor='submit-login-guest' innerhtml='Sign In as Guest'/>

@@ -30,7 +30,7 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
                         ref={register({ required: true })}
                     />
                 </label>
-                {errors.username && <span>username required</span>}
+                {errors.username && <div className={styles.error}>username required</div>}
                 <label className={styles.label} htmlFor="email" >Email:
                     <input
                         type="email"
@@ -39,7 +39,7 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
                         ref={register({ required: true })}
                     />
                 </label>
-                {errors.email && <span>email required</span>}
+                {errors.email && <div className={styles.error}>email required</div>}
                 <label className={styles.label} htmlFor="password" >Password:
                     <input
                         type="text"
@@ -48,7 +48,7 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
                         ref={register({ required: true })}
                     />
                 </label>
-                {errors.password && <span>password required</span>}
+                {errors.password && <div className={styles.error}>password required</div>}
                 <label className={styles.label} htmlFor="bio" >Bio:
                     <textarea
                         id="bio"
@@ -56,7 +56,7 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
                         ref={register({ required: true })}
                     />
                 </label>
-                {errors.bio && <span>bio required</span>}
+                {errors.bio && <div className={styles.error}>bio required</div>}
                 <div className={styles.imageUpload}>
                     <img className={styles.imagePreview} src={previewImgUrl} alt='avi preview' />
                     <LabelButton labelfor='file-upload' innerhtml='Select image for avatar'/>
