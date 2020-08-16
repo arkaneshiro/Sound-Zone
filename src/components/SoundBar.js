@@ -23,7 +23,11 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
         currentUserId ? (
             <div className={styles.soundBarContainer}>
                 <div className={styles.navControlContainer}>
-                    <label onClick={clickPlayPause} className={[styles.navControl, (navPlaying ? styles.playing : styles.paused )].join(' ')}></label>
+                    {currentSoundInfo ? (
+                        <label onClick={clickPlayPause} className={[styles.navControl, (navPlaying ? styles.playing : styles.paused )].join(' ')}></label>
+                    ):(
+                        <span></span>
+                    )}
                 </div>
                 <div className={styles.juiceCup}>
                     <div className={styles.juiceBackground} style={{ width: '100%' }} />
@@ -31,7 +35,11 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
                 </div>
                 <div className={styles.songDetails}>
                     <div className={styles.songImgContainer}>
-                        <img className={styles.songImg} src={currentSoundInfo.soundImgUrl} alt="now playing cover"></img>
+                        {currentSoundInfo ? (
+                            <img className={styles.songImg} src={currentSoundInfo.soundImgUrl} alt="now playing cover"></img>
+                        ):(
+                            <span></span>
+                        )}
                     </div>
                     <div className={styles.songTitleAndUser}>
                         <NavLink className={styles.songUser} to={`/users/${currentSoundInfo.soundUserId}`} >{currentSoundInfo.soundUsername}</NavLink>
