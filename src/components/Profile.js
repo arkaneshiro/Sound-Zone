@@ -24,11 +24,12 @@ const Profile = ({currentUserId, userName, userBio, userImgUrl, userSoundsArray 
         } else if (timeSincePost < 172800000) {
             uploadText = 'yesterday';
         }
-
+        // check if current user is the owner of the sound to determine wether or not to display delete button
         if (parseInt(currentUserId, 10) === userSound.userId) {
             isCrntUserSound = true;
         }
         return (
+            // all 'sound' component data is passed thru props, not through redux
             <Sound
                 key={userSound.id}
                 hasDeleteButton={isCrntUserSound}

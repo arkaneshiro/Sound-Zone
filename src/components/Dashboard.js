@@ -16,15 +16,21 @@ const Dashboard = ({currentUserId, userFeedArray = [], fetchUserFeed, ...props})
         const timeSincePost = Date.now() - uploadDate
         let uploadText = `${uploadDate.getMonth() + 1}/${uploadDate.getDate()}/${uploadDate.getFullYear()}`;
         //let uploadText = `~ ${timeSincePost} milliseconds ago`
+        let isCrntUserSound = false;
         if (timeSincePost < 86400000) {
             uploadText = 'today';
         } else if (timeSincePost < 172800000) {
             uploadText = 'yesterday';
         }
+        // check if current user is the owner of the sound to determine wether or not to display delete button
+        if (parseInt(currentUserId, 10) === sound.userId) {
+            isCrntUserSound = true;
+        }
         return (
+            // all 'sound' component data is passed thru props, not through redux
             <Sound
                 key={sound.id}
-                hasDeleteButton={false}
+                hasDeleteButton={isCrntUserSound}
                 soundId={sound.id}
                 soundImgUrl={sound.imageUrl}
                 soundUserId={sound.userId}
