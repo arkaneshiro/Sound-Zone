@@ -18,7 +18,6 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
                 soundIcon.classList.remove(styles.paused)
             }
         }
-
         return () => {
             soundReset();
         }

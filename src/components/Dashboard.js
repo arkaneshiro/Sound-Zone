@@ -9,7 +9,7 @@ const Dashboard = ({currentUserId, userFeedArray = [], fetchUserFeed, ...props})
 
     useEffect(() => {
         fetchUserFeed(currentUserId);
-    }, [])
+    }, [fetchUserFeed, currentUserId])
 
     const userFeed = userFeedArray.map((sound) => {
         const uploadDate = new Date(sound.createdAt)

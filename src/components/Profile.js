@@ -11,7 +11,7 @@ const Profile = ({currentUserId, userName, userBio, userImgUrl, userSoundsArray 
     useEffect(() => {
         fetchUserSounds(props.match.params.userId);
         getUserInfo(props.match.params.userId);
-    }, [])
+    }, [fetchUserSounds, getUserInfo, props.match.params.userId])
 
     const userSounds = userSoundsArray.map((userSound) => {
         const uploadDate = new Date(userSound.createdAt)

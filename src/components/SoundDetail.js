@@ -10,7 +10,7 @@ const SoundDetail = ({ soundDetails, currentUserId, fetchSound, ...props }) => {
 
     useEffect(() => {
         fetchSound(props.match.params.soundId);
-    }, [])
+    }, [fetchSound, props.match.params.soundId])
 
     useEffect(() => {
         if (soundDetails) {
