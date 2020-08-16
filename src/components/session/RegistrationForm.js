@@ -22,40 +22,48 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
         <div className={styles.formContainer}>
             <h1>Sign Up</h1>
             <form className={styles.form} onSubmit={handleSubmit(formSubmitter)}>
-                <label className={styles.label} htmlFor="username" >Username:
+                {/* <label className={styles.label} htmlFor="username" >Username: */}
                     <input
+                        className={styles.textInput}
                         type="text"
                         id="username"
                         name="username"
+                        placeholder="username"
                         ref={register({ required: true })}
                     />
-                </label>
+                {/* </label> */}
                 {errors.username && <div className={styles.error}>username required</div>}
-                <label className={styles.label} htmlFor="email" >Email:
+                {/* <label className={styles.label} htmlFor="email" >Email: */}
                     <input
+                        className={styles.textInput}
                         type="email"
                         id="email"
                         name="email"
+                        placeholder="email"
                         ref={register({ required: true })}
                     />
-                </label>
+                {/* </label> */}
                 {errors.email && <div className={styles.error}>email required</div>}
-                <label className={styles.label} htmlFor="password" >Password:
+                {/* <label className={styles.label} htmlFor="password" >Password: */}
                     <input
+                        className={styles.textInput}
                         type="text"
                         id="password"
                         name="password"
+                        placeholder="password"
                         ref={register({ required: true })}
                     />
-                </label>
+                {/* </label> */}
                 {errors.password && <div className={styles.error}>password required</div>}
-                <label className={styles.label} htmlFor="bio" >Bio:
+                {/* <label className={styles.label} htmlFor="bio" >Bio: */}
                     <textarea
+                        className={styles.textAreaInput}
                         id="bio"
                         name="bio"
+                        placeholder="bio"
                         ref={register({ required: true })}
                     />
-                </label>
+                {/* </label> */}
                 {errors.bio && <div className={styles.error}>bio required</div>}
                 <div className={styles.imageUpload}>
                     <img className={styles.imagePreview} src={previewImgUrl} alt='avi preview' />

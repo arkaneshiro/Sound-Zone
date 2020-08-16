@@ -23,9 +23,9 @@ body {
 
 .navBar-navLink,
 .navBar-navLink:visited {
-    margin: 3px;
-    padding: 3px;
-    border-radius: 5px;
+    margin: 5px;
+    padding: 7px;
+    /* border-radius: 5px; */
     color: black;
     background-color: #ff6700;
     text-decoration: none;
