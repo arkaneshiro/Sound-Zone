@@ -99,7 +99,14 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
                         </div>
                         <div className={styles.titleAndTags}>
                             <NavLink className={styles.soundLink} to={`/sounds/${soundId}`}>{soundName}</NavLink>
-                            {hasDeleteButton ? <button onClick={deleter} >Delete</button> : ''}
+                            {hasDeleteButton ?
+                                <>
+                                    <label className={styles.delete} htmlFor="delete" >{"delete"}</label>
+                                    <button onClick={deleter} className={styles.hidden} id="delete"></button>
+                                </>
+                                :
+                                ''
+                            }
                         </div>
                     </div>
                 </div>
