@@ -20,8 +20,8 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
 
     return (
         <div className={styles.formContainer}>
-            <h1>Sign Up</h1>
             <form className={styles.form} onSubmit={handleSubmit(formSubmitter)}>
+                <h1 className={styles.title}>Sign Up</h1>
                 <input
                     className={styles.textInput}
                     type="text"

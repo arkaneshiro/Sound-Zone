@@ -19,8 +19,9 @@ const LoginForm = ({ login }) => {
 
     return (
         <div className={styles.formContainer}>
-            <h1>Sign In</h1>
+
             <form className={styles.form} onSubmit={handleSubmit(formSubmitter)}>
+                <h1 className={styles.title}>Sign In</h1>
                 <input
                     className={styles.usernameInput}
                     type="text"

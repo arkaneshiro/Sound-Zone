@@ -8,6 +8,13 @@
 .form {
     display: flex;
     flex-direction: column;
+    padding: 14px 14px 7px;
+    border: 2px solid;
+    margin-top: 28px;
+}
+
+.title {
+    margin: 0px 0px 14px;
 }
 
 .usernameInput {
