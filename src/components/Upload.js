@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
+import { useForm } from "react-hook-form";
 import { getUserInfo } from '../actions/userActions';
 import { updateCoverImg, updateSound, uploadSound } from '../actions/soundActions';
 import styles from '../styles/UploadSound.module.css';
@@ -7,8 +8,7 @@ import styles from '../styles/UploadSound.module.css';
 import LabelButton from "./utils/LabelButton";
 
 const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound }) => {
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const { register, handleSubmit, errors } = useForm();
     const [loadingDisplay, setLoadingDisplay] = useState('none')
 
     useEffect(() => {
@@ -21,26 +21,21 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
     }, [newWaveUrl])
 
     const updateFile = cb => e => cb(e.target.files[0]);
-    const updateValue = cb => e => cb(e.target.value);
-
     const handleUpdateSound = e => {
         setLoadingDisplay('grid')
         updateSound(e.target.files[0])
     }
 
-    const handlesubmit = e => {
-        e.preventDefault();
+    const formSubmitter = data => {
         const coverUrl = newCoverUrl ? newCoverUrl : userImgUrl;
-        uploadSound(currentUserId, newSoundUrl, newWaveUrl, coverUrl, description, name, authToken)
-        // add form error handling and redirection;
-        // window.location.href= '/';
+        uploadSound(currentUserId, newSoundUrl, newWaveUrl, coverUrl, data.description, data.title, authToken)
     }
 
     return (
         <div className={styles.uploadContainer}>
             <div className={styles.formContainer}>
-                <h1>Upload Sound</h1>
-                <form className={styles.form} onSubmit={handlesubmit}>
+                <form className={styles.form} onSubmit={handleSubmit(formSubmitter)}>
+                    <h1 className={styles.title}>Upload Sound</h1>
                     <div className={styles.preview}>
                         <img className={styles.imagePreview} src={newCoverUrl ? newCoverUrl : userImgUrl} alt='sound cover preview' />
                         <img id={'wave-preview'} className={styles.soundPreview} src={newWaveUrl} alt='sound wave preview' />
@@ -50,22 +45,31 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
                         <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image' />
                         <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload' />
                     </div>
-                    <label className={styles.label} htmlFor="name" >Title:
+                    {/* <label className={styles.label} htmlFor="name" >Title: */}
                     <input
-                            type="text"
-                            id="name"
-                            value={name}
-                            onChange={updateValue(setName)}
-                        />
-                    </label>
-                    <label className={styles.label} htmlFor="description" >Description:
+                        className={styles.textInput}
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="title"
+                        // value={name}
+                        // onChange={updateValue(setName)}
+                        ref={register({ required: true })}
+                    />
+                    {errors.title && <div className={styles.error}>title required</div>}
+                    {/* </label> */}
+                    {/* <label className={styles.label} htmlFor="description" >Description: */}
                     <textarea
-                            className={styles.description}
-                            id="description"
-                            value={description}
-                            onChange={updateValue(setDescription)}
-                        />
-                    </label>
+                        className={styles.textAreaInput}
+                        id="description"
+                        name="description"
+                        placeholder="description"
+                        // value={description}
+                        // onChange={updateValue(setDescription)}
+                        ref={register({ required: true })}
+                    />
+                    {errors.description && <div className={styles.error}>description required</div>}
+                    {/* </label> */}
                     <LabelButton labelfor='submit-sound' innerhtml='Upload' />
                     <input
                         className={styles.soundInput}

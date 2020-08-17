@@ -17,6 +17,13 @@
 .form {
     display: flex;
     flex-direction: column;
+    padding: 14px 14px 7px;
+    border: 2px solid;
+    margin-top: 28px;
+}
+
+.title {
+    margin: 0px 0px 14px;
 }
 
 .label {
@@ -26,8 +33,29 @@
 
 }
 
+.textInput {
+    border: none;
+    border-bottom: 2px solid;
+    margin-top: 7px;
+    width: 590px;
+}
+
+.textAreaInput {
+    border: 2px solid;
+    resize: none;
+    margin-top: 7px;
+    width: 590px;
+    height: 120px;
+    font-family: 'Helvetica';
+}
+
+.error {
+    color: red;
+    font-size: small;
+}
+
 .preview {
-    margin: 5px;
+    /* margin: 5px; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -61,10 +89,10 @@
     align-items: center;
 }
 
-.description {
+/* .description {
     width: 450px;
     height: 60px;
-}
+} */
 
 .soundInput {
     display: none;
