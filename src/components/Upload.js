@@ -45,31 +45,23 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
                         <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image' />
                         <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload' />
                     </div>
-                    {/* <label className={styles.label} htmlFor="name" >Title: */}
                     <input
                         className={styles.textInput}
                         type="text"
                         id="title"
                         name="title"
                         placeholder="title"
-                        // value={name}
-                        // onChange={updateValue(setName)}
                         ref={register({ required: true })}
                     />
                     {errors.title && <div className={styles.error}>title required</div>}
-                    {/* </label> */}
-                    {/* <label className={styles.label} htmlFor="description" >Description: */}
                     <textarea
                         className={styles.textAreaInput}
                         id="description"
                         name="description"
                         placeholder="description"
-                        // value={description}
-                        // onChange={updateValue(setDescription)}
                         ref={register({ required: true })}
                     />
                     {errors.description && <div className={styles.error}>description required</div>}
-                    {/* </label> */}
                     <LabelButton labelfor='submit-sound' innerhtml='Upload' />
                     <input
                         className={styles.soundInput}
