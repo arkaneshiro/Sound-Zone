@@ -10,11 +10,6 @@
     flex-direction: column;
 }
 
-/* .label {
-    display: flex;
-    justify-content: space-between;
-} */
-
 .usernameInput {
     border: none;
     border-bottom: 2px solid;
