@@ -21,6 +21,11 @@ body {
     background-color: #ff6700;
 }
 
+.searchBar {
+    border: none;
+    width: 200px;
+}
+
 .navBar-navLink,
 .navBar-navLink:visited {
     margin: 5px;

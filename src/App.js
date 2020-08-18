@@ -73,6 +73,13 @@ function App({ currentUserId, logout }) {
 
     const navBar = currentUserId ? (
         <>
+            <input
+                className="searchBar"
+                type="search"
+                id="search"
+                name="search"
+                placeholder="search for a user"
+            />
             <NavLink className="navBar-navLink" to={`/upload`}>Upload Sound</NavLink>
             <NavLink className="navBar-navLink" to={`/dashboard`}>Dashboard</NavLink>
             <NavLink className="navBar-navLink" to={`/users/${currentUserId}`}>Profile</NavLink>
