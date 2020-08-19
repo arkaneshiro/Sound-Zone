@@ -28,6 +28,7 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
                     id="username"
                     name="username"
                     placeholder="username"
+                    autoComplete="off"
                     ref={register({ required: true })}
                 />
                 {errors.username && <div className={styles.error}>username required</div>}
@@ -37,12 +38,13 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
                     id="email"
                     name="email"
                     placeholder="email"
+                    autoComplete="off"
                     ref={register({ required: true })}
                 />
                 {errors.email && <div className={styles.error}>email required</div>}
                 <input
                     className={styles.textInput}
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder="password"

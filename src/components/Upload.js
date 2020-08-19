@@ -51,6 +51,7 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
                         id="title"
                         name="title"
                         placeholder="title"
+                        autoComplete="off"
                         ref={register({ required: true })}
                     />
                     {errors.title && <div className={styles.error}>title required</div>}

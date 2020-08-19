@@ -28,12 +28,13 @@ const LoginForm = ({ login }) => {
                     id="username"
                     name="username"
                     placeholder="username"
+                    autoComplete="off"
                     ref={register({ required: true })}
                 />
                 {errors.username && <div className={styles.error1}>username required</div>}
                 <input
                     className={styles.passwordInput}
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder="password"
