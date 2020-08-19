@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { fetchUserFeed } from '../actions/soundActions';
+import { getAllUsers } from '../actions/userActions';
 import styles from '../styles/Dashboard.module.css';
 
 import Sound from "./Sound";
 
-const Dashboard = ({currentUserId, userFeedArray = [], fetchUserFeed, ...props}) => {
+const Dashboard = ({authToken, currentUserId, userFeedArray = [], getAllUsers, fetchUserFeed, ...props}) => {
 
     useEffect(() => {
         fetchUserFeed(currentUserId);
+        getAllUsers(authToken);
     }, [fetchUserFeed, currentUserId])
 
     const userFeed = userFeedArray.map((sound) => {
@@ -60,13 +62,15 @@ const Dashboard = ({currentUserId, userFeedArray = [], fetchUserFeed, ...props})
 
 const mapStateToProps = (state) => {
     return {
-      currentUserId: state.auth.currentUserId,
-      userFeedArray: state.sound.userFeedArray,
+        authToken: state.auth.authToken,
+        currentUserId: state.auth.currentUserId,
+        userFeedArray: state.sound.userFeedArray,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getAllUsers: (token) => dispatch(getAllUsers(token)),
         fetchUserFeed: (id) => dispatch(fetchUserFeed(id)),
     };
 };

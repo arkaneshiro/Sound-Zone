@@ -2,6 +2,8 @@ import { apiBaseUrl } from "../config";
 
 // ACTIONS
 export const SET_USER_INFO = 'soundzone/user/SET_USER_INFO';
+export const GET_USER_IDS = 'soundzone/user/GET_USER_IDS';
+
 
 export const setUserInfo = (userName, userBio, userImgUrl) => {
     return {
@@ -9,6 +11,13 @@ export const setUserInfo = (userName, userBio, userImgUrl) => {
         userName,
         userBio,
         userImgUrl,
+    }
+}
+
+export const getUserIds = (users) => {
+    return {
+        type: GET_USER_IDS,
+        users
     }
 }
 
@@ -23,3 +32,16 @@ export const getUserInfo = (userId) => async (dispatch) => {
         console.error(err);
     }
 };
+
+export const getAllUsers = (token) => async (dispatch) => {
+    try {
+        const res = await fetch(`${apiBaseUrl}/users/`);
+        if (!res.ok) throw res;
+        const data = await res.json();
+        // console.log('THIS IS THE DATA')
+        // console.log(data)
+        dispatch(getUserIds(data.users))
+    } catch (err) {
+        console.error(err)
+    }
+}

@@ -1,4 +1,5 @@
-import { SET_USER_INFO } from "../actions/userActions";
+import { SET_USER_INFO, GET_USER_IDS } from "../actions/userActions";
+
 
 export default (state = {}, action) => {
     Object.freeze(state);
@@ -13,6 +14,14 @@ export default (state = {}, action) => {
                     userBio: action.userBio,
                     userImgUrl: action.userImgUrl,
                 })
+        }
+        case GET_USER_IDS: {
+            return Object.assign(
+                newState,
+                {
+                    searchData: action.users
+                }
+            )
         }
         default:
             return newState;
