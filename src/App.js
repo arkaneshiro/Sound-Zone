@@ -25,8 +25,11 @@ function App({ currentUserId, logout }) {
     const [displaySearch, setDisplaySearch] = useState(false);
     const [timeoutCancel, setTimeoutCancel] = useState('')
 
-    const closeResults = () => {
-        setTimeoutCancel(window.setTimeout(setDisplaySearch, 100, false))
+    const closeResults = e => {
+        console.log(e.target.className)
+        if (e.target.className === 'searchResultsContainer' || e.target.className === 'searchBar') {
+            setTimeoutCancel(window.setTimeout(setDisplaySearch, 100, false))
+        }
     }
 
     const openResults = () => {
@@ -34,8 +37,6 @@ function App({ currentUserId, logout }) {
     }
 
     const cancelMenuClose = () => {
-        // console.log('click')
-        // console.log(timeoutCancel)
         window.clearTimeout(timeoutCancel)
     }
 
@@ -98,9 +99,10 @@ function App({ currentUserId, logout }) {
                     placeholder="search for a user"
                     autoComplete="off"
                     onFocus={openResults}
+                    onClick={cancelMenuClose}
                     onBlur={closeResults}
                 />
-                <div hidden={!displaySearch} className="searchResultsContainer">
+                <div tabIndex="0" onBlur={closeResults} hidden={!displaySearch} className="searchResultsContainer">
                     <div onClick={cancelMenuClose}>wow</div>
                     <div>wow</div>
                     <div>wow</div>

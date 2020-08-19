@@ -33,6 +33,10 @@ body {
     z-index: 1;
 }
 
+.searchResultsContainer:focus {
+    outline: none;
+}
+
 .navBar-navLink,
 .navBar-navLink:visited {
     margin: 5px;
