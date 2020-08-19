@@ -13,7 +13,7 @@ import Upload from "./components/Upload";
 import SoundDetail from "./components/SoundDetail";
 import SoundBar from "./components/SoundBar";
 
-function App({ currentUserId, logout }) {
+function App({ searchData, currentUserId, logout }) {
     const [currentAudio, setCurrentAudio] = useState('')
     const [currentRef, setCurrentRef] = useState('Current');
     const [intervalKiller, setIntervalKiller] = useState('');
@@ -25,6 +25,8 @@ function App({ currentUserId, logout }) {
     const [displaySearch, setDisplaySearch] = useState(false);
     const [timeoutCancel, setTimeoutCancel] = useState('')
 
+
+    // SEARCH FUNCTIONS
     const closeResults = e => {
         console.log(e.target.className)
         if (e.target.className === 'searchResultsContainer' || e.target.className === 'searchBar') {
@@ -40,6 +42,20 @@ function App({ currentUserId, logout }) {
         window.clearTimeout(timeoutCancel)
     }
 
+    const searchResults = searchData ?
+        searchData.map((user) => {
+            return (
+            <div value={user.id}>
+                <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
+            </div>
+            )
+        })
+        :
+        ""
+
+
+
+    // SOUND BAR / PLAYBACK FUNCTIONS
     const playNav = (newTimeStart) => {
         const navEle = document.querySelector(".soundCurrent");
         navEle.currentTime = newTimeStart;
@@ -66,7 +82,6 @@ function App({ currentUserId, logout }) {
         setCurrentRef(ele);
         setCurrentAudio(audioLink);
         setCurrentSoundInfo(soundInfo);
-
     }
 
     const updateNavJuice = () => {
@@ -103,15 +118,7 @@ function App({ currentUserId, logout }) {
                     onBlur={closeResults}
                 />
                 <div tabIndex="0" onBlur={closeResults} hidden={!displaySearch} className="searchResultsContainer">
-                    <div onClick={cancelMenuClose}>wow</div>
-                    <div>wow</div>
-                    <div>wow</div>
-                    <div>wow</div>
-                    <div>wow</div>
-                    <div>wow</div>
-                    <div>wow</div>
-                    <div>wow</div>
-                    <div>wow</div>
+                    {searchResults}
                 </div>
             </form>
             <NavLink className="navBar-navLink" to={`/upload`}>Upload Sound</NavLink>
@@ -183,6 +190,7 @@ function App({ currentUserId, logout }) {
 
 const mapStateToProps = (state) => {
     return {
+        searchData: state.user.searchData,
         currentUserId: state.auth.currentUserId,
     };
 };
