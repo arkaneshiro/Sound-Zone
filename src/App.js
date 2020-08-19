@@ -22,6 +22,22 @@ function App({ currentUserId, logout }) {
     const [navProgress, setNavProgress] = useState(0);
     const [navPlaying, setNavPlaying] = useState(false)
     const [currentSoundInfo, setCurrentSoundInfo] = useState('');
+    const [displaySearch, setDisplaySearch] = useState(false);
+    const [timeoutCancel, setTimeoutCancel] = useState('')
+
+    const closeResults = () => {
+        setTimeoutCancel(window.setTimeout(setDisplaySearch, 100, false))
+    }
+
+    const openResults = () => {
+        setDisplaySearch(true)
+    }
+
+    const cancelMenuClose = () => {
+        // console.log('click')
+        // console.log(timeoutCancel)
+        window.clearTimeout(timeoutCancel)
+    }
 
     const playNav = (newTimeStart) => {
         const navEle = document.querySelector(".soundCurrent");
@@ -81,7 +97,20 @@ function App({ currentUserId, logout }) {
                     name="search"
                     placeholder="search for a user"
                     autoComplete="off"
+                    onFocus={openResults}
+                    onBlur={closeResults}
                 />
+                <div hidden={!displaySearch} className="searchResultsContainer">
+                    <div onClick={cancelMenuClose}>wow</div>
+                    <div>wow</div>
+                    <div>wow</div>
+                    <div>wow</div>
+                    <div>wow</div>
+                    <div>wow</div>
+                    <div>wow</div>
+                    <div>wow</div>
+                    <div>wow</div>
+                </div>
             </form>
             <NavLink className="navBar-navLink" to={`/upload`}>Upload Sound</NavLink>
             <NavLink className="navBar-navLink" to={`/dashboard`}>Dashboard</NavLink>

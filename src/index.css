@@ -26,6 +26,13 @@ body {
     width: 200px;
 }
 
+.searchResultsContainer {
+    background-color: #ff660080;
+    position: absolute;
+    width: 200px;
+    z-index: 1;
+}
+
 .navBar-navLink,
 .navBar-navLink:visited {
     margin: 5px;
