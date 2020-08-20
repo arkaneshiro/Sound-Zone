@@ -46,13 +46,19 @@ const Profile = ({currentUserId, userName, userBio, userImgUrl, userSoundsArray 
         )
     })
 
-    // console.log(userSounds)
+    const follow = () => {
+        console.log('wow')
+    }
 
     return (
         <div className={styles.profileContainer}>
             <div className={styles.titleContainer}>
                 <img className={styles.profileAvi} src={userImgUrl} alt='' />
-                <div className={styles.nameHeader}>{userName}</div>
+                <div>
+                    <div className={styles.nameHeader}>{userName}</div>
+                    <label className={styles.follow} htmlFor="follow" >follow</label>
+                    <button onClick={follow} className={styles.hidden} id="follow"></button>
+                </div>
             </div>
             <div className={styles.soundsAndDetailsContainer}>
                 <div className={styles.soundsContainer}>

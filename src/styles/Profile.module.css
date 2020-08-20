@@ -26,6 +26,26 @@
     font-weight: bolder;
 }
 
+.follow {
+    /* display: -moz-box; */
+    /* font-size: smaller; */
+    margin: 0px 30px;
+    padding: 5px;
+    color: black;
+    background-color: #ff6700;
+}
+
+.follow:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.follow:active {
+    color: white;
+    background-color: #ff6700;
+}
+
 .soundsAndDetailsContainer {
     padding-top: 30px;
     margin-bottom: 50px;
@@ -58,4 +78,8 @@
     padding-left: 30px;
     border-left: 1px solid rgb(228, 228, 228);
     width: 100%;
+}
+
+.hidden {
+    display: none;
 }
