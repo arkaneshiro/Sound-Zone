@@ -56,8 +56,14 @@ const Profile = ({currentUserId, userName, userBio, userImgUrl, userSoundsArray 
                 <img className={styles.profileAvi} src={userImgUrl} alt='' />
                 <div>
                     <div className={styles.nameHeader}>{userName}</div>
-                    <label className={styles.follow} htmlFor="follow" >follow</label>
-                    <button onClick={follow} className={styles.hidden} id="follow"></button>
+                    {(props.match.params.userId !== currentUserId) ?
+                        <>
+                            <label className={styles.follow} htmlFor="follow" >follow</label>
+                            <button onClick={follow} className={styles.hidden} id="follow"></button>
+                        </>
+                        :
+                        ''
+                    }
                 </div>
             </div>
             <div className={styles.soundsAndDetailsContainer}>

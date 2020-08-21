@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { fetchUserFeed } from '../actions/soundActions';
-import { getAllUsers } from '../actions/userActions';
+import { getAllUsers, getFollowedUsers } from '../actions/userActions';
 import styles from '../styles/Dashboard.module.css';
 
 import Sound from "./Sound";
 
-const Dashboard = ({authToken, currentUserId, userFeedArray = [], getAllUsers, fetchUserFeed, ...props}) => {
+const Dashboard = ({authToken, currentUserId, userFeedArray = [], getAllUsers, getFollowedUsers, fetchUserFeed, ...props}) => {
 
     useEffect(() => {
         fetchUserFeed(currentUserId);
         getAllUsers(authToken);
-    }, [fetchUserFeed, currentUserId])
+        getFollowedUsers(authToken);
+    }, [fetchUserFeed, getAllUsers, getFollowedUsers, currentUserId, authToken])
 
     const userFeed = userFeedArray.map((sound) => {
         const uploadDate = new Date(sound.createdAt)
@@ -71,6 +72,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getAllUsers: (token) => dispatch(getAllUsers(token)),
+        getFollowedUsers: (token) => dispatch(getFollowedUsers(token)),
         fetchUserFeed: (id) => dispatch(fetchUserFeed(id)),
     };
 };

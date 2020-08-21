@@ -45,7 +45,7 @@ function App({ searchData, currentUserId, logout }) {
     const searchResults = searchData ?
         searchData.map((user) => {
             return (
-            <div value={user.id}>
+            <div value={user.id} key={user.id}>
                 <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
             </div>
             )

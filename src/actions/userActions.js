@@ -24,7 +24,7 @@ export const getUserIds = (users) => {
 // THUNKS
 export const getUserInfo = (userId) => async (dispatch) => {
     try {
-        const res = await fetch(`${apiBaseUrl}/users/${userId}`);
+        const res = await fetch(`${apiBaseUrl}/users/${userId}/getUserInfo`);
         if (!res.ok) throw res;
         const { user: { username, bio, imgUrl } } = await res.json();
         dispatch(setUserInfo(username, bio, imgUrl));
@@ -38,9 +38,24 @@ export const getAllUsers = (token) => async (dispatch) => {
         const res = await fetch(`${apiBaseUrl}/users/`);
         if (!res.ok) throw res;
         const data = await res.json();
-        // console.log('THIS IS THE DATA')
-        // console.log(data)
         dispatch(getUserIds(data.users))
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const getFollowedUsers = (token) => async (dispatch) => {
+    try {
+        const res = await fetch(`${apiBaseUrl}/users/followed`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        });
+        if (!res.ok) throw res;
+        const data = await res.json();
+        console.log('THIS IS THE DATA')
+        console.log(data)
     } catch (err) {
         console.error(err)
     }
