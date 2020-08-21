@@ -43,7 +43,7 @@ export const getUserInfo = (userId) => async (dispatch) => {
 
 export const getAllUsers = (token) => async (dispatch) => {
     try {
-        const res = await fetch(`${apiBaseUrl}/users/`);
+        const res = await fetch(`${apiBaseUrl}/users/allUsers`);
         if (!res.ok) throw res;
         const data = await res.json();
         dispatch(getUserIds(data.users))
