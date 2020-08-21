@@ -3,6 +3,7 @@ import { apiBaseUrl } from "../config";
 // ACTIONS
 export const SET_USER_INFO = 'soundzone/user/SET_USER_INFO';
 export const GET_USER_IDS = 'soundzone/user/GET_USER_IDS';
+export const GET_FOLLOWED_IDS = 'soundzone/user/GET_FOLLOWED_IDS';
 
 
 export const setUserInfo = (userName, userBio, userImgUrl) => {
@@ -18,6 +19,13 @@ export const getUserIds = (users) => {
     return {
         type: GET_USER_IDS,
         users
+    }
+}
+
+export const getFollowedIds = (ids) => {
+    return {
+        type: GET_FOLLOWED_IDS,
+        ids
     }
 }
 
@@ -54,8 +62,8 @@ export const getFollowedUsers = (token) => async (dispatch) => {
         });
         if (!res.ok) throw res;
         const data = await res.json();
-        console.log('THIS IS THE DATA')
-        console.log(data)
+        const followIdArray = data.map(follow => follow.id)
+        dispatch(getFollowedIds(followIdArray))
     } catch (err) {
         console.error(err)
     }

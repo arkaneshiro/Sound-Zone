@@ -1,4 +1,4 @@
-import { SET_USER_INFO, GET_USER_IDS } from "../actions/userActions";
+import { SET_USER_INFO, GET_USER_IDS, GET_FOLLOWED_IDS} from "../actions/userActions";
 
 
 export default (state = {}, action) => {
@@ -20,6 +20,14 @@ export default (state = {}, action) => {
                 newState,
                 {
                     searchData: action.users
+                }
+            )
+        }
+        case GET_FOLLOWED_IDS: {
+            return Object.assign(
+                newState,
+                {
+                    followed: action.ids
                 }
             )
         }
