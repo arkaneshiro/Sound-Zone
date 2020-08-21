@@ -27,7 +27,7 @@ export default (state = {}, action) => {
             return Object.assign(
                 newState,
                 {
-                    followed: action.ids
+                    followedArray: action.ids
                 }
             )
         }

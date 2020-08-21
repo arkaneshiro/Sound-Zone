@@ -89,3 +89,21 @@ export const followUser = (token, followerId, followedId) => async (dispatch) =>
         console.error(err)
     }
 }
+
+export const unFollowUser = (token, followerId, followedId) => async (dispatch) => {
+    try {
+        const body = JSON.stringify({ followerId, followedId })
+        const res = await fetch(`${apiBaseUrl}/users/unfollow`, {
+            method: "DELETE",
+            body,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        });
+        if (!res.ok) throw res;
+        dispatch(getFollowedUsers(token))
+    } catch (err) {
+        console.error(err)
+    }
+}

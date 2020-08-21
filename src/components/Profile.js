@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { getUserInfo, followUser } from '../actions/userActions';
+import { getUserInfo, followUser, unFollowUser, getAllUsers, getFollowedUsers } from '../actions/userActions';
 import { fetchUserSounds } from '../actions/soundActions';
 import styles from '../styles/Profile.module.css';
 
 import Sound from "./Sound";
 
-const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, userSoundsArray = [], getUserInfo, followUser, fetchUserSounds, ...props }) => {
+const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, followedArray = [], userSoundsArray = [], getUserInfo, followUser, unFollowUser, getAllUsers, getFollowedUsers, fetchUserSounds, ...props }) => {
 
     useEffect(() => {
         fetchUserSounds(props.match.params.userId);
         getUserInfo(props.match.params.userId);
-    }, [fetchUserSounds, getUserInfo, props.match.params.userId])
+        getAllUsers(authToken);
+        getFollowedUsers(authToken);
+    }, [fetchUserSounds, getUserInfo, getAllUsers, getFollowedUsers, props.match.params.userId, authToken])
 
     const userSounds = userSoundsArray.map((userSound) => {
         const uploadDate = new Date(userSound.createdAt)
@@ -47,7 +49,11 @@ const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, user
     })
 
     const follow = () => {
-        followUser(authToken, currentUserId, props.match.params.userId)
+        followUser(authToken, currentUserId, props.match.params.userId);
+    }
+
+    const unfollow = () => {
+        unFollowUser(authToken, currentUserId, props.match.params.userId);
     }
 
     return (
@@ -58,8 +64,17 @@ const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, user
                     <div className={styles.nameHeader}>{userName}</div>
                     {(props.match.params.userId !== currentUserId) ?
                         <>
-                            <label className={styles.follow} htmlFor="follow" >follow</label>
-                            <button onClick={follow} className={styles.hidden} id="follow"></button>
+                            {(followedArray.includes(parseInt(props.match.params.userId, 10))) ?
+                            <>
+                                <label className={styles.follow} htmlFor="unfollow" >unfollow</label>
+                                <button onClick={unfollow} className={styles.hidden} id="unfollow"></button>
+                                </>
+                            :
+                            <>
+                                <label className={styles.follow} htmlFor="follow" >follow</label>
+                                <button onClick={follow} className={styles.hidden} id="follow"></button>
+                            </>
+                            }
                         </>
                         :
                         ''
@@ -84,6 +99,7 @@ const mapStateToProps = (state) => {
         userName: state.user.userName,
         userBio: state.user.userBio,
         userImgUrl: state.user.userImgUrl,
+        followedArray: state.user.followedArray,
         userSoundsArray: state.sound.userSoundsArray,
     };
 };
@@ -92,6 +108,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getUserInfo: (id) => dispatch(getUserInfo(id)),
         followUser: (token, followerId, followedId) => dispatch(followUser(token, followerId, followedId)),
+        unFollowUser: (token, followerId, followedId) => dispatch(unFollowUser(token, followerId, followedId)),
+        getAllUsers: (token) => dispatch(getAllUsers(token)),
+        getFollowedUsers: (token) => dispatch(getFollowedUsers(token)),
         fetchUserSounds: (id) => dispatch(fetchUserSounds(id)),
     };
 };
