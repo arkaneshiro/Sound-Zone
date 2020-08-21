@@ -68,3 +68,24 @@ export const getFollowedUsers = (token) => async (dispatch) => {
         console.error(err)
     }
 }
+
+export const followUser = (token, followerId, followedId) => async (dispatch) => {
+    try {
+        const body = JSON.stringify({ followerId, followedId })
+        const res = await fetch(`${apiBaseUrl}/users/follow`, {
+            method: "POST",
+            body,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        });
+        if (!res.ok) throw res;
+        const data = await res.json();
+        const followIdArray = data.map(follow => follow.id)
+        // console.log(followIdArray)
+        dispatch(getFollowedIds(followIdArray))
+    } catch (err) {
+        console.error(err)
+    }
+}
