@@ -50,6 +50,7 @@ function App({ searchData, currentUserId, logout }) {
         navEle.currentTime = newTimeStart;
         navEle.play();
         setNavDuration(navEle.duration)
+        clearInterval(intervalKiller);
         setIntervalKiller(setInterval(updateNavJuice, 10))
         setNavPlaying(true);
     }
@@ -90,26 +91,40 @@ function App({ searchData, currentUserId, logout }) {
         navEle.currentTime = 0;
     }
 
+    const logouter = () => {
+        const soundButton = document.getElementById(`playPause${currentSoundInfo.soundId}`)
+        if (soundButton) {
+            soundButton.click();
+        }
+        clearInterval(intervalKiller);
+        logout()
+    }
+
     const navControls = {playNav, pauseNav, updateNavRef, currentRef, setCurrentRef, navDuration, navTime, navProgress, navPlaying}
 
     const searchResults = searchData ?
             searchData.map((user) => {
-                if (user.username.toLowerCase().includes(watch('search').toLowerCase())) {
-                    return (
-                        <div value={user.id} key={user.id}>
-                            <NavLink className="searchResult" to={`/users/${user.id}`}>
-                                <div className="searchResultText">
-                                    {user.username}
-                                </div>
-                            </NavLink>
-                            <div className="divider">
+                console.log(user.username)
+                console.log(watch('search'))
+                if (watch('search')) {
+                    if (user.username.toLowerCase().includes(watch('search').toLowerCase())) {
+                        return (
+                            <div value={user.id} key={user.id}>
+                                <NavLink className="searchResult" to={`/users/${user.id}`}>
+                                    <div className="searchResultText">
+                                        {user.username}
+                                    </div>
+                                </NavLink>
+                                <div className="divider">
 
+                                </div>
                             </div>
-                        </div>
-                        )
-                } else {
-                    return ""
+                            )
+                    } else {
+                        return ""
+                    }
                 }
+
             })
             :
             ""
@@ -136,7 +151,7 @@ function App({ searchData, currentUserId, logout }) {
             <NavLink className="navBar-navLink" to={`/upload`}>Upload Sound</NavLink>
             <NavLink className="navBar-navLink" to={`/dashboard`}>Dashboard</NavLink>
             <NavLink className="navBar-navLink" to={`/users/${currentUserId}`}>Profile</NavLink>
-            <span className="navBar-navLink" onClick={logout} >Log Out</span>
+            <span className="navBar-navLink" onClick={logouter} >Log Out</span>
         </>
     ) : (
         <>
