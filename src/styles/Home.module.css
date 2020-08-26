@@ -1,5 +1,108 @@
 .homePageContainer {
     display: flex;
     height: 100%;
+    width: 100vw;
     justify-content: center;
+
+}
+
+.mainText2 {
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    font-size: 70px;
+    font-weight: bold;
+
+    animation-name: slideIn2;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.mainText {
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    font-size: 70px;
+    font-weight: bold;
+
+    animation-name: slideIn;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.row2 {
+    top: 131px;
+}
+
+.row3 {
+    top: 212px;
+}
+
+.row4 {
+    top: 293px;
+}
+
+.row5 {
+    top: 374px;
+}
+
+.row6 {
+    top: 455px;
+}
+
+.row7 {
+    top: 536px;
+}
+
+.row8 {
+    top: 617px;
+}
+
+.row9 {
+    top: 708px;
+}
+
+.image {
+    position: absolute;
+    height: 81px;
+    width: 100vw;
+
+    animation-name: imageSlide;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.image2 {
+    position: absolute;
+    height: 81px;
+    width: 100vw;
+
+    animation-name: imageSlide2;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes slideIn {
+    from { left: 0px; }
+    to { left: 400px; }
+}
+
+@keyframes slideIn2 {
+    from { left: -397px; }
+    to { left: 3px; }
+}
+
+@keyframes imageSlide {
+    from { left: 0px; }
+    to { left: -100vw; }
+}
+@keyframes imageSlide2 {
+    from { left: 100vw; }
+    to { left: 0px; }
 }

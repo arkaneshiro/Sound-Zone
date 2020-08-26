@@ -44,30 +44,6 @@ function App({ searchData, currentUserId, logout }) {
         window.clearTimeout(timeoutCancel)
     }
 
-    const searchResults = searchData ?
-        searchData.map((user) => {
-            if (user.username.toLowerCase().includes(watch('search').toLowerCase())) {
-                return (
-                    <div value={user.id} key={user.id}>
-                        <NavLink className="searchResult" to={`/users/${user.id}`}>
-                            <div className="searchResultText">
-                                {user.username}
-                            </div>
-                        </NavLink>
-                        <div className="divider">
-
-                        </div>
-                    </div>
-                    )
-            } else {
-                return ""
-            }
-        })
-        :
-        ""
-
-
-
     // SOUND BAR / PLAYBACK FUNCTIONS
     const playNav = (newTimeStart) => {
         const navEle = document.querySelector(".soundCurrent");
@@ -116,6 +92,28 @@ function App({ searchData, currentUserId, logout }) {
 
     const navControls = {playNav, pauseNav, updateNavRef, currentRef, setCurrentRef, navDuration, navTime, navProgress, navPlaying}
 
+    const searchResults = searchData ?
+            searchData.map((user) => {
+                if (user.username.toLowerCase().includes(watch('search').toLowerCase())) {
+                    return (
+                        <div value={user.id} key={user.id}>
+                            <NavLink className="searchResult" to={`/users/${user.id}`}>
+                                <div className="searchResultText">
+                                    {user.username}
+                                </div>
+                            </NavLink>
+                            <div className="divider">
+
+                            </div>
+                        </div>
+                        )
+                } else {
+                    return ""
+                }
+            })
+            :
+            ""
+
     const navBar = currentUserId ? (
         <>
             <form>
@@ -147,6 +145,8 @@ function App({ searchData, currentUserId, logout }) {
             <NavLink className="navBar-navLink" exact to="/">Home</NavLink>
         </>
     );
+
+
 
     return (
         <div className="outermost-container">
