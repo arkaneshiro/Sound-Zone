@@ -116,7 +116,7 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
                 </div>
             </div>
 
-            <audio className={`sound${soundId}`} muted={true} onEnded={soundReset} src={soundAudioUrl} alt='' />
+            <audio className={`sound${soundId}`} muted={true} onEnded={soundReset} src={soundAudioUrl} preload="auto" alt='' />
 
         </div>
     )
