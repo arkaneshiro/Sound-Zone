@@ -123,6 +123,8 @@ function App({ searchData, currentUserId, logout }) {
                     } else {
                         return ""
                     }
+                } else {
+                    return ""
                 }
 
             })
