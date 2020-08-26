@@ -28,7 +28,7 @@ body {
 }
 
 .searchResultsContainer {
-    background-color: #ff660080;
+    background-color: rgb(245 245 245);
     position: absolute;
     width: 200px;
     z-index: 1;
@@ -36,6 +36,24 @@ body {
 
 .searchResultsContainer:focus {
     outline: none;
+}
+
+.searchResult {
+    color: black;
+    text-decoration: none;
+    display: flex;
+}
+
+.searchResultText {
+    width: 100%;
+    margin: 2px 0px;
+}
+
+.divider {
+    width: 200px;
+    height: 1px;
+    background-color: rgb(200 200 200);
+    /* z-index: 2; */
 }
 
 .navBar-navLink,

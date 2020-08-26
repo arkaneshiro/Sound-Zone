@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Switch, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import { useForm } from "react-hook-form";
 import { ProtectedRoute, AuthRoute } from "./Routes";
 import { logout } from './actions/authActions';
 
@@ -14,6 +15,7 @@ import SoundDetail from "./components/SoundDetail";
 import SoundBar from "./components/SoundBar";
 
 function App({ searchData, currentUserId, logout }) {
+    const { register, watch } = useForm();
     const [currentAudio, setCurrentAudio] = useState('')
     const [currentRef, setCurrentRef] = useState('Current');
     const [intervalKiller, setIntervalKiller] = useState('');
@@ -44,11 +46,22 @@ function App({ searchData, currentUserId, logout }) {
 
     const searchResults = searchData ?
         searchData.map((user) => {
-            return (
-            <div value={user.id} key={user.id}>
-                <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
-            </div>
-            )
+            if (user.username.toLowerCase().includes(watch('search').toLowerCase())) {
+                return (
+                    <div value={user.id} key={user.id}>
+                        <NavLink className="searchResult" to={`/users/${user.id}`}>
+                            <div className="searchResultText">
+                                {user.username}
+                            </div>
+                        </NavLink>
+                        <div className="divider">
+
+                        </div>
+                    </div>
+                    )
+            } else {
+                return ""
+            }
         })
         :
         ""
@@ -116,6 +129,7 @@ function App({ searchData, currentUserId, logout }) {
                     onFocus={openResults}
                     onClick={cancelMenuClose}
                     onBlur={closeResults}
+                    ref={register()}
                 />
                 <div tabIndex="0" onBlur={closeResults} hidden={!displaySearch} className="searchResultsContainer">
                     {searchResults}
