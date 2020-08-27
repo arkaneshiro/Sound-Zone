@@ -23,6 +23,10 @@ const Home = ({currentUserId}) => {
             <img className={styles.image + " " + styles.row8} alt="wave" src={'https://res.cloudinary.com/dgzcv1mcs/video/upload/fl_waveform,co_black,b_white/Soundzone/01_I_Wish_Time_Didn_t_Matter_rdtxni.png'}></img>
             <div className={styles.mainText2 + " " + styles.row9}>Soundzone</div>
             <div className={styles.mainText + " " + styles.row9}>Soundzone Soundzone Soundzone Soundzone</div>
+            <img className={styles.image2 + " " + styles.row10} alt="wave" src={'https://res.cloudinary.com/dgzcv1mcs/video/upload/fl_waveform,co_black,b_white/Soundzone/01_I_Wish_Time_Didn_t_Matter_rdtxni.png'}></img>
+            <img className={styles.image + " " + styles.row10} alt="wave" src={'https://res.cloudinary.com/dgzcv1mcs/video/upload/fl_waveform,co_black,b_white/Soundzone/01_I_Wish_Time_Didn_t_Matter_rdtxni.png'}></img>
+            <div className={styles.mainText2 + " " + styles.row11}>Soundzone</div>
+            <div className={styles.mainText + " " + styles.row11}>Soundzone Soundzone Soundzone Soundzone</div>
         </div>
     )
 }
