@@ -214,9 +214,6 @@ function App({ searchData, currentUserId, logout }) {
                     navControls={navControls}
                 />
             </Switch>
-            {/* <div className="soundBar">
-                <audio className="soundCurrent" onEnded={navReset} src={currentAudio} />
-            </div> */}
             <SoundBar navReset={navReset} setNavPlaying={setNavPlaying} navProgress={navProgress} navPlaying={navPlaying} currentAudio={currentAudio} currentSoundInfo={currentSoundInfo}/>
         </div>
     );
