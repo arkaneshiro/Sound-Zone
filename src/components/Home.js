@@ -5,8 +5,8 @@ import styles from '../styles/Home.module.css';
 const Home = ({currentUserId}) => {
     return (
         <div className={styles.homePageContainer}>
-            <div className={styles.mainText2}>Soundzone</div>
-            <div className={styles.mainText}>Soundzone Soundzone Soundzone Soundzone</div>
+            <div className={styles.mainText2 + " " + styles.row1}>Soundzone</div>
+            <div className={styles.mainText + " " + styles.row1}>Soundzone Soundzone Soundzone Soundzone</div>
             <img className={styles.image2 + " " + styles.row2} alt="wave" src={'https://res.cloudinary.com/dgzcv1mcs/video/upload/fl_waveform,co_black,b_white/Soundzone/01_I_Wish_Time_Didn_t_Matter_rdtxni.png'}></img>
             <img className={styles.image + " " + styles.row2} alt="wave" src={'https://res.cloudinary.com/dgzcv1mcs/video/upload/fl_waveform,co_black,b_white/Soundzone/01_I_Wish_Time_Didn_t_Matter_rdtxni.png'}></img>
             <div className={styles.mainText2 + " " + styles.row3}>Soundzone</div>

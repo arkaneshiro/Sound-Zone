@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { login } from '../../actions/authActions';
 import styles from '../../styles/LoginForm.module.css';
-
+import Home from "../Home";
 import LabelButton from "../utils/LabelButton";
 
 const LoginForm = ({ login }) => {
@@ -18,47 +18,50 @@ const LoginForm = ({ login }) => {
     }
 
     return (
-        <div className={styles.formContainer}>
+        <>
+            <div className={styles.formContainer}>
 
-            <form className={styles.form} onSubmit={handleSubmit(formSubmitter)}>
-                <h1 className={styles.title}>Sign In</h1>
-                <input
-                    className={styles.usernameInput}
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="username"
-                    autoComplete="off"
-                    ref={register({ required: true })}
-                />
-                {errors.username && <div className={styles.error1}>username required</div>}
-                <input
-                    className={styles.passwordInput}
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="password"
-                    ref={register({ required: true })}
-                />
-                {errors.password && <div className={styles.error2}>password required</div>}
-                <LabelButton labelfor='submit-login' innerhtml='Sign In'/>
-                <input
-                    className={styles.submitInput}
-                    type="submit"
-                    id='submit-login'
-                    value="Sign In"
-                />
-                <LabelButton labelfor='submit-login-guest' innerhtml='Sign In as Guest'/>
-                <input
-                    className={styles.submitInput}
-                    onClick={loginGuest}
-                    type="button"
-                    id='submit-login-guest'
-                    value="Sign In as Guest"
-                />
-            </form>
+                <form className={styles.form} onSubmit={handleSubmit(formSubmitter)}>
+                    <h1 className={styles.title}>Sign In</h1>
+                    <input
+                        className={styles.usernameInput}
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="username"
+                        autoComplete="off"
+                        ref={register({ required: true })}
+                    />
+                    {errors.username && <div className={styles.error1}>username required</div>}
+                    <input
+                        className={styles.passwordInput}
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="password"
+                        ref={register({ required: true })}
+                    />
+                    {errors.password && <div className={styles.error2}>password required</div>}
+                    <LabelButton labelfor='submit-login' innerhtml='Sign In'/>
+                    <input
+                        className={styles.submitInput}
+                        type="submit"
+                        id='submit-login'
+                        value="Sign In"
+                    />
+                    <LabelButton labelfor='submit-login-guest' innerhtml='Sign In as Guest'/>
+                    <input
+                        className={styles.submitInput}
+                        onClick={loginGuest}
+                        type="button"
+                        id='submit-login-guest'
+                        value="Sign In as Guest"
+                    />
+                </form>
 
-        </div>
+            </div>
+            <Home/>
+        </>
     )
 }
 

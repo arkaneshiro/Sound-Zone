@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
 }
 
 .form {
@@ -11,6 +12,8 @@
     padding: 14px 14px 7px;
     border: 2px solid;
     margin-top: 28px;
+    z-index: 1;
+    background-color: white;
 }
 
 .title {
