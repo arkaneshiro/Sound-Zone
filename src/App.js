@@ -104,22 +104,24 @@ function App({ searchData, currentUserId, logout }) {
 
     const searchResults = searchData ?
             searchData.map((user) => {
-                console.log(user.username)
-                console.log(watch('search'))
-                if (watch('search')) {
+                if (watch('search') || watch('search') === '') {
                     if (user.username.toLowerCase().includes(watch('search').toLowerCase())) {
-                        return (
-                            <div value={user.id} key={user.id}>
-                                <NavLink className="searchResult" to={`/users/${user.id}`}>
-                                    <div className="searchResultText">
-                                        {user.username}
-                                    </div>
-                                </NavLink>
-                                <div className="divider">
+                        if (user.id !== parseInt(currentUserId)) {
+                            return (
+                                <div value={user.id} key={user.id}>
+                                    <NavLink className="searchResult" to={`/users/${user.id}`}>
+                                        <div className="searchResultText">
+                                            {user.username}
+                                        </div>
+                                    </NavLink>
+                                    <div className="divider">
 
+                                    </div>
                                 </div>
-                            </div>
-                            )
+                                )
+                        } else {
+                            return ""
+                        }
                     } else {
                         return ""
                     }
