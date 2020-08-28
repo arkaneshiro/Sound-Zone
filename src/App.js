@@ -100,6 +100,7 @@ function App({ searchData, currentUserId, logout }) {
         logout()
     }
 
+    // Nav Controls contains functions and updating values to be passed into Sound components as props
     const navControls = {playNav, pauseNav, updateNavRef, currentRef, setCurrentRef, navDuration, navTime, navProgress, navPlaying}
 
     const searchResults = searchData ?
