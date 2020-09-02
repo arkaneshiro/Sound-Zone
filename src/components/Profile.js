@@ -62,7 +62,7 @@ const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, foll
                 <img className={styles.profileAvi} src={userImgUrl} alt='' />
                 <div>
                     <div className={styles.nameHeader}>{userName}</div>
-                    {(props.match.params.userId !== currentUserId) ?
+                    {(parseInt(props.match.params.userId, 10) !== parseInt(currentUserId, 10)) ?
                         <>
                             {(followedArray.includes(parseInt(props.match.params.userId, 10))) ?
                             <>
