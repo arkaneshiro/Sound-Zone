@@ -1,0 +1,118 @@
+.mainText {
+    display: flex;
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    font-size: 70px;
+    font-weight: bold;
+    z-index: 0;
+}
+
+.row1 {
+    top: 50px;
+    left: 0;
+}
+
+.row2 {
+    top: 131px;
+}
+
+.row3 {
+    top: 212px;
+    left: 10px;
+}
+
+.row4 {
+    top: 293px;
+    right: -40px;
+}
+
+.row5 {
+    top: 374px;
+    right: -110px;
+}
+
+.row6 {
+    top: 455px;
+    right: 25px;
+}
+
+.row7 {
+    top: 536px;
+}
+
+.row8 {
+    top: 617px;
+    left: 0;
+}
+
+.row9 {
+    top: 692px;
+}
+
+.row10 {
+    top: 779px;
+    left: 10px;
+}
+
+.row11 {
+    top: 850px;
+    right: -40px;
+}
+
+.row12 {
+    top: 931px;
+    right: -110px;
+}
+
+.row13 {
+    top: 1012px;
+    right: 25px;
+}
+
+.row14 {
+    top: 1093px;
+}
+
+.row15 {
+    top: 1174px;
+    left: 0;
+}
+
+.row16 {
+    top: 1255px;
+}
+
+.row17 {
+    top: 1336px;
+    left: 10px;
+}
+
+.row18 {
+    top: 1417px;
+    right: -40px;
+}
+
+.row19 {
+    top: 1498px;
+    right: -110px;
+}
+
+.row20 {
+    top: 1579px;
+    right: 25px;
+}
+
+.row21 {
+    top: 1660px;
+}
+
+.row22 {
+    top: 1741px;
+    left: 0;
+}
+
+.row23 {
+    top: 1822px;
+}

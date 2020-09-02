@@ -5,6 +5,7 @@ import { getAllUsers, getFollowedUsers } from '../actions/userActions';
 import styles from '../styles/Dashboard.module.css';
 
 import Sound from "./Sound";
+import Background from "./Background";
 
 const Dashboard = ({authToken, currentUserId, userFeedArray = [], getAllUsers, getFollowedUsers, fetchUserFeed, ...props}) => {
 
@@ -49,6 +50,7 @@ const Dashboard = ({authToken, currentUserId, userFeedArray = [], getAllUsers, g
 
     return (
         <div className={styles.dashboardContainer}>
+            <Background/>
             <div className={styles.soundsAndDetailsContainer}>
                 <div className={styles.soundsContainer}>
                     {userFeed}
