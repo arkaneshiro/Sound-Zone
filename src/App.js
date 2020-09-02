@@ -136,33 +136,42 @@ function App({ searchData, currentUserId, logout }) {
 
     const navBar = currentUserId ? (
         <>
-            <form>
-                <input
-                    className="searchBar"
-                    type="search"
-                    id="search"
-                    name="search"
-                    placeholder="search for a user"
-                    autoComplete="off"
-                    onFocus={openResults}
-                    onClick={cancelMenuClose}
-                    onBlur={closeResults}
-                    ref={register()}
-                />
-                <div tabIndex="0" onBlur={closeResults} hidden={!displaySearch} className="searchResultsContainer">
-                    {searchResults}
-                </div>
-            </form>
-            <NavLink className="navBar-navLink" to={`/upload`}>Upload Sound</NavLink>
-            <NavLink className="navBar-navLink" to={`/dashboard`}>Dashboard</NavLink>
-            <NavLink className="navBar-navLink" to={`/users/${currentUserId}`}>Profile</NavLink>
-            <span className="navBar-navLink" onClick={logouter} >Log Out</span>
+            <div className="navBar-linkContainer">
+                <NavLink className="navBar-navLink" to={`/dashboard`}>Dashboard</NavLink>
+                <NavLink className="navBar-navLink" to={`/users/${currentUserId}`}>Profile</NavLink>
+                <NavLink className="navBar-navLink" to={`/upload`}>Upload</NavLink>
+                <span className="navBar-navLink" onClick={logouter} >Log Out</span>
+                <form>
+                    <input
+                        className="searchBar"
+                        type="search"
+                        id="search"
+                        name="search"
+                        placeholder="search for a user"
+                        autoComplete="off"
+                        onFocus={openResults}
+                        onClick={cancelMenuClose}
+                        onBlur={closeResults}
+                        ref={register()}
+                    />
+                    <div tabIndex="0" onBlur={closeResults} hidden={!displaySearch} className="searchResultsContainer">
+                        {searchResults}
+                    </div>
+                </form>
+            </div>
+
+            <div className="navBar-externalLinkContainer">
+                <a className="navBar-navLink" href="https://github.com/arkaneshiro/Sound-Zone">Github</a>
+                <a className="navBar-navLink" href="https://arkaneshiro.github.io">Portfolio</a>
+            </div>
         </>
     ) : (
         <>
-            <NavLink className="navBar-navLink" to="/register">Sign Up</NavLink>
-            <NavLink className="navBar-navLink" to="/login">Sign In</NavLink>
-            <NavLink className="navBar-navLink" exact to="/">Home</NavLink>
+            <div>
+                <NavLink className="navBar-navLink" exact to="/">Home</NavLink>
+                <NavLink className="navBar-navLink" to="/register">Sign Up</NavLink>
+                <NavLink className="navBar-navLink" to="/login">Sign In</NavLink>
+            </div>
         </>
     );
 

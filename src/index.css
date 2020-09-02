@@ -18,17 +18,24 @@ body {
 .navBar {
     height: 50px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     background-color: #ff6700;
 }
 
+.navBar-linkContainer {
+    display: flex;
+    align-items: center;
+}
+
 .searchBar {
+    margin: 0px 5px;
     border: none;
     width: 200px;
 }
 
 .searchResultsContainer {
+    margin: 0px 5px;
     background-color: rgb(245 245 245);
     position: absolute;
     width: 200px;
