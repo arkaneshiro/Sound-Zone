@@ -172,6 +172,10 @@ function App({ searchData, currentUserId, logout }) {
                 <NavLink className="navBar-navLink" to="/register">Sign Up</NavLink>
                 <NavLink className="navBar-navLink" to="/login">Sign In</NavLink>
             </div>
+            <div className="navBar-externalLinkContainer">
+                <a className="navBar-navLink" href="https://github.com/arkaneshiro/Sound-Zone">Github</a>
+                <a className="navBar-navLink" href="https://arkaneshiro.github.io">Portfolio</a>
+            </div>
         </>
     );
 
