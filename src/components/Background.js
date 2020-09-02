@@ -4,7 +4,7 @@ import styles from '../styles/Background.module.css';
 
 const Background = () => {
     return (
-        <>
+        <div className={styles.textContainer}>
             <div className={styles.mainText + " " + styles.row1}>Soundzone Soundzone Soundzone Soundzone</div>
             <div className={styles.mainText + " " + styles.row2}>Soundzone Soundzone Soundzone Soundzone</div>
             <div className={styles.mainText + " " + styles.row3}>Soundzone Soundzone Soundzone Soundzone</div>
@@ -25,10 +25,10 @@ const Background = () => {
             <div className={styles.mainText + " " + styles.row18}>Soundzone Soundzone Soundzone Soundzone</div>
             <div className={styles.mainText + " " + styles.row19}>Soundzone Soundzone Soundzone Soundzone</div>
             <div className={styles.mainText + " " + styles.row20}>Soundzone Soundzone Soundzone Soundzone</div>
-            <div className={styles.mainText + " " + styles.row21}>Soundzone Soundzone Soundzone Soundzone</div>
+            {/* <div className={styles.mainText + " " + styles.row21}>Soundzone Soundzone Soundzone Soundzone</div> */}
             {/* <div className={styles.mainText + " " + styles.row22}>Soundzone Soundzone Soundzone Soundzone</div>
             <div className={styles.mainText + " " + styles.row23}>Soundzone Soundzone Soundzone Soundzone</div> */}
-        </>
+        </div>
     )
 }
 

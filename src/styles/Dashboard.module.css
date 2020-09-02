@@ -7,7 +7,7 @@
 }
 
 .soundsAndDetailsContainer {
-    /* height: 100%; */
+    height: 100%;
     padding-top: 30px;
     margin-bottom: 50px;
     width: 90%;
@@ -20,7 +20,7 @@
 }
 
 .soundsContainer {
-    /* height: 100%; */
+    height: 100%;
     border-top: 1px solid rgb(228, 228, 228);
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@
 }
 
 .detailsContainer {
-    /* height: 100%; */
+    height: 100%;
     border-top: 1px solid rgb(228, 228, 228);
     display: flex;
     width: 20%;

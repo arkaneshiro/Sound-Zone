@@ -1,3 +1,12 @@
+.textContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 50px;
+    z-index: 0;
+}
+
 .mainText {
     display: flex;
     position: absolute;
@@ -10,109 +19,116 @@
 }
 
 .row1 {
-    top: 50px;
+    top: 0px;
     left: 0;
 }
 
 .row2 {
-    top: 131px;
+    top: 81px;
+    right: -20px;
 }
 
 .row3 {
-    top: 212px;
+    top: 162px;
     left: 10px;
 }
 
 .row4 {
-    top: 293px;
+    top: 243px;
     right: -40px;
 }
 
 .row5 {
-    top: 374px;
+    top: 324px;
     right: -110px;
 }
 
 .row6 {
-    top: 455px;
+    top: 405px;
     right: 25px;
 }
 
 .row7 {
-    top: 536px;
+    top: 486px;
+    left: 15px
 }
 
 .row8 {
-    top: 617px;
+    top: 567px;
     left: 0;
 }
 
 .row9 {
-    top: 692px;
+    top: 642px;
+    right: -20px;
 }
 
 .row10 {
-    top: 779px;
+    top: 729px;
     left: 10px;
 }
 
 .row11 {
-    top: 850px;
+    top: 800px;
     right: -40px;
 }
 
 .row12 {
-    top: 931px;
+    top: 881px;
     right: -110px;
 }
 
 .row13 {
-    top: 1012px;
+    top: 962px;
     right: 25px;
 }
 
 .row14 {
-    top: 1093px;
+    top: 1043px;
+    left: 15px
 }
 
 .row15 {
-    top: 1174px;
+    top: 1124px;
     left: 0;
 }
 
 .row16 {
-    top: 1255px;
+    top: 1205px;
+    right: -20px;
 }
 
 .row17 {
-    top: 1336px;
+    top: 1286px;
     left: 10px;
 }
 
 .row18 {
-    top: 1417px;
+    top: 1367px;
     right: -40px;
 }
 
 .row19 {
-    top: 1498px;
+    top: 1448px;
     right: -110px;
 }
 
 .row20 {
-    top: 1579px;
+    top: 1529px;
     right: 25px;
 }
 
 .row21 {
-    top: 1660px;
+    top: 1610px;
+    left: 15px
 }
 
 .row22 {
-    top: 1741px;
+    top: 1691px;
     left: 0;
 }
 
 .row23 {
-    top: 1822px;
+    top: 1772px;
+    right: -20px;
 }
