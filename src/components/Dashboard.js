@@ -10,6 +10,8 @@ import Sound from "./Sound";
 const Dashboard = ({authToken, currentUserId, userFeedArray = [], getAllUsers, getFollowedUsers, fetchUserFeed, ...props}) => {
 
     useEffect(() => {
+        // const searchForm = document.querySelector(".searchForm");
+        // searchForm.reset()
         fetchUserFeed(currentUserId);
         getAllUsers(authToken);
         getFollowedUsers(authToken);

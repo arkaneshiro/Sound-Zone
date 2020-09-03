@@ -10,6 +10,8 @@ import Sound from "./Sound";
 const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, followedArray = [], userSoundsArray = [], getUserInfo, followUser, unFollowUser, getAllUsers, getFollowedUsers, fetchUserSounds, ...props }) => {
 
     useEffect(() => {
+        // const searchForm = document.querySelector(".searchForm");
+        // searchForm.reset()
         fetchUserSounds(props.match.params.userId);
         getUserInfo(props.match.params.userId);
         getAllUsers(authToken);

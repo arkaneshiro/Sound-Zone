@@ -12,6 +12,8 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
     const [loadingDisplay, setLoadingDisplay] = useState('none')
 
     useEffect(() => {
+        // const searchForm = document.querySelector(".searchForm");
+        // searchForm.reset()
         getUserInfo(currentUserId);
 
     }, [getUserInfo, currentUserId])

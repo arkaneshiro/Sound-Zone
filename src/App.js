@@ -15,7 +15,7 @@ import SoundDetail from "./components/SoundDetail";
 import SoundBar from "./components/SoundBar";
 
 function App({ searchData, currentUserId, logout }) {
-    const { register, watch } = useForm();
+    const { handleSubmit, register, watch } = useForm();
     const [currentAudio, setCurrentAudio] = useState('')
     const [currentRef, setCurrentRef] = useState('Current');
     const [intervalKiller, setIntervalKiller] = useState('');
@@ -25,24 +25,30 @@ function App({ searchData, currentUserId, logout }) {
     const [navPlaying, setNavPlaying] = useState(false)
     const [currentSoundInfo, setCurrentSoundInfo] = useState('');
     const [displaySearch, setDisplaySearch] = useState(false);
-    const [timeoutCancel, setTimeoutCancel] = useState('')
+    // const [timeoutCancel, setTimeoutCancel] = useState('')
 
 
     // SEARCH FUNCTIONS
+    const onSearch = (data, e) => {
+        // console.log(e.target)
+        e.target.reset()
+    }
+
     const closeResults = e => {
         console.log(e.target.className)
-        if (e.target.className === 'searchResultsContainer' || e.target.className === 'searchBar') {
-            setTimeoutCancel(window.setTimeout(setDisplaySearch, 100, false))
-        }
+        // if (e.target.className === 'searchResultsContainer' || e.target.className === 'searchBar') {
+            // setTimeoutCancel(window.setTimeout(setDisplaySearch, 100, false))
+            setDisplaySearch(false)
+        // }
     }
 
     const openResults = () => {
         setDisplaySearch(true)
     }
 
-    const cancelMenuClose = () => {
-        window.clearTimeout(timeoutCancel)
-    }
+    // const cancelMenuClose = () => {
+    //     window.clearTimeout(timeoutCancel)
+    // }
 
     // SOUND BAR / PLAYBACK FUNCTIONS
     const playNav = (newTimeStart) => {
@@ -110,7 +116,7 @@ function App({ searchData, currentUserId, logout }) {
                         if (user.id !== parseInt(currentUserId)) {
                             return (
                                 <div value={user.id} key={user.id}>
-                                    <NavLink className="searchResult" to={`/users/${user.id}`}>
+                                    <NavLink className="searchResult" onClick={closeResults} to={`/users/${user.id}`}>
                                         <div className="searchResultText">
                                             {user.username}
                                         </div>
@@ -141,7 +147,7 @@ function App({ searchData, currentUserId, logout }) {
                 <NavLink className="navBar-navLink" to={`/users/${currentUserId}`}>Profile</NavLink>
                 <NavLink className="navBar-navLink" to={`/upload`}>Upload</NavLink>
                 <span className="navBar-navLink" onClick={logouter} >Log Out</span>
-                <form>
+                <form className="searchForm" onSubmit={handleSubmit(onSearch)}>
                     <input
                         className="searchBar"
                         type="search"
@@ -150,11 +156,10 @@ function App({ searchData, currentUserId, logout }) {
                         placeholder="search for a user"
                         autoComplete="off"
                         onFocus={openResults}
-                        onClick={cancelMenuClose}
-                        onBlur={closeResults}
+                        // onBlur={closeResults}
                         ref={register()}
                     />
-                    <div tabIndex="0" onBlur={closeResults} hidden={!displaySearch} className="searchResultsContainer">
+                    <div tabIndex="0"  hidden={!displaySearch} className="searchResultsContainer">
                         {searchResults}
                     </div>
                 </form>

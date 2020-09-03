@@ -12,11 +12,11 @@ const SoundDetail = ({ soundDetails, currentUserId, fetchSound, ...props }) => {
         fetchSound(props.match.params.soundId);
     }, [fetchSound, props.match.params.soundId])
 
-    useEffect(() => {
-        if (soundDetails) {
-            console.log(soundDetails)
-        }
-    }, [soundDetails])
+    // useEffect(() => {
+    //     if (soundDetails) {
+    //         console.log(soundDetails)
+    //     }
+    // }, [soundDetails])
 
     if (soundDetails) {
         return (
