@@ -105,7 +105,7 @@ function App({ searchData, currentUserId, logout }) {
 
     const searchResults = searchData ?
             searchData.map((user) => {
-                if (watch('search') || watch('search') === '') {
+                if (watch('search')) {
                     if (user.username.toLowerCase().includes(watch('search').toLowerCase())) {
                         if (user.id !== parseInt(currentUserId)) {
                             return (
