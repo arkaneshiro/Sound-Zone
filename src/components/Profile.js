@@ -5,7 +5,7 @@ import { fetchUserSounds } from '../actions/soundActions';
 import styles from '../styles/Profile.module.css';
 
 import Sound from "./Sound";
-import Background from "./Background";
+// import Background from "./Background";
 
 const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, followedArray = [], userSoundsArray = [], getUserInfo, followUser, unFollowUser, getAllUsers, getFollowedUsers, fetchUserSounds, ...props }) => {
 
@@ -59,7 +59,7 @@ const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, foll
 
     return (
         <div className={styles.profileContainer}>
-            <Background/>
+            {/* <Background/> */}
             <div className={styles.titleContainer}>
                 <img className={styles.profileAvi} src={userImgUrl} alt='' />
                 <div>
