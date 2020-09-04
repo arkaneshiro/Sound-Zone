@@ -10,8 +10,6 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
     useEffect(() => {
         const soundEle = document.querySelector(`.sound${soundId}`);
         const soundIcon = document.getElementById(`icon${soundId}`);
-        const searchForm = document.querySelector(".searchForm");
-        searchForm.reset()
         if (navControls.currentRef === soundId) {
             soundEle.currentTime = navControls.navTime;
             if (navControls.navPlaying) {

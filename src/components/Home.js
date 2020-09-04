@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import styles from '../styles/Home.module.css';
 
-const Home = ({currentUserId}) => {
+const Home = () => {
     return (
         <div className={styles.homePageContainer}>
             <div className={styles.mainText2 + " " + styles.row1}>Soundzone</div>
@@ -31,10 +31,5 @@ const Home = ({currentUserId}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-      currentUserId: state.auth.currentUserId,
-    };
-};
 
-export default connect(mapStateToProps, null)(Home);
+export default Home;
