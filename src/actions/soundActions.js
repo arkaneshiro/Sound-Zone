@@ -127,8 +127,8 @@ export const uploadSound = (userId, soundUrl, waveUrl, imageUrl, description, na
             },
         });
         if (!res.ok) throw res;
-        const soundObj = await res.json();
-        console.log(soundObj)
+        // const soundObj = await res.json();
+        // console.log(soundObj)
         window.location.href = `/users/${userId}`;
     } catch (err) {
         console.error(err);
@@ -144,8 +144,8 @@ export const deleteSound = (token, soundId, userId) => async (dispatch) => {
             }
         });
         if (!res.ok) throw res;
-        const deleteMessage = await res.json();
-        console.log(deleteMessage)
+        // const deleteMessage = await res.json();
+        // console.log(deleteMessage)
     } catch (err) {
         console.error(err);
     }
