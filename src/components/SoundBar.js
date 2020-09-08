@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import styles from '../styles/SoundBar.module.css';
 
 const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlaying, currentAudio, currentSoundInfo }) => {
+    const [displayOverlay, setDisplayOverlay] = useState(false);
+    const [hoverWidth, setHoverWidth] = useState(0);
+
+
+    const startHovering = () => {
+        setDisplayOverlay(true)
+    }
+
+    const stopHovering = () => {
+        setDisplayOverlay(false)
+        setHoverWidth(0)
+    }
+
+    const startMoving = e => {
+        if (displayOverlay === true && navPlaying) {
+            setHoverWidth(Math.floor(100*(e.clientX - e.target.getBoundingClientRect().left)/e.target.clientWidth));
+          }
+    }
+
+
 
     const clickPlayPause = () => {
         const soundButton = document.getElementById(`playPause${currentSoundInfo.soundId}`)
@@ -29,9 +49,10 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
                         <span></span>
                     )}
                 </div>
-                <div className={styles.juiceCup}>
+                <div className={styles.juiceCup} onMouseOver={startHovering} onMouseLeave={stopHovering} onMouseMove={startMoving} >
                     <div className={styles.juiceBackground} style={{ width: '100%' }} />
                     <div className={styles.juice} style={{ width: navProgress }} />
+                    <div className={styles.juice2} style={{ width: hoverWidth }} />
                 </div>
                 <div className={styles.songDetails}>
                     <div className={styles.songImgContainer}>

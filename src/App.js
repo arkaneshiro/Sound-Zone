@@ -31,9 +31,9 @@ function App({ currentUserId, logout }) {
         const navEle = document.querySelector(".soundCurrent");
         navEle.currentTime = newTimeStart;
         navEle.play();
-        setNavDuration(navEle.duration)
         clearInterval(intervalKiller);
         setIntervalKiller(setInterval(updateNavJuice, 10))
+        setNavDuration(navEle.duration)
         setNavPlaying(true);
     }
 
