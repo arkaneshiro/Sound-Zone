@@ -23,7 +23,11 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
           }
     }
 
-
+    const moveSong = e => {
+        if (displayOverlay === true && navPlaying) {
+            console.log(hoverWidth);
+        }
+    }
 
     const clickPlayPause = () => {
         const soundButton = document.getElementById(`playPause${currentSoundInfo.soundId}`)
@@ -49,7 +53,7 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
                         <span></span>
                     )}
                 </div>
-                <div className={styles.juiceCup} onMouseOver={startHovering} onMouseLeave={stopHovering} onMouseMove={startMoving} >
+                <div className={styles.juiceCup} onClick={moveSong} onMouseOver={startHovering} onMouseLeave={stopHovering} onMouseMove={startMoving} >
                     <div className={styles.juiceBackground} style={{ width: '100%' }} />
                     <div className={styles.juice} style={{ width: navProgress }} />
                     <div className={styles.juice2} style={{ width: `${hoverWidth}%` }} />
