@@ -19,7 +19,7 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
 
     const startMoving = e => {
         if (displayOverlay === true && navPlaying) {
-            setHoverWidth(Math.floor(100*(e.clientX - e.target.getBoundingClientRect().left)/e.target.clientWidth));
+            setHoverWidth(Math.floor(10000*(e.clientX - e.target.getBoundingClientRect().left)/e.target.clientWidth)/100);
           }
     }
 
@@ -52,7 +52,7 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
                 <div className={styles.juiceCup} onMouseOver={startHovering} onMouseLeave={stopHovering} onMouseMove={startMoving} >
                     <div className={styles.juiceBackground} style={{ width: '100%' }} />
                     <div className={styles.juice} style={{ width: navProgress }} />
-                    <div className={styles.juice2} style={{ width: hoverWidth }} />
+                    <div className={styles.juice2} style={{ width: `${hoverWidth}%` }} />
                 </div>
                 <div className={styles.songDetails}>
                     <div className={styles.songImgContainer}>
