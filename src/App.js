@@ -3,6 +3,8 @@ import { Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { ProtectedRoute, AuthRoute } from "./Routes";
 import { logout } from './actions/authActions';
+import { deleteSound } from './actions/soundActions';
+
 
 import RegistrationForm from "./components/session/RegistrationForm.js";
 import LoginForm from "./components/session/LoginForm.js";
@@ -77,7 +79,6 @@ function App({ searchData, currentUserId, logout }) {
         navEle.currentTime = 0;
     }
 
-
     // Logs u out!
     const logouter = () => {
         const soundButton = document.getElementById(`playPause${currentSoundInfo.soundId}`)
@@ -97,7 +98,7 @@ function App({ searchData, currentUserId, logout }) {
         setCurrentRef,
         navTime,
         navProgress,
-        navPlaying
+        navPlaying,
     }
 
     const searchControl = {
@@ -181,6 +182,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         logout: () => dispatch(logout()),
+        deleteSound: (token, soundId) => dispatch(deleteSound(token, soundId)),
     };
 };
 

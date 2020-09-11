@@ -25,6 +25,7 @@ const SoundDetail = ({ soundDetails, currentUserId, fetchSound, ...props }) => {
                     <div className={styles.soundContainer}>
                         <Sound
                             hasDeleteButton={false}
+                            currentUserId={currentUserId}
                             soundId={soundDetails.id}
                             soundImgUrl={soundDetails.imageUrl}
                             soundUserId={soundDetails.userId}

@@ -35,6 +35,7 @@ const Dashboard = ({authToken, currentUserId, userFeedArray = [], getAllUsers, g
             // all 'sound' component data is passed thru props, not through redux
             <Sound
                 key={sound.id}
+                currentUserId={currentUserId}
                 hasDeleteButton={isCrntUserSound}
                 soundId={sound.id}
                 soundImgUrl={sound.imageUrl}

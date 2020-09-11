@@ -37,6 +37,7 @@ const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, foll
             // all 'sound' component data is passed thru props, not through redux
             <Sound
                 key={userSound.id}
+                currentUserId={currentUserId}
                 hasDeleteButton={isCrntUserSound}
                 soundId={userSound.id}
                 soundImgUrl={userSound.imageUrl}

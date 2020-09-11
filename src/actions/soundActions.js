@@ -146,6 +146,8 @@ export const deleteSound = (token, soundId, userId) => async (dispatch) => {
         if (!res.ok) throw res;
         // const deleteMessage = await res.json();
         // console.log(deleteMessage)
+        dispatch(fetchUserSounds(userId))
+        dispatch(fetchUserFeed(userId))
     } catch (err) {
         console.error(err);
     }

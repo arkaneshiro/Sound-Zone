@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteSound } from '../actions/soundActions';
 import styles from '../styles/Sound.module.css';
 
-const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, soundUsername, soundUploadTime, soundName, soundWaveUrl, soundAudioUrl, navControls, deleteSound }) => {
+const Sound = ({ authToken, currentUserId, hasDeleteButton, soundId, soundImgUrl, soundUserId, soundUsername, soundUploadTime, soundName, soundWaveUrl, soundAudioUrl, navControls, deleteSound, ...props }) => {
     const [progress, setProgress] = useState('0%')
 
     useEffect(() => {
@@ -84,8 +84,8 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
     }
 
     const deleter = () => {
-        deleteSound(authToken, soundId)
-        window.location.reload(false)
+        deleteSound(authToken, soundId, currentUserId)
+        // props.history.go(0)
     }
 
     return (
@@ -116,7 +116,8 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
                     </div>
                 </div>
                 <div className={styles.waveContainer}>
-                    <div id={`juice${soundId}`} className={styles.juice} style={{ width: progress }} />
+                    <div className={styles.juice} style={{ width: progress }} />
+                    {/* <div className={styles.juice2} style={{ width: `${hoverWidth}%` }} /> */}
                     <img className={styles.soundWave} src={soundWaveUrl} alt='' />
                 </div>
             </div>
@@ -135,8 +136,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteSound: (token, soundId) => dispatch(deleteSound(token, soundId)),
+        deleteSound: (token, soundId, userId) => dispatch(deleteSound(token, soundId, userId)),
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sound);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sound));
