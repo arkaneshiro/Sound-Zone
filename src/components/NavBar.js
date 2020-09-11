@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Select from 'react-dropdown-select';
@@ -20,7 +20,6 @@ const NavBar = ({searchData, currentUserId, logouter, redirector, setSearchSelec
         if (val[0] !== undefined) {
             props.history.push(`/users/${val[0].id}`)
             setSearchSelected([val[0]])
-
         }
     }
 
