@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import styles from '../styles/SoundBar.module.css';
 
-const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlaying, currentAudio, currentSoundInfo }) => {
+const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlaying, currentAudio, currentSoundInfo, adjustNav}) => {
     const [displayOverlay, setDisplayOverlay] = useState(false);
     const [hoverWidth, setHoverWidth] = useState(0);
 
@@ -18,14 +18,16 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
     }
 
     const startMoving = e => {
-        if (displayOverlay === true && navPlaying) {
+        if ((displayOverlay === true && navPlaying) && (e.target.className === styles.juiceCup || e.target.className === styles.juiceBackground)) {
             setHoverWidth(Math.floor(10000*(e.clientX - e.target.getBoundingClientRect().left)/e.target.clientWidth)/100);
-          }
+        }
     }
 
     const moveSong = e => {
+        const navEle = document.querySelector(`.soundCurrent`);
         if (displayOverlay === true && navPlaying) {
-            console.log(hoverWidth);
+            // console.log((hoverWidth/100) * navEle.duration);
+            adjustNav((hoverWidth/100) * navEle.duration)
         }
     }
 

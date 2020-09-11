@@ -18,7 +18,6 @@ function App({ searchData, currentUserId, logout }) {
     const [currentAudio, setCurrentAudio] = useState('')
     const [currentRef, setCurrentRef] = useState('Current');
     const [intervalKiller, setIntervalKiller] = useState('');
-    const [navDuration, setNavDuration] = useState(0);
     const [navTime, setNavTime] = useState(0);
     const [navProgress, setNavProgress] = useState(0);
     const [navPlaying, setNavPlaying] = useState(false)
@@ -34,8 +33,14 @@ function App({ searchData, currentUserId, logout }) {
         navEle.play();
         clearInterval(intervalKiller);
         setIntervalKiller(setInterval(updateNavJuice, 10))
-        setNavDuration(navEle.duration)
         setNavPlaying(true);
+    }
+
+    const adjustNav = (time) => {
+        const navEle = document.querySelector(".soundCurrent");
+        const currentEle = document.querySelector(`.sound${currentRef}`);
+        navEle.currentTime = time
+        currentEle.currentTime = time
     }
 
     const pauseNav = () => {
@@ -90,7 +95,6 @@ function App({ searchData, currentUserId, logout }) {
         updateNavRef,
         currentRef,
         setCurrentRef,
-        navDuration,
         navTime,
         navProgress,
         navPlaying
@@ -157,6 +161,7 @@ function App({ searchData, currentUserId, logout }) {
             <SoundBar
                 navReset={navReset}
                 setNavPlaying={setNavPlaying}
+                adjustNav={adjustNav}
                 navProgress={navProgress}
                 navPlaying={navPlaying}
                 currentAudio={currentAudio}

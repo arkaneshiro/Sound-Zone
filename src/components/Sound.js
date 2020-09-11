@@ -29,6 +29,8 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
         }
     }, [navControls.navProgress])
 
+
+    // playPause handles
     const playPause = () => {
         const soundEle = document.querySelector(`.sound${soundId}`);
         const soundIcon = document.getElementById(`icon${navControls.currentRef}`);
@@ -50,6 +52,9 @@ const Sound = ({ authToken, hasDeleteButton, soundId, soundImgUrl, soundUserId, 
         }
     }
 
+
+
+    // playSound and pauseSoud are helper functions to playpause
     const playSound = () => {
         const soundEle = document.querySelector(`.sound${soundId}`);
         const soundIcon = document.getElementById(`icon${soundId}`);
