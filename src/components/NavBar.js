@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from "react-router-dom";
+import React, { useState } from 'react';
+import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Select from 'react-dropdown-select';
 
@@ -7,7 +7,7 @@ import styles from '../styles/NavBar.module.css';
 import { logout } from '../actions/authActions';
 
 
-const NavBar = ({searchData, currentUserId, logouter}) => {
+const NavBar = ({searchData, currentUserId, logouter, redirector, setSearchSelected, searchSelected, ...props}) => {
 
     const searchStyles = {
         width: '200px',
@@ -17,9 +17,12 @@ const NavBar = ({searchData, currentUserId, logouter}) => {
     }
 
     const selector = val => {
-        window.location.href = `/users/${val[0].id}`
-    }
+        if (val[0] !== undefined) {
+            props.history.push(`/users/${val[0].id}`)
+            setSearchSelected([val[0]])
 
+        }
+    }
 
     // changes what nav is displayed based on if ur logged in
     const nav = currentUserId ? (
@@ -31,11 +34,13 @@ const NavBar = ({searchData, currentUserId, logouter}) => {
                     <span className={styles.navBarLink} onClick={logouter} >Log Out</span>
                     <Select
                         style={searchStyles}
+                        values={searchSelected}
                         labelField="username"
                         valueField="id"
                         searchBy="username"
                         placeholder="search for a user"
                         dropdownHandle={false}
+                        dropdownGap={0}
                         searchable={true}
                         clearOnBlur={true}
                         options={searchData}
@@ -72,7 +77,6 @@ const NavBar = ({searchData, currentUserId, logouter}) => {
 
 const mapStateToProps = (state) => {
     return {
-        searchData: state.user.searchData,
         currentUserId: state.auth.currentUserId,
     };
 };
@@ -83,4 +87,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));

@@ -15,6 +15,7 @@ const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, foll
         getUserInfo(props.match.params.userId);
         getAllUsers(authToken);
         getFollowedUsers(authToken);
+        props.searchControl.setSearchSelected([])
     }, [fetchUserSounds, getUserInfo, getAllUsers, getFollowedUsers, props.match.params.userId, authToken])
 
     const userSounds = userSoundsArray.map((userSound) => {

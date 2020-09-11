@@ -14,7 +14,7 @@ import SoundDetail from "./components/SoundDetail";
 import SoundBar from "./components/SoundBar";
 import NavBar from "./components/NavBar"
 
-function App({ currentUserId, logout }) {
+function App({ searchData, currentUserId, logout }) {
     const [currentAudio, setCurrentAudio] = useState('')
     const [currentRef, setCurrentRef] = useState('Current');
     const [intervalKiller, setIntervalKiller] = useState('');
@@ -23,6 +23,7 @@ function App({ currentUserId, logout }) {
     const [navProgress, setNavProgress] = useState(0);
     const [navPlaying, setNavPlaying] = useState(false)
     const [currentSoundInfo, setCurrentSoundInfo] = useState('');
+    const [searchSelected, setSearchSelected] = useState([])
 
 
 
@@ -95,13 +96,19 @@ function App({ currentUserId, logout }) {
         navPlaying
     }
 
+    const searchControl = {
+        setSearchSelected
+    }
 
 
     return (
         <div className="outermost-container">
             <NavBar
+                searchData={searchData}
                 currentSoundInfo={currentSoundInfo}
                 intervalKiller={intervalKiller}
+                searchSelected={searchSelected}
+                setSearchSelected={setSearchSelected}
                 logouter={logouter}
             />
             <Switch>
@@ -125,8 +132,8 @@ function App({ currentUserId, logout }) {
                     path="/users/:userId"
                     component={Profile}
                     currentUserId={currentUserId}
+                    searchControl={searchControl}
                     navControls={navControls}
-                    exact
                 />
                 <ProtectedRoute
                     path="/sounds/:soundId"
@@ -161,6 +168,7 @@ function App({ currentUserId, logout }) {
 
 const mapStateToProps = (state) => {
     return {
+        searchData: state.user.searchData,
         currentUserId: state.auth.currentUserId,
     };
 };

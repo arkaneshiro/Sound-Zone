@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-export const ProtectedRoute = ({ component: Component, path, currentUserId, exact, navControls }) => {
+export const ProtectedRoute = ({ component: Component, path, currentUserId, exact, navControls, searchControl}) => {
     return (
       <Route
         path={path}
         exact={exact}
         render={(props) =>
-          currentUserId ? <Component {...props} currentUserId={currentUserId} navControls={navControls} /> : <Redirect to="/" />
+          currentUserId ? <Component {...props} currentUserId={currentUserId} navControls={navControls} searchControl={searchControl}/> : <Redirect to="/" />
         }
       />
     );
