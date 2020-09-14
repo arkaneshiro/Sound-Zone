@@ -4,9 +4,24 @@ import { connect } from "react-redux";
 import { deleteSound } from '../actions/soundActions';
 import styles from '../styles/Sound.module.css';
 
-const Sound = ({ authToken, currentUserId, hasDeleteButton, soundId, soundImgUrl, soundUserId, soundUsername, soundUploadTime, soundName, soundWaveUrl, soundAudioUrl, navControls, deleteSound, ...props }) => {
+const Sound = ({
+    authToken,
+    currentUserId,
+    hasDeleteButton,
+    soundId,
+    soundImgUrl,
+    soundUserId,
+    soundUsername,
+    soundUploadTime,
+    soundName,
+    soundWaveUrl,
+    soundAudioUrl,
+    navControls,
+    deleteSound }) => {
+
     const [progress, setProgress] = useState('0%')
 
+    // this useEffect hook updates the visualization of the sound when it loads if it is the sound currently playing
     useEffect(() => {
         const soundEle = document.querySelector(`.sound${soundId}`);
         const soundIcon = document.getElementById(`icon${soundId}`);
@@ -18,11 +33,9 @@ const Sound = ({ authToken, currentUserId, hasDeleteButton, soundId, soundImgUrl
                 soundIcon.classList.remove(styles.paused)
             }
         }
-        // return () => {
-        //      soundReset();
-        // }
     }, [])
 
+    // this useEffect hook is what updates the 'juice' width on the sound component to visualize playback
     useEffect(() => {
         if (navControls.currentRef === soundId) {
             setProgress(navControls.navProgress);
@@ -30,7 +43,7 @@ const Sound = ({ authToken, currentUserId, hasDeleteButton, soundId, soundImgUrl
     }, [navControls.navProgress])
 
 
-    // playPause handles
+    // playPause contains the logic to play and pause a sound and ensure that only one sound plays at a time
     const playPause = () => {
         const soundEle = document.querySelector(`.sound${soundId}`);
         const soundIcon = document.getElementById(`icon${navControls.currentRef}`);
@@ -53,8 +66,7 @@ const Sound = ({ authToken, currentUserId, hasDeleteButton, soundId, soundImgUrl
     }
 
 
-
-    // playSound and pauseSoud are helper functions to playpause
+    // playSound and pauseSound are helper functions for the playPause function
     const playSound = () => {
         const soundEle = document.querySelector(`.sound${soundId}`);
         const soundIcon = document.getElementById(`icon${soundId}`);
@@ -73,6 +85,8 @@ const Sound = ({ authToken, currentUserId, hasDeleteButton, soundId, soundImgUrl
         soundIcon.classList.remove(styles.playing)
     }
 
+
+    // soundReset resets the song when the song ends
     const soundReset = () => {
         const soundEle = document.querySelector(`.sound${soundId}`);
         const soundIcon = document.getElementById(`icon${soundId}`);
@@ -83,9 +97,10 @@ const Sound = ({ authToken, currentUserId, hasDeleteButton, soundId, soundImgUrl
         soundIcon.classList.add(styles.paused)
     }
 
+
+    // deleter calls the delete action
     const deleter = () => {
         deleteSound(authToken, soundId, currentUserId)
-        // props.history.go(0)
     }
 
     return (
@@ -117,7 +132,6 @@ const Sound = ({ authToken, currentUserId, hasDeleteButton, soundId, soundImgUrl
                 </div>
                 <div className={styles.waveContainer}>
                     <div className={styles.juice} style={{ width: progress }} />
-                    {/* <div className={styles.juice2} style={{ width: `${hoverWidth}%` }} /> */}
                     <img className={styles.soundWave} src={soundWaveUrl} alt='' />
                 </div>
             </div>
