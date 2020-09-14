@@ -7,4 +7,4 @@
 3. react-hook-form
     - allows for simple and powerful form validations and error handling
 4. react-dropdown-select
-    - allowed for easy creation of search dropdown, avoiding the need for making difficult styling of <select> and <option> elements
+    - allowed for easy creation of search dropdown, avoiding the need for making difficult styling of 'select' and 'option' elements
