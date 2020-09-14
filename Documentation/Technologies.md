@@ -8,3 +8,14 @@
     - allows for simple and powerful form validations and error handling, the built-in functions eliminated the need for a series of functions and hooks that would provide the same functionality
 4. react-dropdown-select
     - allowed for easy creation of search dropdown, avoiding the need for making difficult styling of 'select' and 'option' elements
+
+# Soundzone Back-End Technologies
+1. Express
+    - Express made sense to use for Soundzone because of its great docs and the wealth of learning material online. It made routing and error handling very easy to implement
+2. jsonwebtoken, express-bearer-token & bcrypt
+    - jsonwebtoken, express-bearer-token, and bcrypt are the technologies used to authenticate users.
+        - jsonwebtoken allowed me to easily make tokens that could be sent from server to client as json messages
+        - express-bearer-token parses the requests to get the token
+        - bcrypt allowed me to store users passwords securely using its hashing function
+3. sequelize
+    -  sequelize allowed me to write functions to create the database models, migrations, and seed data instead of having to write code to generate SQL commands when I wanted to update the database.

@@ -7,7 +7,7 @@ Backend for Soundzone here: [Sound-Zone-Backend](https://github.com/arkaneshiro/
 
 ## Documentation links
 - [Feature List](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/featureList.md)
-- [Technologies](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/frontEndTechnologies.md)
+- [Technologies](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/Technologies.md)
 - [MVP](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/mvp.md)
 - [Front End Routes](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/frontEndRoutes.md)
 - [Back End Routes](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/backEndRoutes.md)
