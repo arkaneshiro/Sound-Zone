@@ -1,10 +1,10 @@
 # Soundzone Front-End Technologies
 1. React
     - React allows Soundzone to behave like a single-page application for a snappy user experience
-    - Reacts built-in hooks are used extensively throughout the app
-        - useState
-        - useEffect
+    - Reacts built-in hooks are used throughout the app, especially useState, which is used by the 'App' component to control all of the 'Sound' components throughout the site
 2. Redux
-    - Redux is used extensively on Soundzone, it is used to store
+    - Redux is used extensively on Soundzone to store data recieved from the backend, and takes advantage of changes in this data to avoid unnessecary page rerenders
 3. react-hook-form
+    - allows for simple and powerful form validations and error handling
 4. react-dropdown-select
+    - allowed for easy creation of search dropdown, avoiding the need for making difficult styling of <select> and <option> elements
