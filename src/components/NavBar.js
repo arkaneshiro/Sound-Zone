@@ -7,7 +7,7 @@ import styles from '../styles/NavBar.module.css';
 import { logout } from '../actions/authActions';
 
 
-const NavBar = ({searchData, currentUserId, logouter, redirector, setSearchSelected, searchSelected, ...props}) => {
+const NavBar = ({searchData = [], currentUserId, logouter, redirector, setSearchSelected, searchSelected, ...props}) => {
 
     const searchStyles = {
         width: '200px',
@@ -22,6 +22,8 @@ const NavBar = ({searchData, currentUserId, logouter, redirector, setSearchSelec
             setSearchSelected([val[0]])
         }
     }
+
+    const searchMinusCurrentUser = searchData.filter(userObj => userObj.id !== parseInt(currentUserId))
 
     // changes what nav is displayed based on if ur logged in
     const nav = currentUserId ? (
@@ -42,7 +44,7 @@ const NavBar = ({searchData, currentUserId, logouter, redirector, setSearchSelec
                         dropdownGap={0}
                         searchable={true}
                         clearOnBlur={true}
-                        options={searchData}
+                        options={searchMinusCurrentUser}
                         onChange={selector}
                     />
                 </div>
