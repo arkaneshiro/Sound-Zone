@@ -5,6 +5,6 @@
 2. Redux
     - Redux is used extensively on Soundzone to store data recieved from the backend, and takes advantage of changes in this data to avoid unnessecary page rerenders
 3. react-hook-form
-    - allows for simple and powerful form validations and error handling
+    - allows for simple and powerful form validations and error handling, the built-in functions eliminated the need for a series of functions and hooks that would provide the same functionality
 4. react-dropdown-select
     - allowed for easy creation of search dropdown, avoiding the need for making difficult styling of 'select' and 'option' elements
