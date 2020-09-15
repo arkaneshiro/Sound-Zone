@@ -1,4 +1,4 @@
-import { SET_IMG, SET_TOKEN, LOGOUT } from "../actions/authActions";
+import { SET_IMG, SET_TOKEN, SET_REGISTER_ERRORS, CLEAR_REGISTER_ERRORS, LOGOUT } from "../actions/authActions";
 
 const defaultAuthState = {
     authToken: null,
@@ -24,6 +24,20 @@ export default function reducer(state = {}, action) {
                 {
                     authToken: action.authToken,
                     currentUserId: action.currentUserId,
+                })
+        }
+        case SET_REGISTER_ERRORS: {
+            return Object.assign(
+                newState,
+                {
+                    registerErrors: action.registerErrors,
+                })
+        }
+        case CLEAR_REGISTER_ERRORS: {
+            return Object.assign(
+                newState,
+                {
+                    registerErrors: [],
                 })
         }
         case LOGOUT: {

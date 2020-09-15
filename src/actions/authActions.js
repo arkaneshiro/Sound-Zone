@@ -3,6 +3,8 @@ const { apiBaseUrl, cloudinaryUrl, cloudinaryPreset, } = require("../config");
 // ACTIONS
 export const SET_IMG = 'soundzone/authentication/SET_IMG';
 export const SET_TOKEN = 'soundzone/authentication/SET_TOKEN';
+export const SET_REGISTER_ERRORS = 'soundzone/authentication/SET_REGISTER_ERRORS';
+export const CLEAR_REGISTER_ERRORS = 'soundzone/authentication/CLEAR_REGISTER_ERRORS';
 export const LOGOUT = 'soundzone/authentication/LOGOUT';
 
 export const setImgUrl = (newImgUrl) => {
@@ -27,6 +29,19 @@ export const setToken = (authToken, currentUserId) => {
         type: SET_TOKEN,
         authToken,
         currentUserId,
+    }
+};
+
+export const setRegisterErrors = (registerErrors) => {
+    return {
+        type: SET_REGISTER_ERRORS,
+        registerErrors,
+    }
+}
+
+export const clearRegisterErrors = () => {
+    return {
+        type: CLEAR_REGISTER_ERRORS,
     }
 };
 
@@ -85,6 +100,16 @@ export const registerUser = (username, email, password, bio, imgUrl) => async (d
         persistUser(token, id);
         dispatch(setToken(token, id));
     } catch (err) {
-        console.error(err);
+        // console.error(err);
+        if ((err.status >= 400 && err.status <= 600) ) {
+            const errorJson = await err.json();
+            const formattedErr = errorJson.errors.reduce((obj, error) => {
+                return {
+                    ...obj,
+                    [error.param]: {param: error.param, value: error.value, msg: error.msg},
+                };
+            }, {})
+            dispatch(setRegisterErrors(formattedErr))
+        }
     }
 };

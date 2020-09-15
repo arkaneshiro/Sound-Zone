@@ -83,7 +83,6 @@ export const followUser = (token, followerId, followedId) => async (dispatch) =>
         if (!res.ok) throw res;
         const data = await res.json();
         const followIdArray = data.map(follow => follow.id)
-        // console.log(followIdArray)
         dispatch(getFollowedIds(followIdArray))
     } catch (err) {
         console.error(err)

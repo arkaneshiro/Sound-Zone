@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { useForm } from "react-hook-form";
-import { registerUser, updateImg } from '../../actions/authActions';
+import { registerUser, updateImg, clearRegisterErrors } from '../../actions/authActions';
 import styles from '../../styles/RegisterForm.module.css';
 import Home from "../Home";
 import LabelButton from "../utils/LabelButton";
 
-const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
+const RegistrationForm = ({ registerUser, updateImg, clearRegisterErrors, previewImgUrl, registerErrors = [] }) => {
     const { register, handleSubmit, errors } = useForm();
+
+    useEffect(() => {
+        clearRegisterErrors()
+    }, [])
 
     const handleNewImage = e => {
         const newImg = e.target.files[0];
@@ -32,6 +36,12 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
                         autoComplete="off"
                         ref={register({ required: true })}
                     />
+                    {registerErrors['username'] !== undefined
+                    ?
+                        <div className={styles.error}>{`username ${registerErrors['username'].value} is already in use`}</div>
+                    :
+                        ""
+                    }
                     {errors.username && <div className={styles.error}>username required</div>}
                     <input
                         className={styles.textInput}
@@ -42,6 +52,12 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
                         autoComplete="off"
                         ref={register({ required: true })}
                     />
+                    {registerErrors['email'] !== undefined
+                    ?
+                        <div className={styles.error}>{`email ${registerErrors['email'].value} is already in use`}</div>
+                    :
+                        ""
+                    }
                     {errors.email && <div className={styles.error}>email required</div>}
                     <input
                         className={styles.textInput}
@@ -87,6 +103,7 @@ const RegistrationForm = ({ registerUser, updateImg, previewImgUrl }) => {
 const mapStateToProps = (state) => {
     return {
       previewImgUrl: state.auth.previewImgUrl,
+      registerErrors: state.auth.registerErrors,
     };
   };
 
@@ -94,6 +111,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         registerUser: (username, email, password, bio, newImg) => dispatch(registerUser(username, email, password, bio, newImg)),
         updateImg: (newImg) => dispatch(updateImg(newImg)),
+        clearRegisterErrors: () => dispatch(clearRegisterErrors()),
     };
 };
 
