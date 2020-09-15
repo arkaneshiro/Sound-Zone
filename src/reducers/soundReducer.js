@@ -1,4 +1,9 @@
 import { GET_USER_SOUNDS, GET_USER_FEED, GET_SOUND_DETAILS, SET_SOUND_IMG, SET_SOUND } from "../actions/soundActions";
+import { LOGOUT } from "../actions/authActions";
+
+const defaultSoundState = {
+    newWaveUrl: 'https://res.cloudinary.com/dgzcv1mcs/video/upload/fl_waveform,co_black,b_white/Soundzone/iudcrzymdneisc16tr7f.png'
+}
 
 export default function reducer(state = {}, action) {
     Object.freeze(state);
@@ -40,6 +45,9 @@ export default function reducer(state = {}, action) {
                     newSoundUrl: action.newSoundUrl,
                     newWaveUrl: action.newWaveUrl,
                 })
+        }
+        case LOGOUT: {
+            return defaultSoundState
         }
         default:
             return state;

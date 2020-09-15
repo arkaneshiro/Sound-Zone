@@ -1,5 +1,5 @@
 import { SET_USER_INFO, GET_USER_IDS, GET_FOLLOWED_IDS} from "../actions/userActions";
-
+import { LOGOUT } from "../actions/authActions";
 
 export default (state = {}, action) => {
     Object.freeze(state);
@@ -30,6 +30,9 @@ export default (state = {}, action) => {
                     followedArray: action.ids
                 }
             )
+        }
+        case LOGOUT: {
+            return {}
         }
         default:
             return newState;
