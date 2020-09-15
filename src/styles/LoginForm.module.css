@@ -33,6 +33,11 @@
     margin-top: 7px;
 }
 
+.error {
+    color: red;
+    font-size: small;
+}
+
 .error1 {
     color: red;
     font-size: small;

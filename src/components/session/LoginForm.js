@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useForm } from "react-hook-form";
-import { login } from '../../actions/authActions';
+import { login, clearLoginError } from '../../actions/authActions';
 import styles from '../../styles/LoginForm.module.css';
 import Home from "../Home";
 import LabelButton from "../utils/LabelButton";
 
-const LoginForm = ({ login }) => {
+const LoginForm = ({ login, loginError = [], clearLoginError }) => {
     const { register, handleSubmit, errors } = useForm();
+
+    useEffect(() => {
+        clearLoginError()
+    }, [clearLoginError])
 
     const formSubmitter = data => {
         login(data.username, data.password)
@@ -41,6 +45,12 @@ const LoginForm = ({ login }) => {
                         placeholder="password"
                         ref={register({ required: true })}
                     />
+                    {loginError.length !== 0
+                    ?
+                        <div className={styles.error}>{`${loginError[0]}`}</div>
+                    :
+                        ""
+                    }
                     {errors.password && <div className={styles.error2}>password required</div>}
                     <LabelButton labelfor='submit-login' innerhtml='Sign In'/>
                     <input
@@ -65,10 +75,17 @@ const LoginForm = ({ login }) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
     return {
-        login: (username, password) => dispatch(login(username, password)),
+      loginError: state.auth.loginError,
     };
 };
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (username, password) => dispatch(login(username, password)),
+        clearLoginError: () => dispatch(clearLoginError()),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

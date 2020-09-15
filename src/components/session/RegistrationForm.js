@@ -11,7 +11,7 @@ const RegistrationForm = ({ registerUser, updateImg, clearRegisterErrors, previe
 
     useEffect(() => {
         clearRegisterErrors()
-    }, [])
+    }, [clearRegisterErrors])
 
     const handleNewImage = e => {
         const newImg = e.target.files[0];
@@ -105,7 +105,7 @@ const mapStateToProps = (state) => {
       previewImgUrl: state.auth.previewImgUrl,
       registerErrors: state.auth.registerErrors,
     };
-  };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
