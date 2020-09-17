@@ -4,7 +4,7 @@ import auth from "./authReducer";
 import sound from "./soundReducer";
 
 export default combineReducers({
-  user,
-  auth,
-  sound,
+    user,
+    auth,
+    sound,
 });

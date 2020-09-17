@@ -16,7 +16,8 @@ export default function reducer(state = {}, action) {
                 newState,
                 {
                     previewImgUrl: action.newImgUrl,
-                })
+                }
+            )
         }
         case SET_TOKEN: {
             return Object.assign(
@@ -24,40 +25,44 @@ export default function reducer(state = {}, action) {
                 {
                     authToken: action.authToken,
                     currentUserId: action.currentUserId,
-                })
+                }
+            )
         }
         case SET_REGISTER_ERRORS: {
             return Object.assign(
                 newState,
                 {
                     registerErrors: action.registerErrors,
-                })
+                }
+            )
         }
         case SET_LOGIN_ERROR: {
             return Object.assign(
                 newState,
                 {
                     loginError: action.loginError,
-                })
+                }
+            )
         }
         case CLEAR_REGISTER_ERRORS: {
             return Object.assign(
                 newState,
                 {
                     registerErrors: [],
-                })
+                }
+            )
         }
         case CLEAR_LOGIN_ERROR: {
             return Object.assign(
                 newState,
                 {
                     loginError: [],
-                })
+                }
+            )
         }
         case LOGOUT: {
             return Object.assign(newState, defaultAuthState)
         }
-        default:
-            return state;
+        default: return state;
     }
 }

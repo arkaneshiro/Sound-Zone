@@ -13,7 +13,8 @@ export default (state = {}, action) => {
                     userName: action.userName,
                     userBio: action.userBio,
                     userImgUrl: action.userImgUrl,
-                })
+                }
+            )
         }
         case GET_USER_IDS: {
             return Object.assign(
@@ -34,7 +35,6 @@ export default (state = {}, action) => {
         case LOGOUT: {
             return {}
         }
-        default:
-            return newState;
+        default: return newState;
     }
 };

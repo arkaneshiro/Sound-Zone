@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+
 import { fetchSound } from '../actions/soundActions';
 import styles from '../styles/SoundDetail.module.css';
-
 import Sound from "./Sound";
 
 const SoundDetail = ({ soundDetails, currentUserId, fetchSound, ...props }) => {
@@ -11,12 +11,6 @@ const SoundDetail = ({ soundDetails, currentUserId, fetchSound, ...props }) => {
     useEffect(() => {
         fetchSound(props.match.params.soundId);
     }, [fetchSound, props.match.params.soundId])
-
-    // useEffect(() => {
-    //     if (soundDetails) {
-    //         console.log(soundDetails)
-    //     }
-    // }, [soundDetails])
 
     if (soundDetails) {
         return (

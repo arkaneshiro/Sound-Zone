@@ -15,28 +15,32 @@ export default function reducer(state = {}, action) {
                 newState,
                 {
                     userSoundsArray: action.userSoundsArray,
-                })
+                }
+            )
         }
         case GET_USER_FEED: {
             return Object.assign(
                 newState,
                 {
                     userFeedArray: action.userFeedArray,
-                })
+                }
+            )
         }
         case GET_SOUND_DETAILS: {
             return Object.assign(
                 newState,
                 {
                     soundDetails: action.soundDetails,
-                })
+                }
+            )
         }
         case SET_SOUND_IMG: {
             return Object.assign(
                 newState,
                 {
                     newCoverUrl: action.newCoverUrl,
-                })
+                }
+            )
         }
         case SET_SOUND: {
             return Object.assign(
@@ -44,12 +48,12 @@ export default function reducer(state = {}, action) {
                 {
                     newSoundUrl: action.newSoundUrl,
                     newWaveUrl: action.newWaveUrl,
-                })
+                }
+            )
         }
         case LOGOUT: {
             return defaultSoundState
         }
-        default:
-            return state;
+        default: return state;
     }
 }

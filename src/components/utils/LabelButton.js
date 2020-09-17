@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from '../../styles/LabelButton.module.css';
 
 const LabelButton = ({labelfor, innerhtml}) => {

@@ -1,28 +1,26 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
+
 import { getUserInfo, followUser, unFollowUser, getAllUsers, getFollowedUsers } from '../actions/userActions';
 import { fetchUserSounds } from '../actions/soundActions';
 import styles from '../styles/Profile.module.css';
 
 import Sound from "./Sound";
 
-const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, followedArray = [], userSoundsArray = [], getUserInfo, followUser, unFollowUser, getAllUsers, getFollowedUsers, fetchUserSounds, ...props }) => {
+const Profile = ({ authToken, currentUserId, userName, userBio, userImgUrl, followedArray = [], userSoundsArray = [], getUserInfo, followUser, unFollowUser, getAllUsers, getFollowedUsers, fetchUserSounds, setSearchSelected, ...props }) => {
 
     useEffect(() => {
-        // const searchForm = document.querySelector(".searchForm");
-        // searchForm.reset()
         fetchUserSounds(props.match.params.userId);
         getUserInfo(props.match.params.userId);
         getAllUsers(authToken);
         getFollowedUsers(authToken);
-        props.searchControl.setSearchSelected([])
+        setSearchSelected([])
     }, [fetchUserSounds, getUserInfo, getAllUsers, getFollowedUsers, props.match.params.userId, authToken])
 
     const userSounds = userSoundsArray.map((userSound) => {
         const uploadDate = new Date(userSound.createdAt)
         const timeSincePost = Date.now() - uploadDate
         let uploadText = `${uploadDate.getMonth() + 1}/${uploadDate.getDate()}/${uploadDate.getFullYear()}`;
-        //let uploadText = `~ ${timeSincePost} milliseconds ago`
         let isCrntUserSound = false;
         if (timeSincePost < 86400000) {
             uploadText = 'today';

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Switch } from "react-router-dom";
 import { connect } from "react-redux";
+
 import { ProtectedRoute, AuthRoute } from "./Routes";
 import { logout } from './actions/authActions';
 import { deleteSound } from './actions/soundActions';
-
-
 import RegistrationForm from "./components/session/RegistrationForm.js";
 import LoginForm from "./components/session/LoginForm.js";
 import Home from "./components/Home";
@@ -101,10 +100,6 @@ function App({ searchData, currentUserId, logout }) {
         navPlaying,
     }
 
-    const searchControl = {
-        setSearchSelected
-    }
-
 
     return (
         <div className="outermost-container">
@@ -137,7 +132,7 @@ function App({ searchData, currentUserId, logout }) {
                     path="/users/:userId"
                     component={Profile}
                     currentUserId={currentUserId}
-                    searchControl={searchControl}
+                    setSearchSelected={setSearchSelected}
                     navControls={navControls}
                 />
                 <ProtectedRoute

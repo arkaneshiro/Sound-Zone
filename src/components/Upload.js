@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
+
 import { getUserInfo } from '../actions/userActions';
 import { updateCoverImg, updateSound, uploadSound } from '../actions/soundActions';
 import styles from '../styles/UploadSound.module.css';
-
 import LabelButton from "./utils/LabelButton";
 
 const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound }) => {
@@ -12,8 +12,6 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
     const [loadingDisplay, setLoadingDisplay] = useState('none')
 
     useEffect(() => {
-        // const searchForm = document.querySelector(".searchForm");
-        // searchForm.reset()
         getUserInfo(currentUserId);
 
     }, [getUserInfo, currentUserId])

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useForm } from "react-hook-form";
+
 import { login, clearLoginError } from '../../actions/authActions';
 import styles from '../../styles/LoginForm.module.css';
 import Home from "../Home";
@@ -77,7 +78,7 @@ const LoginForm = ({ login, loginError = [], clearLoginError }) => {
 
 const mapStateToProps = (state) => {
     return {
-      loginError: state.auth.loginError,
+        loginError: state.auth.loginError,
     };
 };
 

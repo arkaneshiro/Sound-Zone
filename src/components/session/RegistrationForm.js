@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { useForm } from "react-hook-form";
+
 import { registerUser, updateImg, clearRegisterErrors } from '../../actions/authActions';
 import styles from '../../styles/RegisterForm.module.css';
 import Home from "../Home";
@@ -102,8 +103,8 @@ const RegistrationForm = ({ registerUser, updateImg, clearRegisterErrors, previe
 
 const mapStateToProps = (state) => {
     return {
-      previewImgUrl: state.auth.previewImgUrl,
-      registerErrors: state.auth.registerErrors,
+        previewImgUrl: state.auth.previewImgUrl,
+        registerErrors: state.auth.registerErrors,
     };
 };
 

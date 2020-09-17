@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+
 import styles from '../styles/SoundBar.module.css';
 
 const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlaying, currentAudio, currentSoundInfo, adjustNav}) => {

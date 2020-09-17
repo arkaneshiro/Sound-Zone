@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
+
 import { fetchUserFeed } from '../actions/soundActions';
 import { getAllUsers, getFollowedUsers } from '../actions/userActions';
 import styles from '../styles/Dashboard.module.css';
@@ -9,8 +10,6 @@ import Sound from "./Sound";
 const Dashboard = ({authToken, currentUserId, userFeedArray = [], getAllUsers, getFollowedUsers, fetchUserFeed, ...props}) => {
 
     useEffect(() => {
-        // const searchForm = document.querySelector(".searchForm");
-        // searchForm.reset()
         fetchUserFeed(currentUserId);
         getAllUsers(authToken);
         getFollowedUsers(authToken);
@@ -20,7 +19,6 @@ const Dashboard = ({authToken, currentUserId, userFeedArray = [], getAllUsers, g
         const uploadDate = new Date(sound.createdAt)
         const timeSincePost = Date.now() - uploadDate
         let uploadText = `${uploadDate.getMonth() + 1}/${uploadDate.getDate()}/${uploadDate.getFullYear()}`;
-        //let uploadText = `~ ${timeSincePost} milliseconds ago`
         let isCrntUserSound = false;
         if (timeSincePost < 86400000) {
             uploadText = 'today';
