@@ -6,6 +6,8 @@ export const GET_USER_FEED = 'soundzone/sound/GET_USER_FEED'
 export const GET_SOUND_DETAILS = 'soundzone/sound/GET_SOUND_DETAILS'
 export const SET_SOUND_IMG = 'soundzone/sound/SET_SOUND_IMG';
 export const SET_SOUND = 'soundzone/sound/SET_SOUND_WAVE';
+export const SET_UPLOAD_ERROR = 'soundzone/sound/SET_UPLOAD_ERROR';
+export const CLEAR_UPLOAD_ERROR = 'soundzone/sound/CLEAR_UPLOAD_ERROR';
 
 export const getUserSounds = (userSoundsArray) => {
     return {
@@ -45,6 +47,19 @@ export const setSound = (url) => {
         newWaveUrl: waveUrl,
     }
 };
+
+export const setUploadError = (msg) => {
+    return {
+        type: SET_UPLOAD_ERROR,
+        msg,
+    }
+}
+
+export const clearUploadError = () => {
+    return {
+        type: CLEAR_UPLOAD_ERROR,
+    }
+}
 
 // THUNKS
 export const fetchUserSounds = (userId) => async (dispatch) => {
@@ -130,7 +145,8 @@ export const uploadSound = (userId, soundUrl, waveUrl, imageUrl, description, na
         // TODO reroute without rerendering
         window.location.href = `/users/${userId}`;
     } catch (err) {
-        console.error(err);
+        const errorJson = await err.json();
+        dispatch(setUploadError([errorJson.errors[0].msg]))
     }
 };
 

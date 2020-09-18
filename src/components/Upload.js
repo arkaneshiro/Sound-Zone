@@ -3,18 +3,18 @@ import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import { getUserInfo } from '../actions/userActions';
-import { updateCoverImg, updateSound, uploadSound } from '../actions/soundActions';
+import { updateCoverImg, updateSound, uploadSound, clearUploadError } from '../actions/soundActions';
 import styles from '../styles/UploadSound.module.css';
 import LabelButton from "./utils/LabelButton";
 
-const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound }) => {
+const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound, uploadError = [], clearUploadError }) => {
     const { register, handleSubmit, errors } = useForm();
     const [loadingDisplay, setLoadingDisplay] = useState('none')
 
     useEffect(() => {
         getUserInfo(currentUserId);
-
-    }, [getUserInfo, currentUserId])
+        clearUploadError()
+    }, [getUserInfo, currentUserId, clearUploadError])
 
     useEffect(() => {
         setLoadingDisplay('none')
@@ -44,6 +44,12 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
                     <div className={styles.uploadButtons}>
                         <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image' />
                         <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload' />
+                        {uploadError.length !== 0
+                        ?
+                            <div className={styles.error}>{`${uploadError[0]}`}</div>
+                        :
+                            ""
+                        }
                     </div>
                     <input
                         className={styles.textInput}
@@ -97,6 +103,7 @@ const mapStateToProps = (state) => {
         newCoverUrl: state.sound.newCoverUrl,
         newWaveUrl: state.sound.newWaveUrl,
         newSoundUrl: state.sound.newSoundUrl,
+        uploadError: state.sound.uploadError,
     };
 };
 
@@ -106,6 +113,8 @@ const mapDispatchToProps = (dispatch) => {
         updateCoverImg: (img) => dispatch(updateCoverImg(img)),
         updateSound: (sound) => dispatch(updateSound(sound)),
         uploadSound: (userId, soundUrl, waveUrl, imageUrl, description, name, token) => dispatch(uploadSound(userId, soundUrl, waveUrl, imageUrl, description, name, token)),
+        clearUploadError: () => dispatch(clearUploadError()),
+
     };
 };
 

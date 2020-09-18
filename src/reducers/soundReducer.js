@@ -1,4 +1,4 @@
-import { GET_USER_SOUNDS, GET_USER_FEED, GET_SOUND_DETAILS, SET_SOUND_IMG, SET_SOUND } from "../actions/soundActions";
+import { GET_USER_SOUNDS, GET_USER_FEED, GET_SOUND_DETAILS, SET_SOUND_IMG, SET_SOUND, SET_UPLOAD_ERROR, CLEAR_UPLOAD_ERROR } from "../actions/soundActions";
 import { LOGOUT } from "../actions/authActions";
 
 const defaultSoundState = {
@@ -48,6 +48,22 @@ export default function reducer(state = {}, action) {
                 {
                     newSoundUrl: action.newSoundUrl,
                     newWaveUrl: action.newWaveUrl,
+                }
+            )
+        }
+        case SET_UPLOAD_ERROR: {
+            return Object.assign(
+                newState,
+                {
+                    uploadError: action.msg,
+                }
+            )
+        }
+        case CLEAR_UPLOAD_ERROR: {
+            return Object.assign(
+                newState,
+                {
+                    uploadError: [],
                 }
             )
         }
