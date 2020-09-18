@@ -81,7 +81,7 @@ function App({ searchData, currentUserId, logout }) {
     // Logs u out!
     const logouter = () => {
         const soundButton = document.getElementById(`playPause${currentSoundInfo.soundId}`)
-        if (soundButton) {
+        if (navPlaying) {
             soundButton.click();
         }
         clearInterval(intervalKiller);
