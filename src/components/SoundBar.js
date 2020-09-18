@@ -27,7 +27,6 @@ const SoundBar = ({ currentUserId, setNavPlaying, navReset, navProgress, navPlay
     const moveSong = e => {
         const navEle = document.querySelector(`.soundCurrent`);
         if (displayOverlay === true && navPlaying) {
-            // console.log((hoverWidth/100) * navEle.duration);
             adjustNav((hoverWidth/100) * navEle.duration)
         }
     }
