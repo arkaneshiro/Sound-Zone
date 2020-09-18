@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 
 import { login, clearLoginError } from '../../actions/authActions';
 import styles from '../../styles/LoginForm.module.css';
-import Home from "../Home";
 import LabelButton from "../utils/LabelButton";
 
 const LoginForm = ({ login, loginError = [], clearLoginError }) => {
@@ -69,9 +68,7 @@ const LoginForm = ({ login, loginError = [], clearLoginError }) => {
                         value="Sign In as Guest"
                     />
                 </form>
-
             </div>
-            <Home/>
         </>
     )
 }

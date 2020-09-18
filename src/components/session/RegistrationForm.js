@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 
 import { registerUser, updateImg, clearRegisterErrors } from '../../actions/authActions';
 import styles from '../../styles/RegisterForm.module.css';
-import Home from "../Home";
 import LabelButton from "../utils/LabelButton";
 
 const RegistrationForm = ({ registerUser, updateImg, clearRegisterErrors, previewImgUrl, registerErrors = [] }) => {
@@ -96,7 +95,6 @@ const RegistrationForm = ({ registerUser, updateImg, clearRegisterErrors, previe
                     />
                 </form>
             </div>
-            <Home/>
         </>
     )
 }

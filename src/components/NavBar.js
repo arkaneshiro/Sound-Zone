@@ -29,9 +29,9 @@ const NavBar = ({searchData = [], currentUserId, logouter, redirector, setSearch
     const nav = currentUserId ? (
         <div className={styles.navBar}>
             <div className={styles.linkContainer}>
-                <NavLink className={styles.navBarLink} to={`/dashboard`}>Dashboard</NavLink>
-                <NavLink className={styles.navBarLink} to={`/users/${currentUserId}`}>Profile</NavLink>
-                <NavLink className={styles.navBarLink} to={`/upload`}>Upload</NavLink>
+                <NavLink className={styles.navBarLink} activeClassName={styles.active} to={`/dashboard`}>Dashboard</NavLink>
+                <NavLink className={styles.navBarLink} activeClassName={styles.active} to={`/users/${currentUserId}`}>Profile</NavLink>
+                <NavLink className={styles.navBarLink} activeClassName={styles.active} to={`/upload`}>Upload</NavLink>
                 <span className={styles.navBarLink} onClick={logouter} >Log Out</span>
                 <Select
                     style={searchStyles}
@@ -57,9 +57,9 @@ const NavBar = ({searchData = [], currentUserId, logouter, redirector, setSearch
     ) : (
         <div className={styles.navBar}>
             <div>
-                <NavLink className={styles.navBarLink} exact to="/">Home</NavLink>
-                <NavLink className={styles.navBarLink} to="/register">Sign Up</NavLink>
-                <NavLink className={styles.navBarLink} to="/login">Sign In</NavLink>
+                <NavLink className={styles.navBarLink} activeClassName={styles.active} exact to="/">Home</NavLink>
+                <NavLink className={styles.navBarLink} activeClassName={styles.active} to="/register">Sign Up</NavLink>
+                <NavLink className={styles.navBarLink} activeClassName={styles.active} to="/login">Sign In</NavLink>
             </div>
             <div>
                 <a className={styles.navBarLink} href="https://github.com/arkaneshiro/Sound-Zone">Github</a>

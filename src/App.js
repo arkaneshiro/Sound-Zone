@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import { ProtectedRoute, AuthRoute } from "./Routes";
 import { logout } from './actions/authActions';
 import { deleteSound } from './actions/soundActions';
-import RegistrationForm from "./components/session/RegistrationForm.js";
-import LoginForm from "./components/session/LoginForm.js";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Dashboard from "./components/Dashboard";
@@ -113,13 +111,13 @@ function App({ searchData, currentUserId, logout }) {
             />
             <Switch>
                 <AuthRoute
-                    path="/register"
-                    component={RegistrationForm}
+                    path="/login"
+                    component={Home}
                     currentUserId={currentUserId}
                 />
                 <AuthRoute
-                    path="/login"
-                    component={LoginForm}
+                    path="/register"
+                    component={Home}
                     currentUserId={currentUserId}
                 />
                 <AuthRoute
