@@ -55,7 +55,6 @@
 }
 
 .preview {
-    /* margin: 5px; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -79,7 +78,6 @@
     border-left: 155px solid white;
     border-right: 155px solid white;
     left: 180px;
-    /* display: none; */
     position: absolute;
 }
 
@@ -88,11 +86,6 @@
     justify-content: space-between;
     align-items: center;
 }
-
-/* .description {
-    width: 450px;
-    height: 60px;
-} */
 
 .soundInput {
     display: none;

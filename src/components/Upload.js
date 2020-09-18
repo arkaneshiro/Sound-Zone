@@ -43,13 +43,15 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
                     </div>
                     <div className={styles.uploadButtons}>
                         <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image' />
-                        <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload' />
-                        {uploadError.length !== 0
-                        ?
-                            <div className={styles.error}>{`${uploadError[0]}`}</div>
-                        :
-                            ""
-                        }
+                        <div>
+                            <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload' />
+                            {uploadError.length !== 0
+                            ?
+                                <div className={styles.error}>{`${uploadError[0]}`}</div>
+                            :
+                                ""
+                            }
+                        </div>
                     </div>
                     <input
                         className={styles.textInput}
