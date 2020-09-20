@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 30px;
+    width: 100%;
 }
 
 .controlAndDetails {
@@ -134,6 +135,21 @@
     width: 100%;
     height: 100%;
     z-index: 0;
+    background: transparent url('https://res.cloudinary.com/dgzcv1mcs/image/upload/v1589582588/Soundzone/loading_hcwl8f.gif') center no-repeat;
+    background-size: contain;
+}
+
+.soundWave:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    height: 20px;
+    width: 20px;
+    color: white;
+    background-color: white;
+    /* background-image: url('https://res.cloudinary.com/dgzcv1mcs/image/upload/v1589582588/Soundzone/loading_hcwl8f.gif'); */
 }
 
 .hidden {
