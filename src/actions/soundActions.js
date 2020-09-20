@@ -130,7 +130,7 @@ export const updateSound = (sound) => async (dispatch) => {
     }
 }
 
-export const uploadSound = (userId, soundUrl, waveUrl, imageUrl, description, name, token) => async (dispatch) => {
+export const uploadSound = (userId, soundUrl, waveUrl, imageUrl, description, name, token, history) => async (dispatch) => {
     try {
         const body = JSON.stringify({ userId, soundUrl, waveUrl, imageUrl, description, name })
         const res = await fetch(`${apiBaseUrl}/sounds`, {
@@ -142,8 +142,7 @@ export const uploadSound = (userId, soundUrl, waveUrl, imageUrl, description, na
             },
         });
         if (!res.ok) throw res;
-        // TODO reroute without rerendering
-        window.location.href = `/users/${userId}`;
+        history.push(`/users/${userId}`);
     } catch (err) {
         const errorJson = await err.json();
         dispatch(setUploadError([errorJson.errors[0].msg]))

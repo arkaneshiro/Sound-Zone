@@ -7,7 +7,7 @@ import { updateCoverImg, updateSound, uploadSound, clearUploadError, setUploadEr
 import styles from '../styles/UploadSound.module.css';
 import LabelButton from "./utils/LabelButton";
 
-const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound, uploadError = [], clearUploadError, setUploadError }) => {
+const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound, uploadError = [], clearUploadError, setUploadError, ...props }) => {
     const { register, handleSubmit, errors } = useForm();
     const [loadingDisplay, setLoadingDisplay] = useState('none')
 
@@ -33,7 +33,7 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
 
     const formSubmitter = data => {
         const coverUrl = newCoverUrl ? newCoverUrl : userImgUrl;
-        uploadSound(currentUserId, newSoundUrl, newWaveUrl, coverUrl, data.description, data.title, authToken)
+        uploadSound(currentUserId, newSoundUrl, newWaveUrl, coverUrl, data.description, data.title, authToken, props.history)
     }
 
     return (
@@ -120,7 +120,7 @@ const mapDispatchToProps = (dispatch) => {
         getUserInfo: (id) => dispatch(getUserInfo(id)),
         updateCoverImg: (img) => dispatch(updateCoverImg(img)),
         updateSound: (sound) => dispatch(updateSound(sound)),
-        uploadSound: (userId, soundUrl, waveUrl, imageUrl, description, name, token) => dispatch(uploadSound(userId, soundUrl, waveUrl, imageUrl, description, name, token)),
+        uploadSound: (userId, soundUrl, waveUrl, imageUrl, description, name, token, history) => dispatch(uploadSound(userId, soundUrl, waveUrl, imageUrl, description, name, token, history)),
         clearUploadError: () => dispatch(clearUploadError()),
         setUploadError: (err) => dispatch(setUploadError(err)),
     };
