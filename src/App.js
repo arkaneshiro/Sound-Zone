@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import { ProtectedRoute, AuthRoute } from "./Routes";
 import { logout } from './actions/authActions';
-import { deleteSound } from './actions/soundActions';
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Dashboard from "./components/Dashboard";
@@ -74,6 +73,9 @@ function App({ searchData, currentUserId, logout }) {
         navEle.pause();
         setNavPlaying(false);
         navEle.currentTime = 0;
+        setCurrentSoundInfo("");
+        setCurrentAudio("");
+        setCurrentRef("");
     }
 
     // Logs u out!
@@ -82,7 +84,7 @@ function App({ searchData, currentUserId, logout }) {
         if (navPlaying) {
             soundButton.click();
         }
-        clearInterval(intervalKiller);
+        navReset()
         logout()
     }
 
@@ -96,6 +98,7 @@ function App({ searchData, currentUserId, logout }) {
         navTime,
         navProgress,
         navPlaying,
+        navReset
     }
 
 
@@ -175,7 +178,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         logout: () => dispatch(logout()),
-        deleteSound: (token, soundId) => dispatch(deleteSound(token, soundId)),
     };
 };
 

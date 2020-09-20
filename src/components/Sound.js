@@ -102,6 +102,7 @@ const Sound = ({
     // deleter calls the delete action
     const deleter = () => {
         deleteSound(authToken, soundId, currentUserId)
+        navControls.navReset()
     }
 
     return (
