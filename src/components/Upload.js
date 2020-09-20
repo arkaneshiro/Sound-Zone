@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import { getUserInfo } from '../actions/userActions';
-import { updateCoverImg, updateSound, uploadSound, clearUploadError } from '../actions/soundActions';
+import { updateCoverImg, updateSound, uploadSound, clearUploadError, setUploadError } from '../actions/soundActions';
 import styles from '../styles/UploadSound.module.css';
 import LabelButton from "./utils/LabelButton";
 
-const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound, uploadError = [], clearUploadError }) => {
+const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl, newSoundUrl, getUserInfo, updateCoverImg, updateSound, uploadSound, uploadError = [], clearUploadError, setUploadError }) => {
     const { register, handleSubmit, errors } = useForm();
     const [loadingDisplay, setLoadingDisplay] = useState('none')
 
@@ -21,9 +21,14 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
     }, [newWaveUrl])
 
     const updateFile = cb => e => cb(e.target.files[0]);
+
     const handleUpdateSound = e => {
-        setLoadingDisplay('grid')
-        updateSound(e.target.files[0])
+        if (e.target.files[0].type === 'audio/mpeg') {
+            setLoadingDisplay('grid')
+            updateSound(e.target.files[0])
+        } else {
+            setUploadError(['please select an mp3'])
+        }
     }
 
     const formSubmitter = data => {
@@ -44,7 +49,7 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
                     <div className={styles.uploadButtons}>
                         <LabelButton labelfor='file-upload' innerhtml='Select a Cover Image' />
                         <div>
-                            <LabelButton labelfor='sound-upload' innerhtml='Select Audio to Upload' />
+                            <LabelButton labelfor='sound-upload' innerhtml='Select Mp3 to Upload' />
                             {uploadError.length !== 0
                             ?
                                 <div className={styles.error}>{`${uploadError[0]}`}</div>
@@ -76,6 +81,7 @@ const Upload = ({ authToken, currentUserId, userImgUrl, newCoverUrl, newWaveUrl,
                         className={styles.soundInput}
                         type="file"
                         id="sound-upload"
+                        name="soundUpload"
                         onChange={handleUpdateSound}
                     />
                     <input
@@ -116,7 +122,7 @@ const mapDispatchToProps = (dispatch) => {
         updateSound: (sound) => dispatch(updateSound(sound)),
         uploadSound: (userId, soundUrl, waveUrl, imageUrl, description, name, token) => dispatch(uploadSound(userId, soundUrl, waveUrl, imageUrl, description, name, token)),
         clearUploadError: () => dispatch(clearUploadError()),
-
+        setUploadError: (err) => dispatch(setUploadError(err)),
     };
 };
 

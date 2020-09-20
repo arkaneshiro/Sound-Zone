@@ -39,7 +39,7 @@ export const setCoverImgUrl = (newCoverUrl) => {
 
 export const setSound = (url) => {
     const waveUrlFront = url.substring(0, url.lastIndexOf('upload/') + 7);
-    const waveUrlBack = url.substring(url.lastIndexOf('/'), url.length - 4);
+    const waveUrlBack = url.substring(url.lastIndexOf('/'), url.lastIndexOf('.'));
     const waveUrl = `${waveUrlFront}fl_waveform,co_black,b_white${waveUrlBack}.png`;
     return {
         type: SET_SOUND,
