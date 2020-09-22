@@ -13,7 +13,7 @@
 1. Express
     - Express made sense to use for Soundzone because of its great docs and the wealth of learning material online. It made routing and error handling very easy to implement
 2. express-validator
-    - express-validator gave me a simple way to create validation middlewares for the login and sign up routes for validations i could not implement on the front end
+    - express-validator gave me a simple way to create validation middlewares for validations i could not implement on the front end
 3. jsonwebtoken, express-bearer-token & bcrypt
     - jsonwebtoken, express-bearer-token, and bcrypt are the technologies used to authenticate users.
         - jsonwebtoken allowed me to easily make tokens that could be sent from server to client as json messages
