@@ -1,11 +1,9 @@
 # Soundzone Feature List
 1. Users
-    * User registration with validations
-    * Login page for users with validations
+    * User registration & login with validations
+      - registration and login of users uses react-hook-form and express-validator for validations, and stores users in postgres database using the ORM Sequelize. Profile images themselves are stored on Cloudinary,
     * User authentication that persists throughout session
-    * Guest Users (for demonstration)
-    * Login/logout functionality
-    * Profiles/Profile photo that appears in top right when logged in
+    * Guest User (for demonstration)
 2. Sounds
     * sounds sent to cloudinary, stored, then displayed to user
     * typical play / pause

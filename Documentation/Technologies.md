@@ -21,3 +21,5 @@
         - bcrypt allowed me to store users passwords securely using its hashing function
 4. sequelize
     -  sequelize allowed me to write functions to create the database models, migrations, and seed data instead of having to write code to generate SQL commands when I wanted to update the database.
+5. Cloudinary
+    - cloudinary's rest API allowed me to store images and audio on their database for free and store references to the files as a url string in my postgres database.
