@@ -77,7 +77,12 @@
 
 .soundLink {
     text-decoration: none;
+    height: 19px;
+    width: 70%;
     color: rgb(54, 54, 54);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .soundLink:hover {
@@ -91,6 +96,7 @@
     padding: 2px 5px;
     color: black;
     background-color: #ff6700;
+    height: 15px;
 }
 
 .delete:hover {
@@ -149,7 +155,6 @@
     width: 20px;
     color: white;
     background-color: white;
-    /* background-image: url('https://res.cloudinary.com/dgzcv1mcs/image/upload/v1589582588/Soundzone/loading_hcwl8f.gif'); */
 }
 
 .hidden {
@@ -162,4 +167,15 @@
 
 .paused::before {
     content: "▶"
+}
+
+
+@media only screen and (max-width: 700px) {
+    .sound {
+        width: 500px;
+        margin: 30px 0px
+    }
+    .soundLink {
+        width: 250px;
+    }
 }
