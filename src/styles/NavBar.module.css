@@ -19,11 +19,9 @@
 .navBarLink:visited {
     margin: 5px;
     padding: 7px;
-    /* border-radius: 5px; */
     color: black;
     background-color: #ff6700;
     text-decoration: none;
-    /* transition: background-color .2s; */
 }
 
 .navBarLink:hover {
