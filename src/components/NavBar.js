@@ -29,10 +29,12 @@ const NavBar = ({searchData = [], currentUserId, logouter, redirector, setSearch
     const nav = currentUserId ? (
         <div className={styles.navBar}>
             <div className={styles.linkContainer}>
-                <NavLink className={styles.navBarLink} activeClassName={styles.active} to={`/dashboard`}>Dashboard</NavLink>
-                <NavLink className={styles.navBarLink} activeClassName={styles.active} to={`/users/${currentUserId}`}>Profile</NavLink>
-                <NavLink className={styles.navBarLink} activeClassName={styles.active} to={`/upload`}>Upload</NavLink>
-                <span className={styles.navBarLink} onClick={logouter} >Log Out</span>
+                <div className={styles.buttonContainer}>
+                    <NavLink className={styles.navBarLink} activeClassName={styles.active} to={`/dashboard`}>Dashboard</NavLink>
+                    <NavLink className={styles.navBarLink} activeClassName={styles.active} to={`/users/${currentUserId}`}>Profile</NavLink>
+                    <NavLink className={styles.navBarLink} activeClassName={styles.active} to={`/upload`}>Upload</NavLink>
+                    <span className={styles.navBarLink} onClick={logouter} >Log Out</span>
+                </div>
                 <Select
                     style={searchStyles}
                     values={searchSelected}

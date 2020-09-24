@@ -11,6 +11,10 @@
     align-items: center;
 }
 
+.buttonContainer {
+    width: 350px;
+}
+
 .navBarLink,
 .navBarLink:visited {
     margin: 5px;
