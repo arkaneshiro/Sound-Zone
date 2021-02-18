@@ -14,7 +14,7 @@ Soundzone is a web application based on Soundcloud where users can upload and pl
 Users can click through the waveform of a sound to scrub through playback of sounds.
 
 ## Application Architecture
-Soundzone's stack includes [React](https://reactjs.org/),[Redux](https://redux.js.org/), [Node](https://nodejs.org/en/), [Express](https://expressjs.com/), and [PostgreSQL](https://www.postgresql.org/). Most of the application's logic happens on the front end, using Redux actions to make fetch calls to the backend, and to [Cloudinary's](https://cloudinary.com/documentation) Rest API to upload audio files.
+Soundzone's stack includes [React](https://reactjs.org/), [Redux](https://redux.js.org/), [Node](https://nodejs.org/en/), [Express](https://expressjs.com/), and [PostgreSQL](https://www.postgresql.org/). Most of the application's logic happens on the front end, using Redux actions to make fetch calls to the backend, and to [Cloudinary's](https://cloudinary.com/documentation) Rest API to upload audio files.
 
 The backend serves the frontend and simply fetches data from the postgres database.
 
@@ -23,7 +23,7 @@ The most involved logic in Soundzone occurs in the frontend. The front end exten
 
 ### Frontend Technologies Used
 #### React
-Soundzone is a [React](https://reactjs.org/) application, and reaps all the benefits as such, allowing for a snappy user experience. React's built-in hooks are used throughout the app, and the passing of functions through props is what allows Soundzone to provide uninterrupted playback of audio. The use of threading functions through the props was the most important descision in developing this app, as it allowed me to make `Sound` components glorified visualizers while the `App` component manages audio playback. Before implementing this strategy I had a lot of difficulty making `Sound` components keep track of the currently playing sound and be able to both interrupt playback of other sounds, and persist playback through page changes.
+Soundzone is a [React](https://reactjs.org/) application, allowing for a snappy user experience. React's built-in hooks are used throughout the app, and the passing of functions through props is what allows Soundzone to provide uninterrupted playback of audio. The use of threading functions through the props was the most important descision in developing this app, as it allowed me to make `Sound` components glorified visualizers while the `App` component manages audio playback. Before implementing this strategy I had a lot of difficulty making `Sound` components keep track of the currently playing sound and be able to both interrupt playback of other sounds, and persist playback through page changes.
 
 #### Redux
 The [Redux](https://redux.js.org/) library is used in Soundzone to manage the state of the application and make requests to both the server and Cloudinary's Rest API.
