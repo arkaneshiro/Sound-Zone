@@ -57,8 +57,11 @@ Soundzone uses a [PostgreSQL](https://www.postgresql.org/) database with [Sequel
 ## Conclusion and Further Development
 Soundzone is my first full stack application! It was a really exciting challenge to try and replicate features from Soundcloud. Doing a project like this gave me a fun sandbox environment to play around with React and Redux, which I'd only just learned a week prior at the time!
 
-
 **Further Development:** I have a somewhat exhaustive list of features and some ideas for features in the futures found [Here](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/featureList.md)!
+
+
+
+
 
 
 u made it to the end of the page! thanks for reading ;)
