@@ -1,29 +1,12 @@
-## Documentation links
-- [Feature List](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/featureList.md)
-- [Technologies](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/Technologies.md)
-- [Challenges in Development](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/Challenges.md)
-- [MVP](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/mvp.md)
-- [Front End Routes](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/frontEndRoutes.md)
-- [Back End Routes](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/backEndRoutes.md)
-- [Schema Image](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/schema.png)
-
-## Instructions to run locally
-- clone repo
-- run command "npm install"
-- create .env file based on .env.example with your cloudinary information
-- run command "npm start" to start client, follow instructions on [Sound-Zone-Backend](https://github.com/arkaneshiro/Sound-Zone-Backend) to start server
-
-
-
 # Soundzone
-[Soundzone](https://sound-zone.herokuapp.com) by [Riki Kaneshiro](https://arkaneshiro.github.io/)
+*[Soundzone](https://sound-zone.herokuapp.com) by [Riki Kaneshiro](https://arkaneshiro.github.io/)*
 
 **Table of Contents**
 * [Soundzone at a Glance](#soundzone-at-a-glance)
 * [Application Architecture & Technologies Used](#application-architecture)
 * [Frontend Overview](#frontend-overview)
 * [Backend Overview](#backend-overview)
-* [Conclusion & Next Steps](#conclusion-and-next-steps)
+* [Conclusion & Next Steps](#conclusion-and-further-development)
 
 ## Soundzone at a Glance
 Soundzone is a web application based on Soundcloud where users can upload and play sounds, and follow other users to play their sounds.
@@ -71,4 +54,11 @@ Soundzone uses a PostgreSQL database with an Express server. The backend of Soun
 #### PostgreSQL
 Soundzone uses a [PostgreSQL](https://www.postgresql.org/) database with [Sequelize](https://sequelize.org/) to communicate with the server. Using table relationships with postgres was crucial in querying the database, and making [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) operations easy to implement.
 
-## Conclusion and Next Steps
+## Conclusion and Further Development
+Soundzone is my first full stack application! It was a really exciting challenge to try and replicate features from Soundcloud. Doing a project like this gave me a fun sandbox environment to play around with React and Redux, which I'd only just learned a week prior at the time!
+
+
+**Further Development:** I have a somewhat exhaustive list of features and some ideas for features in the futures found [Here](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/featureList.md)!
+
+
+u made it to the end of the page! thanks for reading ;)
