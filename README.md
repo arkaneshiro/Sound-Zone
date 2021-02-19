@@ -55,7 +55,7 @@ Soundzone uses a PostgreSQL database with an Express server. The backend of Soun
 Soundzone uses a [PostgreSQL](https://www.postgresql.org/) database with [Sequelize](https://sequelize.org/) to communicate with the server. Using table relationships with postgres was crucial in querying the database, and making [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) operations easy to implement.
 
 ## Conclusion and Further Development
-Soundzone is my first full stack application! It was a really exciting challenge to try and replicate features from Soundcloud. Doing a project like this gave me a fun sandbox environment to play around with React and Redux, which I'd only just learned a week prior at the time!
+Soundzone is my first solo full stack application! It was a really exciting challenge to try and replicate features from Soundcloud. Doing a project like this gave me a fun sandbox environment to play around with React and Redux, which I'd only just learned a week prior at the time!
 
 **Further Development:** I have a somewhat exhaustive list of features and some ideas for features in the futures found [Here](https://github.com/arkaneshiro/Sound-Zone/blob/master/Documentation/featureList.md)!
 
