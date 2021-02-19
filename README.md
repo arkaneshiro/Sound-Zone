@@ -88,7 +88,7 @@ export const uploadSound = (userId, soundUrl, waveUrl, imageUrl, description, na
 #### React-Hook-Form
 [React-Hook-Form](https://react-hook-form.com/) allows for simple and powerful form validations and error handling. The built-in functions `register`, `handleSubmit`, and the `errors` variable eliminated the need for a series of functions and hooks that would provide the same functionality.
 
-##### React-Hook-Form on Login
+##### React-Hook-Form's useForm hook on Login
 ``` jsx
 const LoginForm = ({ login, loginError = [], clearLoginError }) => {
     const { register, handleSubmit, errors } = useForm();
